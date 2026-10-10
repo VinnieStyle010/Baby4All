@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maak mijn avatar | Baby4All</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#17325c;
+  min-height:100vh;
+  background:linear-gradient(135deg,#dff6ff,#f3e7ff,#fff1df,#e9ffdd);
+}
+
+header{
+  background:white;
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.logo{
+  font-size:2rem;
+  font-weight:900;
+  color:#6d43e5;
+  text-decoration:none;
+}
+
+.logo span{color:#19a9d8}
+
+.back{
+  text-decoration:none;
+  background:#7447e8;
+  color:white;
+  padding:12px 18px;
+  border-radius:25px;
+  font-weight:800;
+}
+
+main{
+  width:min(1100px,92%);
+  margin:35px auto 70px;
+}
+
+.intro{text-align:center}
+
+.intro h1{
+  font-size:clamp(2.2rem,6vw,4rem);
+  margin:5px;
+}
+
+.intro p{
+  max-width:700px;
+  margin:10px auto 30px;
+  line-height:1.6;
+}
+
+.builder{
+  display:grid;
+  grid-template-columns:350px 1fr;
+  gap:25px;
+}
+
+.preview,
+.options{
+  background:white;
+  border-radius:32px;
+  padding:25px;
+  box-shadow:0 15px 35px rgba(60,40,110,.12);
+}
+
+.preview{
+  text-align:center;
+  align-self:start;
+  position:sticky;
+  top:20px;
+}
+
+.avatar{
+  width:240px;
+  height:300px;
+  margin:15px auto;
+  border-radius:45% 45% 35% 35%;
+  background:#f2e2c9;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  border:8px solid #f6f1ff;
+  overflow:hidden;
+}
+
+.hair{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:85px;
+  background:#6b4226;
+  border-radius:45% 45% 35% 35%;
+}
+
+.face{
+  position:relative;
+  z-index:2;
+  font-size:4.2rem;
+  margin-top:15px;
+}
+
+.outfit{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:120px;
+  background:#74c9ff;
+  border-radius:35px 35px 0 0;
+}
+
+.ageBadge{
+  display:inline-block;
+  padding:8px 15px;
+  border-radius:20px;
+  background:#fff3b8;
+  font-weight:800;
+}
+
+.section{
+  padding-bottom:24px;
+  margin-bottom:24px;
+  border-bottom:2px dashed #e8e2f3;
+}
+
+.section:last-child{border:0}
+
+.section h2{
+  margin-top:0;
+}
+
+.choice-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.choice{
+  border:3px solid transparent;
+  background:#f3f2f8;
+  border-radius:18px;
+  padding:12px 16px;
+  font-weight:800;
+  cursor:pointer;
+  font-size:1rem;
+}
+
+.choice:hover{
+  transform:translateY(-2px);
+}
+
+.choice.selected{
+  border-color:#7447e8;
+  background:#eee7ff;
+}
+
+.skin{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  padding:0;
+}
+
+label{
+  font-weight:800;
+  display:block;
+  margin-bottom:8px;
+}
+
+input[type="date"],
+input[type="text"]{
+  width:100%;
+  padding:14px;
+  border:2px solid #ddd7ea;
+  border-radius:16px;
+  font-size:1rem;
+}
+
+.note{
+  font-size:.9rem;
+  color:#68758a;
+  line-height:1.5;
+  margin-top:8px;
+}
+
+.save{
+  width:100%;
+  border:0;
+  background:#7447e8;
+  color:white;
+  padding:16px;
+  border-radius:25px;
+  font-size:1.1rem;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.saved{
+  display:none;
+  margin-top:15px;
+  padding:14px;
+  background:#ddf8df;
+  border-radius:18px;
+  font-weight:800;
+}
+
+@media(max-width:800px){
+  .builder{grid-template-columns:1fr}
+  .preview{position:static}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="../../" class="logo">🌈 Baby4<span>All</span></a>
+  <a href="../" class="back">⭐ Mijn Baby4All</a>
+</header>
+
+<main>
+
+<section class="intro">
+  <h1>🪄 Maak jouw avatar</h1>
+  <p>
+    Maak een Baby4All-avonturier die helemaal bij jou past.
+    Je avatar kan later meegroeien en blijft bij je tijdens
+    jouw avonturen.
+  </p>
+</section>
+
+<div class="builder">
+
+<section class="preview">
+
+  <h2>Mijn avatar</h2>
+
+  <div class="ageBadge" id="ageBadge">
+    🧸 Leeftijd nog kiezen
+  </div>
+
+  <div class="avatar" id="avatar">
+
+    <div class="hair" id="hair"></div>
+
+    <div class="face" id="face">
+      😊
+    </div>
+
+    <div class="outfit" id="outfit"></div>
+
+  </div>
+
+  <h2 id="previewName">
+    Mijn avonturier
+  </h2>
+
+  <p id="stageText">
+    Klaar voor een nieuw avontuur!
+  </p>
+
+</section>
+
+
+<section class="options">
+
+  <div class="section">
+
+    <h2>👋 Hoe noemen we jouw avatar?</h2>
+
+    <input
+      id="avatarName"
+      type="text"
+      maxlength="20"
+      placeholder="Bijvoorbeeld: Sam"
+    >
+
+    <p class="note">
+      Je kunt ook een fantasienaam gebruiken.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>🎂 Wanneer is de avatar jarig?</h2>
+
+    <input id="birthday" type="date">
+
+    <p class="note">
+      Hiermee kan Baby4All de levensfase bepalen en de avatar
+      later op verjaardagen laten meegroeien.
+    </p>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>🌈 Kies een huidskleur</h2>
+
+    <div class="choice-grid">
+
+      <button class="choice skin"
+        data-skin="#f7d8bd"
+        style="background:#f7d8bd"></button>
+
+      <button class="choice skin"
+        data-skin="#e9b98f"
+        style="background:#e9b98f"></button>
+
+      <button class="choice skin"
+        data-skin="#c98d61"
+        style="background:#c98d61"></button>
+
+      <button class="choice skin"
+        data-skin="#9b6345"
+        style="background:#9b6345"></button>
+
+      <button class="choice skin"
+        data-skin="#70452f"
+        style="background:#70452f"></button>
+
+      <button class="choice skin"
+        data-skin="#4b3027"
+        style="background:#4b3027"></button>
+
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>💇 Kies haar</h2>
+
+    <div class="choice-grid">
+
+      <button class="choice hairChoice"
+        data-hair="#f1c232">
+        Blond
+      </button>
+
+      <button class="choice hairChoice"
+        data-hair="#9a633c">
+        Bruin
+      </button>
+
+      <button class="choice hairChoice"
+        data-hair="#3b2924">
+        Donker
+      </button>
+
+      <button class="choice hairChoice"
+        data-hair="#d96c55">
+        Rood
+      </button>
+
+      <button class="choice hairChoice"
+        data-hair="#222222">
+        Zwart
+      </button>
+
+      <button class="choice hairChoice"
+        data-hair="#7d54c7">
+        Fantasie 💜
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>😄 Kies een gezicht</h2>
+
+    <div class="choice-grid">
+
+      <button class="choice faceChoice" data-face="😊">😊</button>
+      <button class="choice faceChoice" data-face="😄">😄</button>
+      <button class="choice faceChoice" data-face="🙂">🙂</button>
+      <button class="choice faceChoice" data-face="🤓">🤓</button>
+      <button class="choice faceChoice" data-face="😎">😎</button>
+
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>👕 Kies een eerste outfit</h2>
+
+    <p class="note" id="clothingMessage">
+      Kies eerst de leeftijd. Daarna laat Baby4All kleding zien
+      die bij die levensfase past.
+    </p>
+
+    <div class="choice-grid" id="clothingChoices"></div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>✨ Extra's</h2>
+
+    <div class="choice-grid">
+
+      <button class="choice extraChoice"
+        data-extra="none">
+        Geen
+      </button>
+
+      <button class="choice extraChoice"
+        data-extra="glasses">
+        👓 Bril
+      </button>
+
+      <button class="choice extraChoice"
+        data-extra="hearing">
+        🦻 Hoortoestel
+      </button>
+
+    </div>
+
+    <p class="note">
+      Later voegen we hier veel meer kapsels, brillen,
+      hulpmiddelen, accessoires en vrijgespeelde spullen aan toe.
+    </p>
+
+  </div>
+
+
+  <button class="save" id="saveAvatar">
+    💾 Bewaar mijn avatar
+  </button>
+
+  <div class="saved" id="savedMessage">
+    🌟 Je avatar is bewaard!
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<script>
+
+const avatar = document.getElementById("avatar");
+const hair = document.getElementById("hair");
+const face = document.getElementById("face");
+const outfit = document.getElementById("outfit");
+
+let avatarData = {
+  name:"",
+  birthday:"",
+  age:null,
+  stage:"",
+  skin:"#f7d8bd",
+  hair:"#6b4226",
+  face:"😊",
+  outfit:"",
+  extra:"none"
+};
+
+
+/* ===============================
+   NAAM
+================================ */
+
+document.getElementById("avatarName")
+.addEventListener("input", function(){
+
+  avatarData.name = this.value;
+
+  document.getElementById("previewName").textContent =
+    this.value || "Mijn avonturier";
+
+});
+
+
+/* ===============================
+   LEEFTIJD BEREKENEN
+================================ */
+
+function calculateAge(dateString){
+
+  const birth = new Date(dateString);
+  const today = new Date();
+
+  let age =
+    today.getFullYear() - birth.getFullYear();
+
+  const month =
+    today.getMonth() - birth.getMonth();
+
+  if(
+    month < 0 ||
+    (month === 0 &&
+     today.getDate() < birth.getDate())
+  ){
+    age--;
+  }
+
+  return age;
+}
+
+
+function getStage(age){
+
+  if(age <= 1) return "baby";
+  if(age <= 3) return "peuter";
+  if(age <= 5) return "kleuter";
+  if(age <= 8) return "avonturier";
+  return "grote-avonturier";
+
+}
+
+
+document.getElementById("birthday")
+.addEventListener("change", function(){
+
+  const age = calculateAge(this.value);
+
+  if(age < 0 || age > 12){
+
+    alert(
+      "Baby4All gebruikt deze avatar-maker voor leeftijden tot en met 12 jaar."
+    );
+
+    this.value = "";
+    return;
+  }
+
+  avatarData.birthday = this.value;
+  avatarData.age = age;
+  avatarData.stage = getStage(age);
+
+  updateAge();
+  createClothing(age);
+
+});
+
+
+function updateAge(){
+
+  const badge =
+    document.getElementById("ageBadge");
+
+  const stage =
+    document.getElementById("stageText");
+
+  if(avatarData.age === null) return;
+
+  let icon = "🧒";
+  let text = "Avonturier";
+
+  if(avatarData.stage === "baby"){
+    icon = "👶";
+    text = "Kleine ontdekker";
+  }
+
+  if(avatarData.stage === "peuter"){
+    icon = "🧸";
+    text = "Peuter-avonturier";
+  }
+
+  if(avatarData.stage === "kleuter"){
+    icon = "🎨";
+    text = "Kleuter-avonturier";
+  }
+
+  if(avatarData.stage === "avonturier"){
+    icon = "🚀";
+    text = "Avonturier";
+  }
+
+  if(avatarData.stage === "grote-avonturier"){
+    icon = "🌟";
+    text = "Grote avonturier";
+  }
+
+  badge.textContent =
+    icon + " " +
+    avatarData.age +
+    " jaar";
+
+  stage.textContent = text;
+
+}
+
+
+/* ===============================
+   KLEDING PER LEEFTIJD
+================================ */
+
+function createClothing(age){
+
+  const box =
+    document.getElementById("clothingChoices");
+
+  const message =
+    document.getElementById("clothingMessage");
+
+  box.innerHTML = "";
+
+  let clothes = [];
+
+  if(age <= 1){
+
+    clothes = [
+      ["🍼 Zachte outfit","#9edcff"],
+      ["🌙 Babypyjama","#c7b4ff"],
+      ["☁️ Wolkjespak","#e8dfff"]
+    ];
+
+  }
+
+  else if(age <= 3){
+
+    clothes = [
+      ["🧸 Speelpak","#ffbf78"],
+      ["🌈 Trui","#9edcff"],
+      ["🌧️ Regenoutfit","#75b6ff"]
+    ];
+
+  }
+
+  else if(age <= 5){
+
+    clothes = [
+      ["🎨 Kleurenoutfit","#ff91ba"],
+      ["🌟 Sterrenoutfit","#836ee8"],
+      ["🌳 Ontdekker","#73c98b"]
+    ];
+
+  }
+
+  else if(age <= 8){
+
+    clothes = [
+      ["🚀 Ruimteoutfit","#5f73dc"],
+      ["🌲 Avonturenoutfit","#5fa86d"],
+      ["🌈 Regenboogoutfit","#e47ea5"]
+    ];
+
+  }
+
+  else{
+
+    clothes = [
+      ["⭐ Sterrenreiziger","#5949b8"],
+      ["🗺️ Wereldontdekker","#4b9c74"],
+      ["🎮 Chill outfit","#557bc7"]
+    ];
+
+  }
+
+  message.textContent =
+    "Deze outfits passen bij de huidige levensfase van jouw avatar.";
+
+  clothes.forEach(function(item){
+
+    const button =
+      document.createElement("button");
+
+    button.className = "choice outfitChoice";
+
+    button.textContent = item[0];
+
+    button.dataset.color = item[1];
+
+    button.addEventListener("click",function(){
+
+      avatarData.outfit =
+        this.textContent;
+
+      outfit.style.background =
+        this.dataset.color;
+
+      selectButton(
+        ".outfitChoice",
+        this
+      );
+
+    });
+
+    box.appendChild(button);
+
+  });
+
+}
+
+
+/* ===============================
+   KEUZES
+================================ */
+
+document.querySelectorAll(".skin")
+.forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    avatarData.skin =
+      this.dataset.skin;
+
+    avatar.style.background =
+      avatarData.skin;
+
+    selectButton(".skin",this);
+
+  });
+
+});
+
+
+document.querySelectorAll(".hairChoice")
+.forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    avatarData.hair =
+      this.dataset.hair;
+
+    hair.style.background =
+      avatarData.hair;
+
+    selectButton(
+      ".hairChoice",
+      this
+    );
+
+  });
+
+});
+
+
+document.querySelectorAll(".faceChoice")
+.forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    avatarData.face =
+      this.dataset.face;
+
+    face.textContent =
+      avatarData.face;
+
+    selectButton(
+      ".faceChoice",
+      this
+    );
+
+  });
+
+});
+
+
+document.querySelectorAll(".extraChoice")
+.forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    avatarData.extra =
+      this.dataset.extra;
+
+    selectButton(
+      ".extraChoice",
+      this
+    );
+
+  });
+
+});
+
+
+function selectButton(selector,current){
+
+  document.querySelectorAll(selector)
+  .forEach(function(button){
+
+    button.classList.remove("selected");
+
+  });
+
+  current.classList.add("selected");
+
+}
+
+
+/* ===============================
+   OPSLAAN
+================================ */
+
+document.getElementById("saveAvatar")
+.addEventListener("click",function(){
+
+  if(!avatarData.birthday){
+
+    alert(
+      "Kies eerst wanneer jouw avatar jarig is."
+    );
+
+    return;
+  }
+
+  localStorage.setItem(
+    "baby4all-avatar",
+    JSON.stringify(avatarData)
+  );
+
+  document.getElementById(
+    "savedMessage"
+  ).style.display = "block";
+
+});
+
+
+/* ===============================
+   BESTAANDE AVATAR LADEN
+================================ */
+
+const saved =
+  localStorage.getItem(
+    "baby4all-avatar"
+  );
+
+if(saved){
+
+  try{
+
+    avatarData =
+      JSON.parse(saved);
+
+    /*
+      Leeftijd wordt iedere keer opnieuw
+      berekend.
+
+      Hierdoor wordt de avatar na een
+      verjaardag automatisch een jaar ouder.
+    */
+
+    if(avatarData.birthday){
+
+      avatarData.age =
+        calculateAge(
+          avatarData.birthday
+        );
+
+      avatarData.stage =
+        getStage(
+          avatarData.age
+        );
+
+      document.getElementById(
+        "birthday"
+      ).value =
+        avatarData.birthday;
+
+      createClothing(
+        avatarData.age
+      );
+
+      updateAge();
+
+    }
+
+    document.getElementById(
+      "avatarName"
+    ).value =
+      avatarData.name || "";
+
+    document.getElementById(
+      "previewName"
+    ).textContent =
+      avatarData.name ||
+      "Mijn avonturier";
+
+    avatar.style.background =
+      avatarData.skin ||
+      "#f7d8bd";
+
+    hair.style.background =
+      avatarData.hair ||
+      "#6b4226";
+
+    face.textContent =
+      avatarData.face ||
+      "😊";
+
+  }
+  catch(error){
+
+    console.log(
+      "Avatar kon niet worden geladen."
+    );
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
