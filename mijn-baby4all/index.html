@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mijn Baby4All</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #17325c;
+      background:
+        linear-gradient(
+          135deg,
+          #dff4ff 0%,
+          #f4e8ff 45%,
+          #fff0e5 75%,
+          #e7ffd9 100%
+        );
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+
+    header {
+      background: rgba(255,255,255,0.95);
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #6c42e8;
+    }
+
+    .logo span {
+      color: #19a9d8;
+    }
+
+    .home-button {
+      background: #7447e8;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 800;
+    }
+
+    /* MAIN */
+
+    main {
+      width: min(1150px, 92%);
+      margin: 40px auto 80px;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .welcome .small {
+      color: #7b4ce2;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .welcome h1 {
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      margin: 10px 0;
+      color: #17325c;
+    }
+
+    .welcome p {
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    /* PROFIEL */
+
+    .profile {
+      background: white;
+      border-radius: 35px;
+      padding: 28px;
+      box-shadow: 0 15px 40px rgba(67,45,120,0.12);
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      gap: 25px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(145deg,#dff5ff,#f6e4ff);
+      display: grid;
+      place-items: center;
+      font-size: 5rem;
+      border: 6px solid white;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    }
+
+    .profile h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    .profile p {
+      margin: 6px 0;
+      color: #60708a;
+    }
+
+    .stars {
+      background: #fff6c7;
+      padding: 18px 25px;
+      border-radius: 25px;
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .stars strong {
+      display: block;
+      font-size: 2rem;
+      color: #e49a00;
+    }
+
+    /* KAARTEN */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 30px;
+      padding: 25px;
+      min-height: 235px;
+      box-shadow: 0 12px 30px rgba(53,45,100,0.10);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      line-height: 1.5;
+      color: #64718a;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      background: #7447e8;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 22px;
+      font-weight: 800;
+    }
+
+    /* EI */
+
+    .egg-card {
+      background:
+        linear-gradient(145deg,#fff8d8,#ffe6f6);
+    }
+
+    .egg {
+      font-size: 5rem;
+      text-align: center;
+      animation: wiggle 3s infinite;
+    }
+
+    @keyframes wiggle {
+      0%,90%,100% {
+        transform: rotate(0);
+      }
+
+      93% {
+        transform: rotate(-5deg);
+      }
+
+      96% {
+        transform: rotate(5deg);
+      }
+    }
+
+    /* LOCKED */
+
+    .locked {
+      opacity: 0.75;
+    }
+
+    .lock {
+      background: #edf0f7;
+      border-radius: 18px;
+      padding: 10px 14px;
+      display: inline-block;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    /* PROGRESS */
+
+    .progress {
+      background: #e9eaf2;
+      height: 16px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg,#ffcb35,#ff8f3d);
+      border-radius: inherit;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      background: white;
+      padding: 30px 20px;
+      font-weight: 700;
+    }
+
+    /* MOBIEL */
+
+    @media (max-width: 850px) {
+      .profile {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .avatar {
+        margin: auto;
+      }
+
+      .stars {
+        margin: auto;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a class="logo" href="../">
+    🌈 Baby4<span>All</span>
+  </a>
+
+  <a class="home-button" href="../">
+    🏠 Terug naar Baby4All
+  </a>
+
+</header>
+
+
+<main>
+
+  <section class="welcome">
+
+    <div class="small">
+      Jouw eigen plekje
+    </div>
+
+    <h1>
+      ⭐ Mijn Baby4All
+    </h1>
+
+    <p>
+      Hier groeit jouw eigen Baby4All-avontuur.
+      Speel, ontdek, verdien sterren en verzamel
+      bijzondere vriendjes en verrassingen.
+    </p>
+
+  </section>
+
+
+  <section class="profile">
+
+    <div class="avatar">
+      🧒
+    </div>
+
+    <div>
+      <h2>Mijn avonturier</h2>
+
+      <p>
+        🎒 Beginnende ontdekker
+      </p>
+
+      <p>
+        🌈 Ontdekte werelden:
+        <strong>0</strong>
+      </p>
+
+      <a class="button" href="#">
+        Maak mijn avatar
+      </a>
+    </div>
+
+    <div class="stars">
+      ⭐ Mijn sterren
+      <strong id="starCount">0</strong>
+      verdiend
+    </div>
+
+  </section>
+
+
+  <section class="grid">
+
+
+    <article class="card egg-card">
+
+      <div class="egg">
+        🥚
+      </div>
+
+      <h2>Mijn eerste vriendje</h2>
+
+      <p>
+        Er wacht ergens in de wereld van Baby4All
+        een heel bijzonder ei op jou.
+      </p>
+
+      <p>
+        Ontdek het tijdens je eerste avontuur.
+      </p>
+
+      <div class="lock">
+        🔒 Nog niet ontdekt
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        🐲
+      </div>
+
+      <h2>Mijn vriendjes</h2>
+
+      <p>
+        Hier komen alle vriendjes te wonen die jij
+        tijdens je avonturen ontdekt, maakt en verzorgt.
+      </p>
+
+      <strong>
+        Nog geen vriendjes ontdekt
+      </strong>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        🗺️
+      </div>
+
+      <h2>Mijn avonturen</h2>
+
+      <p>
+        Bezoek bijzondere werelden, vind geheime
+        plekjes en ontdek nieuwe verrassingen.
+      </p>
+
+      <a class="button" href="../#spelen">
+        Ga op avontuur
+      </a>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        🎁
+      </div>
+
+      <h2>Mijn verzameling</h2>
+
+      <p>
+        Kleding, hoedjes, speelgoed en andere
+        bijzondere spullen die jij hebt ontdekt.
+      </p>
+
+      <div class="lock">
+        🔒 Nog niets gevonden
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        🚗
+      </div>
+
+      <h2>Mijn voertuigen</h2>
+
+      <p>
+        Auto's, vliegtuigen, boten en zelfs
+        ruimteschepen kunnen hier later verschijnen.
+      </p>
+
+      <div class="lock">
+        🔒 Ontdek ze tijdens avonturen
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        🏆
+      </div>
+
+      <h2>Mijn ontdekkingen</h2>
+
+      <p>
+        Kijk welke geheimen jij al in de
+        Baby4All-wereld hebt gevonden.
+      </p>
+
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+
+      <p>
+        0 ontdekkingen
+      </p>
+
+    </article>
+
+
+    <article class="card locked">
+
+      <div class="icon">
+        🥚✨
+      </div>
+
+      <h2>Een nieuw vriendje?</h2>
+
+      <p>
+        Nieuwe eieren verschijnen hier pas nadat
+        jij ze tijdens een avontuur hebt ontdekt.
+      </p>
+
+      <div class="lock">
+        🔒 Eerst ontdekken
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        📖
+      </div>
+
+      <h2>Mijn verhalen</h2>
+
+      <p>
+        Later kunnen jij, jouw avatar en jouw
+        eigen vriendjes samen de hoofdrol spelen
+        in bijzondere Baby4All-verhalen.
+      </p>
+
+      <div class="lock">
+        ✨ Binnenkort
+      </div>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        🏡
+      </div>
+
+      <h2>Mijn plekje</h2>
+
+      <p>
+        Hier krijgt jouw avatar later een eigen
+        kamer of huis dat je met verdiende spullen
+        kunt aankleden.
+      </p>
+
+      <div class="lock">
+        ✨ Binnenkort
+      </div>
+
+    </article>
+
+
+  </section>
+
+</main>
+
+
+<footer>
+  🌈 Baby4All — Ieder kind verdient een wereld vol speelplezier en fantasie!
+</footer>
+
+
+<script>
+  /*
+    Baby4All prototype-opslag.
+
+    Later koppelen we hier onder andere aan:
+    - sterren
+    - avatar
+    - vriendjes
+    - ontdekte eieren
+    - voertuigen
+    - inventaris
+    - voortgang
+
+    Voorlopig bewaren we alleen lokaal op dit apparaat.
+  */
+
+  const savedStars = localStorage.getItem("baby4all-stars");
+
+  if (savedStars !== null) {
+    document.getElementById("starCount").textContent = savedStars;
+  }
+</script>
+
+</body>
+</html>
