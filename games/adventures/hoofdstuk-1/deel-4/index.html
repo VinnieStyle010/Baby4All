@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Het Ei Geeft Licht | Baby4All</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#17325c;
+  background:
+    linear-gradient(
+      #b9ecff,
+      #f7fbff 45%,
+      #fff2cf
+    );
+  min-height:100vh;
+}
+
+header{
+  background:white;
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  color:#7046e5;
+  font-size:1.8rem;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.stars{
+  background:#fff3b0;
+  padding:10px 17px;
+  border-radius:25px;
+  font-weight:900;
+}
+
+main{
+  width:min(920px,92%);
+  margin:35px auto 80px;
+}
+
+.card{
+  background:white;
+  border-radius:35px;
+  padding:30px;
+  box-shadow:0 15px 40px rgba(40,50,100,.12);
+}
+
+h1{
+  text-align:center;
+  font-size:clamp(2rem,6vw,3.4rem);
+}
+
+.world{
+  text-align:center;
+  font-size:4rem;
+}
+
+.progress{
+  height:15px;
+  background:#e7e7ef;
+  border-radius:20px;
+  overflow:hidden;
+  margin:25px 0;
+}
+
+.progress div{
+  width:75%;
+  height:100%;
+  background:
+    linear-gradient(
+      90deg,
+      #ffd34e,
+      #ff8e45
+    );
+}
+
+.story{
+  line-height:1.7;
+  font-size:1.05rem;
+}
+
+.egg-box{
+  text-align:center;
+  padding:30px;
+  margin:25px 0;
+  border-radius:30px;
+  background:
+    linear-gradient(
+      135deg,
+      #fff8cf,
+      #eee6ff
+    );
+}
+
+.egg{
+  font-size:7rem;
+  display:inline-block;
+  animation:eggFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes eggFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+}
+
+.character{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px;
+  margin:18px 0;
+  border-radius:25px;
+}
+
+.robo{
+  background:#eeeaff;
+}
+
+.lila{
+  background:#fff0f7;
+}
+
+.novi{
+  background:#fff0dc;
+}
+
+.eli{
+  background:#e9f8ff;
+}
+
+.face{
+  font-size:4rem;
+}
+
+.mission{
+  background:#eef9ff;
+  padding:25px;
+  border-radius:25px;
+  margin-top:25px;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+button{
+  border:0;
+  border-radius:20px;
+  padding:17px;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.answer{
+  background:white;
+  border:3px solid #ddd9ec;
+  color:#17325c;
+}
+
+.answer:hover{
+  border-color:#7046e5;
+}
+
+.main-button{
+  width:100%;
+  margin-top:20px;
+  background:#7046e5;
+  color:white;
+}
+
+.message{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:20px;
+  background:#e2f8df;
+  font-weight:800;
+  line-height:1.6;
+}
+
+.glow-choice{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+
+.glow{
+  min-height:105px;
+  font-size:1.1rem;
+  border:3px solid transparent;
+  transition:.2s;
+}
+
+.glow:hover{
+  transform:translateY(-3px);
+}
+
+.glow-purple{
+  background:#eadcff;
+}
+
+.glow-blue{
+  background:#dceeff;
+}
+
+.glow-green{
+  background:#ddf8df;
+}
+
+.glow-gold{
+  background:#fff0bd;
+}
+
+.discovery{
+  margin-top:25px;
+  padding:25px;
+  border-radius:30px;
+  text-align:center;
+  background:
+    linear-gradient(
+      135deg,
+      #fff7c7,
+      #f3eaff
+    );
+}
+
+.note{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  margin-top:20px;
+}
+
+@media(max-width:600px){
+
+  .answers,
+  .glow-choice{
+    grid-template-columns:1fr;
+  }
+
+  .character{
+    align-items:flex-start;
+  }
+
+  .card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a class="logo" href="../../../../">
+🌈 Baby4All
+</a>
+
+<div class="stars">
+⭐ <span id="stars">0</span>
+</div>
+
+</header>
+
+<main>
+
+<section class="card">
+
+<div class="world">
+🏡✨🥚✨
+</div>
+
+<h1>Het Ei Geeft Licht</h1>
+
+<div class="progress">
+<div></div>
+</div>
+
+<div class="story">
+
+<p id="intro"></p>
+
+<div class="egg-box">
+
+<div class="egg">
+🥚
+</div>
+
+<p>
+Sinds jullie het mysterieuze ei hebben gevonden,
+is het opvallend stil gebleven.
+</p>
+
+<p>
+Geen beweging.
+Geen geluid.
+Geen licht.
+</p>
+
+</div>
+
+<div class="character lila">
+
+<div class="face">🐰</div>
+
+<div>
+<strong>Lila:</strong><br><br>
+“Misschien slaapt het?”
+</div>
+
+</div>
+
+<div class="character eli">
+
+<div class="face">🐘</div>
+
+<div>
+<strong>Eli:</strong><br><br>
+“Of misschien wacht het ergens op.”
+</div>
+
+</div>
+
+<div class="character novi">
+
+<div class="face">🦊</div>
+
+<div>
+<strong>Novi:</strong><br><br>
+“Maar waarop?”
+</div>
+
+</div>
+
+<div class="character robo">
+
+<div class="face">🤖</div>
+
+<div>
+<strong>Robo:</strong><br><br>
+“Mijn scanner ziet iets vreemds.
+
+Er zit energie in de schaal,
+maar die energie lijkt op iets te reageren.”
+</div>
+
+</div>
+
+<p>
+Dan verschijnt er heel even een klein lichtpuntje.
+</p>
+
+<p style="text-align:center;font-size:3rem;">
+🥚 ✨
+</p>
+
+<div class="mission">
+
+<h2>🧩 Help Robo met zijn onderzoek</h2>
+
+<p id="question"></p>
+
+<div class="answers" id="answers"></div>
+
+<div class="message" id="message"></div>
+
+</div>
+
+<div id="afterMission"></div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<script src="../../../../assets/js/baby4all-progress.js"></script>
+
+<script>
+
+/* =========================================
+   AVATAR
+========================================= */
+
+let avatar = {};
+
+try{
+
+  avatar =
+    JSON.parse(
+      localStorage.getItem(
+        "baby4all-avatar"
+      )
+    ) || {};
+
+}
+catch(error){
+
+  avatar = {};
+
+}
+
+
+const playerName =
+  avatar.name ||
+  avatar.naam ||
+  "avonturier";
+
+
+document.getElementById(
+  "intro"
+).textContent =
+  playerName +
+  " heeft het mysterieuze ei voorzichtig meegenomen naar een veilige plek in Baby4All.";
+
+
+/* =========================================
+   LEEFTIJD
+========================================= */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+
+  if(!birthday){
+    return 6;
+  }
+
+
+  const birthDate =
+    new Date(birthday);
+
+
+  if(
+    isNaN(
+      birthDate.getTime()
+    )
+  ){
+    return 6;
+  }
+
+
+  const today =
+    new Date();
+
+
+  let age =
+    today.getFullYear() -
+    birthDate.getFullYear();
+
+
+  const monthDifference =
+    today.getMonth() -
+    birthDate.getMonth();
+
+
+  if(
+    monthDifference < 0 ||
+    (
+      monthDifference === 0 &&
+      today.getDate() <
+      birthDate.getDate()
+    )
+  ){
+    age--;
+  }
+
+
+  return Math.max(
+    0,
+    Math.min(12,age)
+  );
+
+}
+
+
+const age =
+  calculateAge();
+
+
+/* =========================================
+   VOORTGANG
+========================================= */
+
+Baby4AllProgress.startAdventure(
+  "hoofdstuk-1"
+);
+
+
+function updateStars(){
+
+  const progress =
+    Baby4AllProgress.load();
+
+
+  document.getElementById(
+    "stars"
+  ).textContent =
+    progress.stars.spendable;
+
+}
+
+
+updateStars();
+
+
+/* =========================================
+   OPDRACHT OP LEEFTIJD
+========================================= */
+
+function getMission(){
+
+  if(age <= 2){
+
+    return{
+
+      question:
+        "Robo ziet één groot lichtje. Kun jij het lichtje aanwijzen?",
+
+      answers:[
+        ["✨",true],
+        ["🌿",false],
+        ["☁️",false],
+        ["🍎",false]
+      ],
+
+      hint:
+        "Zoek samen naar het glinsterende lichtje.",
+
+      success:
+        "Ja! ✨ Daar is het lichtje!",
+
+      subject:
+        "logic",
+
+      reward:
+        5
+
+    };
+
+  }
+
+
+  if(age <= 4){
+
+    return{
+
+      question:
+        "Het ei knippert: ✨ ✨ 🌙 ✨ ✨ 🌙 ... Wat komt daarna?",
+
+      answers:[
+        ["✨",true],
+        ["🌙",false],
+        ["🌿",false],
+        ["☁️",false]
+      ],
+
+      hint:
+        "Kijk goed: twee lichtjes en daarna één maan.",
+
+      success:
+        "Goed gekeken! ✨ Het patroon begint weer met een lichtje.",
+
+      subject:
+        "logic",
+
+      reward:
+        5
+
+    };
+
+  }
+
+
+  if(age <= 6){
+
+    return{
+
+      question:
+        "Robo meet 3 lichtpuntjes. Daarna verschijnen er nog 3. Hoeveel zijn het samen?",
+
+      answers:[
+        ["5",false],
+        ["6",true],
+        ["7",false],
+        ["8",false]
+      ],
+
+      hint:
+        "Tel 3 + 3.",
+
+      success:
+        "Precies! ✨ 3 + 3 = 6.",
+
+      subject:
+        "math",
+
+      reward:
+        6
+
+    };
+
+  }
+
+
+  if(age <= 8){
+
+    return{
+
+      question:
+        "De energie van het ei stijgt: 4, 8, 12, 16... Welke waarde komt daarna?",
+
+      answers:[
+        ["18",false],
+        ["20",true],
+        ["22",false],
+        ["24",false]
+      ],
+
+      hint:
+        "Iedere keer komt er 4 bij.",
+
+      success:
+        "Juist! ⚡ De volgende waarde is 20.",
+
+      subject:
+        "math",
+
+      reward:
+        7
+
+    };
+
+  }
+
+
+  if(age <= 10){
+
+    return{
+
+      question:
+        "Robo meet 6 energiegolven per minuut. Hoeveel zijn dat in 5 minuten?",
+
+      answers:[
+        ["11",false],
+        ["25",false],
+        ["30",true],
+        ["35",false]
+      ],
+
+      hint:
+        "Bereken 6 × 5.",
+
+      success:
+        "Goed berekend! ⚡ 6 × 5 = 30.",
+
+      subject:
+        "math",
+
+      reward:
+        8
+
+    };
+
+  }
+
+
+  return{
+
+    question:
+      "De energie stijgt volgens 3, 6, 12, 24... Welke waarde verwacht Robo daarna?",
+
+    answers:[
+      ["30",false],
+      ["36",false],
+      ["42",false],
+      ["48",true]
+    ],
+
+    hint:
+      "Iedere waarde is twee keer zo groot als de vorige.",
+
+    success:
+      "Precies! 🧠 24 × 2 = 48.",
+
+    subject:
+      "logic",
+
+    reward:
+      10
+
+  };
+
+}
+
+
+const mission =
+  getMission();
+
+
+document.getElementById(
+  "question"
+).innerHTML =
+  "<strong>" +
+  mission.question +
+  "</strong>";
+
+
+/* =========================================
+   ANTWOORDEN
+========================================= */
+
+const answersBox =
+  document.getElementById(
+    "answers"
+  );
+
+
+mission.answers.forEach(
+  (answer,index) => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "answer";
+
+
+    button.textContent =
+      answer[0];
+
+
+    button.onclick =
+      function(){
+
+        checkAnswer(index);
+
+      };
+
+
+    answersBox.appendChild(
+      button
+    );
+
+  }
+);
+
+
+/* =========================================
+   ANTWOORD CONTROLEREN
+========================================= */
+
+function checkAnswer(index){
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+
+  message.style.display =
+    "block";
+
+
+  if(
+    !mission.answers[index][1]
+  ){
+
+    message.innerHTML =
+      "💡 Bijna! " +
+      mission.hint +
+      "<br><br>Probeer het nog eens.";
+
+    return;
+
+  }
+
+
+  const result =
+    Baby4AllProgress.completeTask(
+
+      "hoofdstuk-1-deel-4-energie",
+
+      {
+
+        stars:
+          mission.reward,
+
+        subject:
+          mission.subject
+
+      }
+
+    );
+
+
+  if(result.rewarded){
+
+    message.innerHTML =
+      mission.success +
+      "<br><br>⭐ +" +
+      mission.reward +
+      " sterren!";
+
+  }
+
+  else{
+
+    message.innerHTML =
+      mission.success +
+      "<br><br>" +
+      "🌟 Deze opdracht heb je kort geleden al geoefend. " +
+      "Je avontuur kan natuurlijk gewoon verder!";
+
+  }
+
+
+  updateStars();
+
+  showReaction();
+
+}
+
+
+/* =========================================
+   EI REAGEERT
+========================================= */
+
+function showReaction(){
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>✨ Wacht eens...</h2>
+
+      <div class="egg">
+        🥚✨
+      </div>
+
+      <p>
+        Zodra ${playerName} de opdracht oplost,
+        gebeurt er iets.
+      </p>
+
+      <p>
+        Het ei wordt een klein beetje warm.
+      </p>
+
+      <p style="font-size:2.5rem;">
+        ✨ ✨ ✨
+      </p>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">🤖</div>
+
+      <div>
+
+        <strong>Robo:</strong><br><br>
+
+        “Aha!
+
+        Het reageert echt.”
+
+      </div>
+
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">🐰</div>
+
+      <div>
+
+        <strong>Lila:</strong><br><br>
+
+        “Kijk! De lichtjes veranderen!”
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="main-button"
+      onclick="showColors()"
+    >
+      🌈 Bekijk de lichtjes
+    </button>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================
+   EERSTE PERSOONLIJKE KEUZE
+========================================= */
+
+function showColors(){
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>🌈 Vier zachte gloedjes</h2>
+
+      <div class="egg">
+        🥚
+      </div>
+
+      <p>
+        Vier kleuren bewegen langzaam
+        over de schaal.
+      </p>
+
+      <p>
+        Het lijkt bijna alsof het ei
+        wacht tot ${playerName} dichterbij komt.
+      </p>
+
+      <p>
+        <strong>
+          Welke gloed trekt jouw aandacht?
+        </strong>
+      </p>
+
+      <div class="glow-choice">
+
+        <button
+          class="glow glow-purple"
+          onclick="chooseGlow('purple','💜 Paarse gloed')"
+        >
+          💜<br><br>
+          Paarse gloed
+        </button>
+
+        <button
+          class="glow glow-blue"
+          onclick="chooseGlow('blue','💙 Blauwe gloed')"
+        >
+          💙<br><br>
+          Blauwe gloed
+        </button>
+
+        <button
+          class="glow glow-green"
+          onclick="chooseGlow('green','💚 Groene gloed')"
+        >
+          💚<br><br>
+          Groene gloed
+        </button>
+
+        <button
+          class="glow glow-gold"
+          onclick="chooseGlow('gold','💛 Gouden gloed')"
+        >
+          💛<br><br>
+          Gouden gloed
+        </button>
+
+      </div>
+
+      <div class="note">
+
+        Er is geen goed of fout antwoord.
+        Kies gewoon wat jij het mooist vindt.
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================
+   GLOED OPSLAAN
+========================================= */
+
+function chooseGlow(
+  color,
+  colorName
+){
+
+  Baby4AllProgress.setEggTrait(
+    "primaryColor",
+    color
+  );
+
+
+  /*
+    Dit is het eerste belangrijke moment
+    met het ei.
+
+    Hierdoor gaat het automatisch
+    naar minimaal fase 2.
+  */
+
+  Baby4AllProgress.addEggMoment(
+    "eerste-gloed"
+  );
+
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>✨ Het ei reageert!</h2>
+
+      <div class="egg">
+        🥚✨
+      </div>
+
+      <p>
+        ${playerName} komt dichterbij.
+      </p>
+
+      <p>
+        De <strong>${colorName}</strong>
+        blijft iets langer zichtbaar
+        dan de andere kleuren.
+      </p>
+
+      <p>
+        Dan...
+      </p>
+
+      <p style="font-size:2.5rem;">
+        tik... tik...
+      </p>
+
+      <p>
+        Heel zacht klinkt er iets
+        vanuit het ei.
+      </p>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">🦊</div>
+
+      <div>
+
+        <strong>Novi:</strong><br><br>
+
+        “Hoorden jullie dat ook?!”
+
+      </div>
+
+    </div>
+
+
+    <div class="character eli">
+
+      <div class="face">🐘</div>
+
+      <div>
+
+        <strong>Eli:</strong><br><br>
+
+        “Er zit écht iets in!”
+
+      </div>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">🤖</div>
+
+      <div>
+
+        <strong>Robo:</strong><br><br>
+
+        “Interessant.
+
+        Ik sla deze ontdekking op.
+
+        Maar we weten nog steeds niet
+        wat voor vriendje erin zit.”
+
+      </div>
+
+    </div>
+
+
+    <div class="note">
+
+      ✨ <strong>Je ei heeft een nieuw stadium bereikt!</strong>
+
+      <br><br>
+
+      Fase 2 — Het ei reageert.
+
+      <br><br>
+
+      Nieuwe avonturen zullen meer
+      geheimen van het ei onthullen.
+
+    </div>
+
+
+    <button
+      class="main-button"
+      onclick="finishPart()"
+    >
+      🥚 Bekijk mijn ei
+    </button>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================
+   DEEL 4 VOLTOOIEN
+========================================= */
+
+function finishPart(){
+
+  Baby4AllProgress.completeAdventurePart(
+    "hoofdstuk-1",
+    4
+  );
+
+
+  window.location.href =
+    "../../../../mijn-baby4all/";
+
+}
+
+</script>
+
+</body>
+</html>
