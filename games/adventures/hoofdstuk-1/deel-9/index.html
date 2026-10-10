@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Baby4All – Het Geheim van het Ei</title>
+
+<style>
+
+:root{
+  --purple:#7657ff;
+  --pink:#ff72b6;
+  --yellow:#ffd84d;
+  --blue:#65ccff;
+  --green:#68d391;
+  --dark:#302d45;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--dark);
+
+  background:
+    linear-gradient(
+      180deg,
+      #6251a9,
+      #9b7ee0 35%,
+      #f6d8ff 70%,
+      #fff4cf
+    );
+
+  min-height:100vh;
+}
+
+header{
+  background:white;
+  padding:14px 20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  color:var(--purple);
+  font-size:1.35rem;
+  font-weight:900;
+}
+
+.stars{
+  background:#fff5c5;
+  padding:8px 14px;
+  border-radius:30px;
+  font-weight:900;
+}
+
+main{
+  width:min(950px,94%);
+  margin:30px auto 70px;
+}
+
+.card{
+  background:rgba(255,255,255,.97);
+  border-radius:30px;
+  padding:28px;
+
+  box-shadow:
+    0 18px 50px rgba(50,30,100,.2);
+}
+
+.chapter{
+  text-align:center;
+  color:var(--purple);
+  font-weight:900;
+}
+
+h1{
+  text-align:center;
+  margin:5px 0;
+
+  font-size:clamp(
+    2rem,
+    6vw,
+    3.5rem
+  );
+}
+
+.subtitle{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:22px;
+}
+
+.age{
+  display:inline-block;
+
+  padding:7px 12px;
+
+  border-radius:20px;
+
+  background:#eee9ff;
+  color:#5e46cc;
+
+  font-weight:850;
+}
+
+
+/* =========================
+   FINALE SCÈNE
+========================= */
+
+.scene{
+  position:relative;
+
+  height:540px;
+
+  margin:20px 0 28px;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  background:
+    radial-gradient(
+      circle at 50% 43%,
+      rgba(255,249,165,1),
+      rgba(236,191,255,.75) 18%,
+      rgba(142,116,219,.5) 37%,
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      #493c91,
+      #8468c7 45%,
+      #70b88c 100%
+    );
+
+  box-shadow:
+    inset 0 0 80px rgba(255,255,255,.2),
+    0 15px 35px rgba(0,0,0,.18);
+}
+
+.star{
+  position:absolute;
+  z-index:2;
+  animation:twinkle 1.5s infinite;
+}
+
+.star.s1{
+  left:8%;
+  top:55px;
+}
+
+.star.s2{
+  left:25%;
+  top:105px;
+  animation-delay:.2s;
+}
+
+.star.s3{
+  right:23%;
+  top:60px;
+  animation-delay:.4s;
+}
+
+.star.s4{
+  right:8%;
+  top:130px;
+  animation-delay:.6s;
+}
+
+.star.s5{
+  left:43%;
+  top:35px;
+  animation-delay:.8s;
+}
+
+@keyframes twinkle{
+
+  0%,100%{
+    opacity:.25;
+    transform:scale(.7);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.3);
+  }
+
+}
+
+
+/* LICHTCIRKEL */
+
+.magic-circle{
+  position:absolute;
+
+  left:50%;
+  top:48%;
+
+  transform:
+    translate(-50%,-50%);
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  border:
+    5px solid rgba(255,245,160,.8);
+
+  box-shadow:
+    0 0 45px #ffe987,
+    inset 0 0 45px rgba(255,245,160,.7);
+
+  animation:
+    circlePulse 2s infinite;
+}
+
+@keyframes circlePulse{
+
+  50%{
+    width:330px;
+    height:330px;
+
+    opacity:.75;
+  }
+
+}
+
+
+/* EI */
+
+.egg-area{
+  position:absolute;
+
+  left:50%;
+  top:47%;
+
+  transform:
+    translate(-50%,-50%);
+
+  z-index:20;
+
+  text-align:center;
+}
+
+.egg-glow{
+  position:absolute;
+
+  width:210px;
+  height:210px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,200,1),
+      rgba(255,213,112,.7),
+      rgba(211,143,255,.4),
+      transparent 70%
+    );
+
+  animation:
+    glow 1s infinite;
+}
+
+@keyframes glow{
+
+  50%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.35);
+
+    opacity:.65;
+  }
+
+}
+
+.egg{
+  position:relative;
+
+  z-index:3;
+
+  font-size:8rem;
+
+  cursor:pointer;
+
+  filter:
+    drop-shadow(
+      0 10px 10px rgba(0,0,0,.25)
+    );
+
+  animation:
+    eggShake 1.2s infinite;
+}
+
+@keyframes eggShake{
+
+  0%,45%,100%{
+    transform:
+      rotate(0deg)
+      translateY(0);
+  }
+
+  55%{
+    transform:
+      rotate(-10deg)
+      translateY(-7px);
+  }
+
+  65%{
+    transform:
+      rotate(10deg)
+      translateY(-13px);
+  }
+
+  75%{
+    transform:
+      rotate(-8deg)
+      translateY(-6px);
+  }
+
+  85%{
+    transform:
+      rotate(8deg)
+      translateY(-11px);
+  }
+
+}
+
+
+/* PERSONAGES */
+
+.character{
+  position:absolute;
+
+  bottom:15px;
+
+  z-index:30;
+
+  text-align:center;
+}
+
+.face{
+  font-size:3.8rem;
+
+  filter:
+    drop-shadow(
+      0 6px 4px rgba(0,0,0,.2)
+    );
+}
+
+.character-name{
+  background:white;
+
+  border-radius:20px;
+
+  padding:3px 9px;
+
+  font-size:.78rem;
+  font-weight:900;
+}
+
+.robo{
+  left:4%;
+}
+
+.lila{
+  left:23%;
+}
+
+.novi{
+  right:23%;
+}
+
+.eli{
+  right:4%;
+}
+
+
+/* SPRAAKBALLON */
+
+.speech{
+  position:absolute;
+
+  top:20px;
+  left:8%;
+
+  max-width:310px;
+
+  z-index:40;
+
+  background:white;
+
+  padding:14px 17px;
+
+  border-radius:
+    22px 22px 22px 5px;
+
+  font-weight:800;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.18);
+}
+
+
+/* VERHAAL */
+
+.story{
+  background:#f8f6ff;
+
+  border-radius:20px;
+
+  padding:20px;
+
+  line-height:1.65;
+
+  font-size:1.08rem;
+}
+
+
+/* EERDERE KEUZES */
+
+.memories{
+  margin-top:25px;
+
+  padding:22px;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eefaff,
+      #f7efff
+    );
+}
+
+.memories h2{
+  text-align:center;
+}
+
+.memory-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+  max-width:650px;
+
+  margin:18px auto;
+}
+
+.memory{
+  background:white;
+
+  padding:15px;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  font-weight:850;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.07);
+}
+
+
+/* FINALE */
+
+.final-mission{
+  margin-top:25px;
+
+  padding:24px;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff6ca,
+      #ffe8f5
+    );
+
+  text-align:center;
+}
+
+.energy{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+  max-width:620px;
+
+  margin:20px auto;
+}
+
+.energy-button{
+  border:none;
+
+  padding:20px 12px;
+
+  border-radius:24px;
+
+  background:white;
+
+  cursor:pointer;
+
+  font-weight:900;
+
+  box-shadow:
+    0 7px 20px rgba(0,0,0,.09);
+
+  transition:.2s;
+}
+
+.energy-button:hover{
+  transform:translateY(-4px);
+}
+
+.energy-button.used{
+  opacity:.45;
+  pointer-events:none;
+}
+
+.energy-icon{
+  display:block;
+
+  font-size:3rem;
+
+  margin-bottom:7px;
+}
+
+.counter{
+  display:inline-block;
+
+  padding:9px 16px;
+
+  border-radius:25px;
+
+  background:white;
+
+  font-weight:900;
+}
+
+
+/* HATCH */
+
+.hatch{
+  display:none;
+
+  margin-top:25px;
+
+  padding:28px;
+
+  border-radius:28px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      #fffbe0,
+      #f3e1ff
+    );
+
+  box-shadow:
+    0 10px 30px rgba(80,50,140,.12);
+}
+
+.hatch.show{
+  display:block;
+  animation:appear .7s ease;
+}
+
+.hatch-button{
+  border:none;
+
+  padding:17px 28px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffcf43,
+      #ff8c69,
+      #a868ff
+    );
+
+  color:white;
+
+  font-size:1.05rem;
+  font-weight:950;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 25px rgba(120,70,170,.25);
+}
+
+
+/* VRIENDJE */
+
+.friend{
+  display:none;
+
+  margin-top:25px;
+
+  padding:28px;
+
+  border-radius:30px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eafff2,
+      #f6eaff,
+      #fff4ca
+    );
+
+  animation:appear .8s ease;
+}
+
+.friend.show{
+  display:block;
+}
+
+.friend-creature{
+  font-size:8rem;
+
+  animation:
+    friendBounce 1.8s infinite;
+
+  filter:
+    drop-shadow(
+      0 9px 8px rgba(0,0,0,.16)
+    );
+}
+
+@keyframes friendBounce{
+
+  50%{
+    transform:
+      translateY(-12px)
+      scale(1.05);
+  }
+
+}
+
+.friend-traits{
+  max-width:580px;
+
+  margin:20px auto;
+
+  background:white;
+
+  padding:18px;
+
+  border-radius:22px;
+
+  line-height:1.6;
+}
+
+
+/* NAAM */
+
+.name-area{
+  margin-top:20px;
+}
+
+.name-area input{
+  width:min(100%,400px);
+
+  padding:15px 18px;
+
+  border:
+    3px solid #ded5ff;
+
+  border-radius:25px;
+
+  font-size:1rem;
+
+  outline:none;
+}
+
+.name-area input:focus{
+  border-color:var(--purple);
+}
+
+.save-button{
+  display:block;
+
+  margin:15px auto 0;
+
+  border:none;
+
+  padding:15px 25px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7657ff,
+      #a05cff
+    );
+
+  color:white;
+
+  font-size:1rem;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.saved{
+  display:none;
+
+  margin-top:25px;
+
+  padding:24px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  background:#effff3;
+}
+
+.saved.show{
+  display:block;
+  animation:appear .5s ease;
+}
+
+.home-button{
+  display:inline-block;
+
+  margin-top:15px;
+
+  padding:15px 24px;
+
+  border-radius:30px;
+
+  background:var(--purple);
+
+  color:white;
+
+  text-decoration:none;
+
+  font-weight:900;
+}
+
+@keyframes appear{
+
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* CONFETTI */
+
+.confetti{
+  position:fixed;
+
+  top:-30px;
+
+  z-index:100;
+
+  font-size:1.5rem;
+
+  pointer-events:none;
+
+  animation:
+    fall 3.5s linear forwards;
+}
+
+@keyframes fall{
+
+  to{
+    transform:
+      translateY(110vh)
+      rotate(720deg);
+
+    opacity:.3;
+  }
+
+}
+
+
+/* MOBIEL */
+
+@media(max-width:650px){
+
+  .card{
+    padding:17px;
+  }
+
+  .scene{
+    height:450px;
+  }
+
+  .egg{
+    font-size:6rem;
+  }
+
+  .magic-circle{
+    width:220px;
+    height:220px;
+  }
+
+  @keyframes circlePulse{
+
+    50%{
+      width:245px;
+      height:245px;
+      opacity:.75;
+    }
+
+  }
+
+  .face{
+    font-size:2.7rem;
+  }
+
+  .robo{
+    left:1%;
+  }
+
+  .lila{
+    left:20%;
+  }
+
+  .novi{
+    right:20%;
+  }
+
+  .eli{
+    right:1%;
+  }
+
+  .speech{
+    left:5%;
+    top:14px;
+
+    max-width:220px;
+
+    font-size:.86rem;
+  }
+
+  .memory-grid,
+  .energy{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .friend-creature{
+    font-size:6rem;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🌈 Baby4All
+  </div>
+
+  <div class="stars">
+    ⭐ <span id="starCount">0</span>
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="card">
+
+  <div class="chapter">
+    HOOFDSTUK 1 • DEEL 9 • FINALE
+  </div>
+
+  <h1>
+    🥚✨ Het Geheim van het Ei
+  </h1>
+
+  <p class="subtitle">
+    Vandaag ontdek je eindelijk wie er al die tijd in het ei zat.
+  </p>
+
+  <div
+    class="age"
+    id="ageBadge"
+  >
+    Avontuur laden...
+  </div>
+
+
+  <div class="scene">
+
+    <div class="star s1">✨</div>
+    <div class="star s2">⭐</div>
+    <div class="star s3">✨</div>
+    <div class="star s4">⭐</div>
+    <div class="star s5">✨</div>
+
+    <div class="magic-circle"></div>
+
+    <div
+      class="speech"
+      id="speech"
+    >
+      Lila: Volgens mij is het zover...
+    </div>
+
+
+    <div class="egg-area">
+
+      <div class="egg-glow"></div>
+
+      <div
+        class="egg"
+        id="sceneEgg"
+        onclick="touchEgg()"
+      >
+        🥚🌟
+      </div>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">
+        🤖
+      </div>
+
+      <div class="character-name">
+        Robo
+      </div>
+
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">
+        🐰
+      </div>
+
+      <div class="character-name">
+        Lila
+      </div>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">
+        🦊
+      </div>
+
+      <div class="character-name">
+        Novi
+      </div>
+
+    </div>
+
+
+    <div class="character eli">
+
+      <div class="face">
+        🐘
+      </div>
+
+      <div class="character-name">
+        Eli
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="story">
+
+    De vier kristallen zijn stil geworden.
+
+    <br><br>
+
+    Alleen het mysterieuze ei geeft
+    nog licht.
+
+    <br><br>
+
+    <strong id="playerName">
+      Avonturier
+    </strong>
+    zet het voorzichtig midden in
+    de lichtcirkel.
+
+    <br><br>
+
+    <strong>
+      KRRR... KRAK...
+    </strong>
+
+    <br><br>
+
+    Robo kijkt naar zijn scanner.
+
+    <br><br>
+
+    “Alles wat we onderweg hebben
+    meegemaakt zit als het ware in
+    het ei opgeslagen.”
+
+    <br><br>
+
+    Novi kijkt verbaasd.
+
+    <br><br>
+
+    “Dus het heeft ons al die tijd
+    leren kennen?”
+
+    <br><br>
+
+    Robo knikt.
+
+    <br><br>
+
+    <strong>
+      “En nu is het klaar om ons
+      te ontmoeten.”
+    </strong>
+
+  </div>
+
+
+  <div class="memories">
+
+    <h2>
+      ✨ Jouw avontuur zit in het ei
+    </h2>
+
+    <div class="memory-grid">
+
+      <div class="memory">
+        🎨 Eerste gloed
+        <br>
+        <span id="memoryColor">
+          Een mysterieuze kleur
+        </span>
+      </div>
+
+      <div class="memory">
+        💫 Eerste instinct
+        <br>
+        <span id="memoryInstinct">
+          Een verborgen talent
+        </span>
+      </div>
+
+      <div class="memory">
+        🗺️ Het gekozen spoor
+        <br>
+        <span id="memoryRoute">
+          Een bijzondere route
+        </span>
+      </div>
+
+      <div class="memory">
+        💛 Wat het ei nodig had
+        <br>
+        <span id="memoryNeed">
+          Een laatste beetje magie
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="final-mission">
+
+    <h2>
+      🌟 Geef het ei zijn laatste energie
+    </h2>
+
+    <p>
+      Tik op alle vier. Iedereen helpt mee.
+    </p>
+
+    <div class="energy">
+
+      <button
+        class="energy-button"
+        onclick="giveEnergy(this,'robo')"
+      >
+        <span class="energy-icon">
+          🤖⚡
+        </span>
+        Robo's energie
+      </button>
+
+
+      <button
+        class="energy-button"
+        onclick="giveEnergy(this,'lila')"
+      >
+        <span class="energy-icon">
+          🐰💛
+        </span>
+        Lila's vriendschap
+      </button>
+
+
+      <button
+        class="energy-button"
+        onclick="giveEnergy(this,'novi')"
+      >
+        <span class="energy-icon">
+          🦊✨
+        </span>
+        Novi's nieuwsgierigheid
+      </button>
+
+
+      <button
+        class="energy-button"
+        onclick="giveEnergy(this,'eli')"
+      >
+        <span class="energy-icon">
+          🐘🌟
+        </span>
+        Eli's moed
+      </button>
+
+    </div>
+
+    <div
+      class="counter"
+      id="energyCounter"
+    >
+      🌟 0 van 4
+    </div>
+
+  </div>
+
+
+  <div
+    class="hatch"
+    id="hatch"
+  >
+
+    <h2>
+      🥚 Het ei barst verder open!
+    </h2>
+
+    <p>
+      Het licht wordt steeds sterker.
+      Er beweegt iets achter de schaal...
+    </p>
+
+    <button
+      class="hatch-button"
+      onclick="hatchEgg()"
+    >
+      ✨ Ontdek mijn vriendje!
+    </button>
+
+  </div>
+
+
+  <div
+    class="friend"
+    id="friend"
+  >
+
+    <div
+      class="friend-creature"
+      id="friendCreature"
+    >
+      🐲
+    </div>
+
+    <h2>
+      🎉 Daar is je nieuwe vriendje!
+    </h2>
+
+    <p id="friendIntro">
+      Jullie hebben elkaar eindelijk gevonden.
+    </p>
+
+    <div
+      class="friend-traits"
+      id="friendTraits"
+    >
+    </div>
+
+
+    <div class="name-area">
+
+      <h3>
+        💜 Hoe wil je je vriendje noemen?
+      </h3>
+
+      <input
+        type="text"
+        id="friendName"
+        maxlength="20"
+        placeholder="Naam van je vriendje"
+        autocomplete="off"
+      >
+
+      <button
+        class="save-button"
+        onclick="saveFriend()"
+      >
+        🌟 Bewaar mijn vriendje
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="saved"
+    id="saved"
+  >
+
+    <h2>
+      🌈 Welkom bij Baby4All!
+    </h2>
+
+    <p id="savedText"></p>
+
+    <p>
+      Je vriendje woont vanaf nu
+      in Mijn Baby4All en kan later
+      met je meegaan op nieuwe avonturen.
+    </p>
+
+    <a
+      class="home-button"
+      href="../../../../mijn-baby4all/"
+    >
+      ⭐ Naar Mijn Baby4All
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script src="../../../../assets/js/baby4all-progress.js"></script>
+
+<script>
+
+/* =========================
+   AVATAR
+========================= */
+
+function loadAvatar(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "baby4all-avatar"
+      )
+    ) || {};
+
+  }catch(error){
+
+    return {};
+
+  }
+
+}
+
+const avatar =
+  loadAvatar();
+
+const playerName =
+  avatar.name ||
+  avatar.naam ||
+  "Avonturier";
+
+document.getElementById(
+  "playerName"
+).textContent =
+  playerName;
+
+
+/* =========================
+   LEEFTIJD
+========================= */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+  if(!birthday){
+    return 6;
+  }
+
+  const birth =
+    new Date(birthday);
+
+  const today =
+    new Date();
+
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
+
+  const month =
+    today.getMonth() -
+    birth.getMonth();
+
+  if(
+    month < 0 ||
+    (
+      month === 0 &&
+      today.getDate() <
+      birth.getDate()
+    )
+  ){
+    age--;
+  }
+
+  return Math.max(
+    0,
+    Math.min(12,age)
+  );
+
+}
+
+const age =
+  calculateAge();
+
+document.getElementById(
+  "ageBadge"
+).textContent =
+  "🎂 Finale voor " +
+  age +
+  " jaar";
+
+
+/* =========================
+   VOORTGANG
+========================= */
+
+Baby4AllProgress.startAdventure(
+  "hoofdstuk-1"
+);
+
+
+function updateStars(){
+
+  const progress =
+    Baby4AllProgress.load();
+
+  document.getElementById(
+    "starCount"
+  ).textContent =
+    progress.stars.spendable;
+
+}
+
+updateStars();
+
+
+/* =========================
+   EERDERE EI-KEUZES
+========================= */
+
+const progress =
+  Baby4AllProgress.load();
+
+const egg =
+  progress.egg || {};
+
+const traits =
+  egg.traits || {};
+
+
+const colorNames = {
+
+  purple:"💜 Paars",
+  blue:"💙 Blauw",
+  green:"💚 Groen",
+  gold:"💛 Goud"
+
+};
+
+
+const instinctNames = {
+
+  music:"🎵 Muziek",
+  movement:"💨 Avontuur",
+  light:"✨ Licht en magie",
+  friends:"💛 Vriendjes helpen"
+
+};
+
+
+const routeNames = {
+
+  sky:"☁️ Wolken",
+  water:"💧 Water",
+  nature:"🌿 Natuur",
+  secret:"🔮 Mysterie"
+
+};
+
+
+const needNames = {
+
+  warmth:"☀️ Warmte",
+  music:"🎵 Muziek",
+  movement:"💫 Beweging",
+  friendship:"💛 Vriendschap"
+
+};
+
+
+document.getElementById(
+  "memoryColor"
+).textContent =
+  colorNames[
+    traits.primaryColor
+  ] ||
+  "✨ Verrassingsgloed";
+
+
+document.getElementById(
+  "memoryInstinct"
+).textContent =
+  instinctNames[
+    traits.firstInstinct
+  ] ||
+  "🌟 Verrassingsinstinct";
+
+
+document.getElementById(
+  "memoryRoute"
+).textContent =
+  routeNames[
+    traits.curiosity
+  ] ||
+  "🗺️ Verrassingsroute";
+
+
+document.getElementById(
+  "memoryNeed"
+).textContent =
+  needNames[
+    traits.hatchingNeed
+  ] ||
+  "💛 Een beetje magie";
+
+
+/* =========================
+   EI AANRAKEN
+========================= */
+
+function touchEgg(){
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Lila: Ik hoorde iets! Volgens mij weet het dat jij er bent.";
+
+  const sceneEgg =
+    document.getElementById(
+      "sceneEgg"
+    );
+
+  sceneEgg.style.animation =
+    "none";
+
+  setTimeout(
+    function(){
+
+      sceneEgg.style.animation =
+        "eggShake .25s ease-in-out 8";
+
+    },
+    20
+  );
+
+}
+
+
+/* =========================
+   LAATSTE ENERGIE
+========================= */
+
+const energies =
+  new Set();
+
+
+const energyMessages = {
+
+  robo:
+    "Robo: Energie stabiel! ⚡",
+
+  lila:
+    "Lila: We zijn allemaal bij je. 💛",
+
+  novi:
+    "Novi: Ik kan niet wachten om je te ontmoeten! ✨",
+
+  eli:
+    "Eli: Je kunt het! Wij wachten op je. 🌟"
+
+};
+
+
+function giveEnergy(
+  button,
+  character
+){
+
+  if(
+    energies.has(character)
+  ){
+    return;
+  }
+
+  energies.add(
+    character
+  );
+
+  button.classList.add(
+    "used"
+  );
+
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    energyMessages[
+      character
+    ];
+
+
+  document.getElementById(
+    "energyCounter"
+  ).textContent =
+    "🌟 " +
+    energies.size +
+    " van 4";
+
+
+  if(
+    energies.size === 4
+  ){
+
+    Baby4AllProgress.completeTask(
+      "hoofdstuk-1-deel-9-finale",
+      {
+        stars:12,
+        subject:"creativity"
+      }
+    );
+
+    updateStars();
+
+
+    setTimeout(
+      function(){
+
+        document.getElementById(
+          "speech"
+        ).textContent =
+          "Robo: Dit is het! Het uitkomen begint!";
+
+        document.getElementById(
+          "hatch"
+        ).classList.add(
+          "show"
+        );
+
+        document.getElementById(
+          "hatch"
+        ).scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+      },
+      600
+    );
+
+  }
+
+}
+
+
+/* =========================
+   VRIENDJE SAMENSTELLEN
+========================= */
+
+/*
+  Dit is de eerste prototypeversie.
+
+  Later vervangen we deze emoji's
+  door echte modulaire Baby4All-
+  tekeningen met oren, vleugels,
+  staarten, patronen enzovoort.
+*/
+
+function createFriend(){
+
+  let type =
+    "dragon";
+
+
+  /*
+    Niet één antwoord bepaalt
+    het wezen.
+
+    We combineren meerdere
+    eerdere keuzes.
+  */
+
+  let dragonScore = 0;
+  let bunnyScore = 0;
+  let dinoScore = 0;
+  let alienScore = 0;
+
+
+  if(
+    traits.firstInstinct ===
+    "movement"
+  ){
+    dragonScore += 2;
+    dinoScore += 1;
+  }
+
+
+  if(
+    traits.firstInstinct ===
+    "friends"
+  ){
+    bunnyScore += 2;
+  }
+
+
+  if(
+    traits.firstInstinct ===
+    "light"
+  ){
+    alienScore += 2;
+    dragonScore += 1;
+  }
+
+
+  if(
+    traits.firstInstinct ===
+    "music"
+  ){
+    bunnyScore += 1;
+    alienScore += 1;
+  }
+
+
+  if(
+    traits.curiosity ===
+    "sky"
+  ){
+    dragonScore += 2;
+  }
+
+
+  if(
+    traits.curiosity ===
+    "water"
+  ){
+    alienScore += 2;
+  }
+
+
+  if(
+    traits.curiosity ===
+    "nature"
+  ){
+    bunnyScore += 1;
+    dinoScore += 2;
+  }
+
+
+  if(
+    traits.curiosity ===
+    "secret"
+  ){
+    alienScore += 2;
+    dragonScore += 1;
+  }
+
+
+  if(
+    traits.hatchingNeed ===
+    "warmth"
+  ){
+    dinoScore += 1;
+    dragonScore += 1;
+  }
+
+
+  if(
+    traits.hatchingNeed ===
+    "friendship"
+  ){
+    bunnyScore += 2;
+  }
+
+
+  if(
+    traits.hatchingNeed ===
+    "movement"
+  ){
+    dinoScore += 2;
+  }
+
+
+  if(
+    traits.hatchingNeed ===
+    "music"
+  ){
+    alienScore += 1;
+    bunnyScore += 1;
+  }
+
+
+  const scores = {
+
+    dragon:dragonScore,
+    bunny:bunnyScore,
+    dino:dinoScore,
+    alien:alienScore
+
+  };
+
+
+  type =
+    Object.keys(scores).reduce(
+      function(best,current){
+
+        if(
+          scores[current] >
+          scores[best]
+        ){
+          return current;
+        }
+
+        return best;
+
+      },
+      "dragon"
+    );
+
+
+  const creatures = {
+
+    dragon:{
+      icon:"🐲",
+      label:"een klein fantasiedraakje",
+      talent:"☁️ Avontuur en ontdekken"
+    },
+
+    bunny:{
+      icon:"🐰",
+      label:"een magisch konijnvriendje",
+      talent:"💛 Vriendschap en helpen"
+    },
+
+    dino:{
+      icon:"🦕",
+      label:"een nieuwsgierig dinovriendje",
+      talent:"🌿 Ontdekken en kracht"
+    },
+
+    alien:{
+      icon:"👽",
+      label:"een vriendelijk stervriendje",
+      talent:"✨ Licht en mysteries"
+    }
+
+  };
+
+
+  return{
+    type:type,
+    icon:
+      creatures[type].icon,
+    label:
+      creatures[type].label,
+    talent:
+      creatures[type].talent,
+    color:
+      traits.primaryColor ||
+      "surprise",
+    instinct:
+      traits.firstInstinct ||
+      "surprise",
+    route:
+      traits.curiosity ||
+      "surprise",
+    need:
+      traits.hatchingNeed ||
+      "surprise"
+  };
+
+}
+
+
+let generatedFriend =
+  null;
+
+
+/* =========================
+   EI KOMT UIT
+========================= */
+
+function hatchEgg(){
+
+  if(generatedFriend){
+    return;
+  }
+
+
+  generatedFriend =
+    createFriend();
+
+
+  /*
+    Centrale voortgang:
+    ei wordt officieel
+    uitgekomen.
+  */
+
+  Baby4AllProgress.hatchEgg();
+
+
+  Baby4AllProgress.completeAdventurePart(
+    "hoofdstuk-1",
+    9
+  );
+
+
+  document.getElementById(
+    "sceneEgg"
+  ).textContent =
+    "✨";
+
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Iedereen: WAAAAUW! 🎉";
+
+
+  document.getElementById(
+    "friendCreature"
+  ).textContent =
+    generatedFriend.icon;
+
+
+  document.getElementById(
+    "friendIntro"
+  ).innerHTML =
+    playerName +
+    ", uit jouw mysterieuze ei komt " +
+    "<strong>" +
+    generatedFriend.label +
+    "</strong>!";
+
+
+  const colorText =
+    colorNames[
+      generatedFriend.color
+    ] ||
+    "🌈 Verrassingskleur";
+
+
+  document.getElementById(
+    "friendTraits"
+  ).innerHTML =
+    "<strong>✨ Eerste kenmerken</strong>" +
+    "<br><br>" +
+    "🎨 Gloed: " +
+    colorText +
+    "<br>" +
+    "🌟 Talent: " +
+    generatedFriend.talent +
+    "<br><br>" +
+    "Dit is nog maar het begin. " +
+    "Je vriendje kan later groeien, " +
+    "nieuwe talenten ontdekken en " +
+    "samen met jou nieuwe plekken openen.";
+
+
+  document.getElementById(
+    "friend"
+  ).classList.add(
+    "show"
+  );
+
+
+  createConfetti();
+
+
+  document.getElementById(
+    "friend"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti(){
+
+  const pieces = [
+    "⭐",
+    "✨",
+    "🌟",
+    "💜",
+    "💛",
+    "💙"
+  ];
+
+
+  for(
+    let i = 0;
+    i < 35;
+    i++
+  ){
+
+    const piece =
+      document.createElement(
+        "div"
+      );
+
+    piece.className =
+      "confetti";
+
+    piece.textContent =
+      pieces[
+        Math.floor(
+          Math.random() *
+          pieces.length
+        )
+      ];
+
+
+    piece.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+
+    piece.style.animationDelay =
+      Math.random() *
+      1.5 +
+      "s";
+
+
+    document.body.appendChild(
+      piece
+    );
+
+
+    setTimeout(
+      function(){
+
+        piece.remove();
+
+      },
+      5200
+    );
+
+  }
+
+}
+
+
+/* =========================
+   VRIENDJE OPSLAAN
+========================= */
+
+function saveFriend(){
+
+  if(!generatedFriend){
+    return;
+  }
+
+
+  const input =
+    document.getElementById(
+      "friendName"
+    );
+
+
+  const name =
+    input.value.trim();
+
+
+  if(!name){
+
+    input.focus();
+
+    input.placeholder =
+      "Geef je vriendje eerst een naam";
+
+    return;
+  }
+
+
+  const companion = {
+
+    id:
+      "eerste-vriendje",
+
+    name:name,
+
+    type:
+      generatedFriend.type,
+
+    icon:
+      generatedFriend.icon,
+
+    color:
+      generatedFriend.color,
+
+    talent:
+      generatedFriend.talent,
+
+    traits:{
+      firstInstinct:
+        generatedFriend.instinct,
+
+      curiosity:
+        generatedFriend.route,
+
+      hatchingNeed:
+        generatedFriend.need
+    },
+
+    discovered:true,
+
+    owned:true,
+
+    firstCompanion:true,
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  /*
+    Prototype-opslag voor
+    het eerste vriendje.
+  */
+
+  localStorage.setItem(
+    "baby4all-first-companion",
+    JSON.stringify(
+      companion
+    )
+  );
+
+
+  /*
+    We registreren het vriendje
+    ook in de centrale ontdekkingen.
+  */
+
+  Baby4AllProgress.discoverCharacter(
+    "eerste-vriendje"
+  );
+
+
+  document.getElementById(
+    "savedText"
+  ).innerHTML =
+    "🎉 <strong>" +
+    name +
+    "</strong> hoort vanaf nu bij " +
+    playerName +
+    ".";
+
+
+  document.getElementById(
+    "saved"
+  ).classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "saved"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
