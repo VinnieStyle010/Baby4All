@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>De Verborgen Open Plek | Baby4All</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#17325c;
+  background:
+    linear-gradient(
+      #aee9ff,
+      #eefbff 45%,
+      #dff5c2
+    );
+  min-height:100vh;
+}
+
+header{
+  background:white;
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  color:#7046e5;
+  font-size:1.8rem;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.stars{
+  background:#fff3b0;
+  padding:10px 17px;
+  border-radius:25px;
+  font-weight:900;
+}
+
+main{
+  width:min(920px,92%);
+  margin:35px auto 80px;
+}
+
+.card{
+  background:white;
+  border-radius:35px;
+  padding:30px;
+  box-shadow:0 15px 40px rgba(40,50,100,.12);
+}
+
+h1{
+  text-align:center;
+  font-size:clamp(2rem,6vw,3.5rem);
+}
+
+.world{
+  text-align:center;
+  font-size:4.5rem;
+  margin-bottom:10px;
+}
+
+.progress{
+  height:15px;
+  background:#e7e7ef;
+  border-radius:20px;
+  overflow:hidden;
+  margin:25px 0;
+}
+
+.progress div{
+  width:60%;
+  height:100%;
+  background:
+    linear-gradient(
+      90deg,
+      #ffbd32,
+      #ff8b39
+    );
+}
+
+.story{
+  line-height:1.7;
+  font-size:1.05rem;
+}
+
+.character{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px;
+  margin:20px 0;
+  border-radius:25px;
+}
+
+.robo{
+  background:#eeeaff;
+}
+
+.lila{
+  background:#fff0f7;
+}
+
+.novi{
+  background:#fff0dc;
+}
+
+.eli{
+  background:#e9f8ff;
+}
+
+.face{
+  font-size:4rem;
+}
+
+.mission{
+  background:#eef9ff;
+  padding:25px;
+  border-radius:25px;
+  margin-top:25px;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+button{
+  border:0;
+  border-radius:20px;
+  padding:17px;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.answer{
+  background:white;
+  border:3px solid #ddd9ec;
+  color:#17325c;
+}
+
+.answer:hover{
+  border-color:#7046e5;
+}
+
+.main-button{
+  width:100%;
+  margin-top:20px;
+  background:#7046e5;
+  color:white;
+}
+
+.message{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:20px;
+  background:#e2f8df;
+  font-weight:800;
+  line-height:1.6;
+}
+
+.discovery{
+  margin-top:30px;
+  padding:25px;
+  border-radius:30px;
+  background:
+    linear-gradient(
+      135deg,
+      #fff7c7,
+      #f3eaff
+    );
+  text-align:center;
+}
+
+.egg{
+  font-size:7rem;
+  animation:floatEgg 2s ease-in-out infinite;
+}
+
+@keyframes floatEgg{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+}
+
+.small-note{
+  background:white;
+  padding:15px;
+  border-radius:18px;
+  margin-top:15px;
+}
+
+@media(max-width:600px){
+
+  .answers{
+    grid-template-columns:1fr;
+  }
+
+  .character{
+    align-items:flex-start;
+  }
+
+  .card{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a class="logo" href="../../../../">
+🌈 Baby4All
+</a>
+
+<div class="stars">
+⭐ <span id="stars">0</span>
+</div>
+
+</header>
+
+
+<main>
+
+<section class="card">
+
+<div class="world">
+🌲🪶✨🌳
+</div>
+
+<h1>De Verborgen Open Plek</h1>
+
+<div class="progress">
+<div></div>
+</div>
+
+<div class="story">
+
+<p>
+Het glinsterende veertje wijst dezelfde kant op
+als het lichtspoor.
+</p>
+
+<div class="character robo">
+
+<div class="face">🤖</div>
+
+<div>
+
+<strong>Robo:</strong><br><br>
+
+“Mijn scanner krijgt een sterker signaal.
+We komen dichterbij!”
+
+</div>
+
+</div>
+
+
+<div class="character lila">
+
+<div class="face">🐰</div>
+
+<div>
+
+<strong>Lila:</strong><br><br>
+
+“Dan gaan we verder! Ik wil nu echt weten
+wat hier rondloopt.”
+
+</div>
+
+</div>
+
+
+<div class="character novi">
+
+<div class="face">🦊</div>
+
+<div>
+
+<strong>Novi:</strong><br><br>
+
+“Volgens mij loopt het spoor achter
+die enorme struiken langs.”
+
+</div>
+
+</div>
+
+
+<p>
+Maar wanneer jullie bij de struiken komen,
+blijkt de doorgang helemaal dichtgegroeid.
+</p>
+
+<p style="text-align:center;font-size:4rem;">
+🌿🌿🌿🌿🌿
+</p>
+
+<p>
+Dan klinkt er ineens een vriendelijke stem
+achter jullie.
+</p>
+
+
+<div class="character eli">
+
+<div class="face">🐘</div>
+
+<div>
+
+<strong>Eli:</strong><br><br>
+
+“Hé! Waarom staan jullie met z'n allen
+naar een struik te kijken?”
+
+</div>
+
+</div>
+
+
+<div class="character robo">
+
+<div class="face">🤖</div>
+
+<div>
+
+<strong>Robo:</strong><br><br>
+
+“Eli! Perfecte timing. We volgen een
+mysterieus lichtspoor.”
+
+</div>
+
+</div>
+
+
+<div class="character eli">
+
+<div class="face">🐘</div>
+
+<div>
+
+<strong>Eli:</strong><br><br>
+
+“Een mysterie?
+
+Dan help ik mee!”
+
+</div>
+
+</div>
+
+
+<p>
+Eli kijkt naar de dichtgegroeide doorgang.
+</p>
+
+<p>
+Achter de bladeren staan vier oude stenen.
+Op iedere steen staat een teken.
+</p>
+
+
+<div class="mission">
+
+<h2>🧩 Open samen de geheime doorgang</h2>
+
+<p id="question"></p>
+
+<div class="answers" id="answers"></div>
+
+<div class="message" id="message"></div>
+
+</div>
+
+
+<div id="afterMission"></div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<script src="../../../../assets/js/baby4all-progress.js"></script>
+
+<script>
+
+/* =====================================================
+   AVATAR LADEN
+===================================================== */
+
+let avatar = {};
+
+try{
+
+  avatar =
+    JSON.parse(
+      localStorage.getItem(
+        "baby4all-avatar"
+      )
+    ) || {};
+
+}
+catch(error){
+
+  avatar = {};
+
+}
+
+
+const playerName =
+  avatar.name ||
+  avatar.naam ||
+  "avonturier";
+
+
+/* =====================================================
+   LEEFTIJD
+===================================================== */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+
+  if(!birthday){
+    return 6;
+  }
+
+
+  const birthDate =
+    new Date(birthday);
+
+
+  if(
+    isNaN(
+      birthDate.getTime()
+    )
+  ){
+    return 6;
+  }
+
+
+  const today =
+    new Date();
+
+
+  let age =
+    today.getFullYear()
+    -
+    birthDate.getFullYear();
+
+
+  const monthDifference =
+    today.getMonth()
+    -
+    birthDate.getMonth();
+
+
+  if(
+    monthDifference < 0 ||
+    (
+      monthDifference === 0 &&
+      today.getDate() <
+      birthDate.getDate()
+    )
+  ){
+    age--;
+  }
+
+
+  return Math.max(
+    0,
+    Math.min(
+      12,
+      age
+    )
+  );
+
+}
+
+
+const age =
+  calculateAge();
+
+
+/* =====================================================
+   CENTRALE BABY4ALL VOORTGANG
+===================================================== */
+
+Baby4AllProgress.startAdventure(
+  "hoofdstuk-1"
+);
+
+
+Baby4AllProgress.discoverCharacter(
+  "robo"
+);
+
+Baby4AllProgress.discoverCharacter(
+  "lila"
+);
+
+Baby4AllProgress.discoverCharacter(
+  "novi"
+);
+
+Baby4AllProgress.discoverCharacter(
+  "eli"
+);
+
+
+function updateStars(){
+
+  const progress =
+    Baby4AllProgress.load();
+
+
+  document.getElementById(
+    "stars"
+  ).textContent =
+    progress.stars.spendable;
+
+}
+
+
+updateStars();
+
+
+/* =====================================================
+   OPDRACHT PER LEEFTIJD
+===================================================== */
+
+function getMission(){
+
+  /*
+    0 - 2
+  */
+
+  if(age <= 2){
+
+    return{
+
+      question:
+        "Eli zoekt de steen met een ster. Welke zie jij?",
+
+      answers:[
+
+        ["⭐",true],
+
+        ["❤️",false],
+
+        ["☁️",false],
+
+        ["🌿",false]
+
+      ],
+
+      hint:
+        "Zoek samen naar ⭐.",
+
+      success:
+        "Ja! ⭐ Dat is de ster!",
+
+      subject:
+        "logic",
+
+      reward:
+        5
+
+    };
+
+  }
+
+
+  /*
+    3 - 4
+  */
+
+  if(age <= 4){
+
+    return{
+
+      question:
+        "De stenen laten zien: ⭐ 🌙 ⭐ 🌙 ... Welk teken komt daarna?",
+
+      answers:[
+
+        ["⭐",true],
+
+        ["🌙",false],
+
+        ["☁️",false],
+
+        ["❤️",false]
+
+      ],
+
+      hint:
+        "Het gaat steeds ster, maan, ster, maan...",
+
+      success:
+        "Goed gezien! ⭐ Het patroon begint opnieuw.",
+
+      subject:
+        "logic",
+
+      reward:
+        5
+
+    };
+
+  }
+
+
+  /*
+    5 - 6
+  */
+
+  if(age <= 6){
+
+    return{
+
+      question:
+        "Op de stenen staan 2, 4, 6, ?. Welk getal ontbreekt?",
+
+      answers:[
+
+        ["7",false],
+
+        ["8",true],
+
+        ["9",false],
+
+        ["10",false]
+
+      ],
+
+      hint:
+        "Er komt iedere keer 2 bij.",
+
+      success:
+        "Precies! 🧩 Na 6 komt 8.",
+
+      subject:
+        "math",
+
+      reward:
+        6
+
+    };
+
+  }
+
+
+  /*
+    7 - 8
+  */
+
+  if(age <= 8){
+
+    return{
+
+      question:
+        "De code op de stenen is 5, 10, 15, 20, ?. Welke steen opent de doorgang?",
+
+      answers:[
+
+        ["21",false],
+
+        ["22",false],
+
+        ["25",true],
+
+        ["30",false]
+
+      ],
+
+      hint:
+        "Iedere stap komt er 5 bij.",
+
+      success:
+        "Juist! 🔓 Het volgende getal is 25.",
+
+      subject:
+        "math",
+
+      reward:
+        7
+
+    };
+
+  }
+
+
+  /*
+    9 - 10
+  */
+
+  if(age <= 10){
+
+    return{
+
+      question:
+        "De stenen tonen 2, 4, 8, 16, ?. Welke waarde maakt de code compleet?",
+
+      answers:[
+
+        ["20",false],
+
+        ["24",false],
+
+        ["30",false],
+
+        ["32",true]
+
+      ],
+
+      hint:
+        "Ieder getal wordt verdubbeld.",
+
+      success:
+        "Code gekraakt! 🔓 16 × 2 = 32.",
+
+      subject:
+        "logic",
+
+      reward:
+        8
+
+    };
+
+  }
+
+
+  /*
+    11 - 12
+  */
+
+  return{
+
+    question:
+      "Op de stenen staat 1, 4, 9, 16, ?. Welk getal hoort op de laatste steen?",
+
+    answers:[
+
+      ["20",false],
+
+      ["24",false],
+
+      ["25",true],
+
+      ["32",false]
+
+    ],
+
+    hint:
+      "De reeks bestaat uit 1×1, 2×2, 3×3 en 4×4.",
+
+    success:
+      "Perfect! 🧠 Daarna komt 5 × 5 = 25.",
+
+    subject:
+      "logic",
+
+    reward:
+      10
+
+  };
+
+}
+
+
+const mission =
+  getMission();
+
+
+document.getElementById(
+  "question"
+).innerHTML =
+  "<strong>" +
+  mission.question +
+  "</strong>";
+
+
+/* =====================================================
+   ANTWOORDKNOPPEN
+===================================================== */
+
+const answersBox =
+  document.getElementById(
+    "answers"
+  );
+
+
+mission.answers.forEach(
+  (answer,index) => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "answer";
+
+
+    button.textContent =
+      answer[0];
+
+
+    button.onclick =
+      function(){
+
+        checkAnswer(index);
+
+      };
+
+
+    answersBox.appendChild(
+      button
+    );
+
+  }
+);
+
+
+/* =====================================================
+   ANTWOORD CONTROLEREN
+===================================================== */
+
+function checkAnswer(index){
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+
+  message.style.display =
+    "block";
+
+
+  const correct =
+    mission.answers[index][1];
+
+
+  if(!correct){
+
+    message.innerHTML =
+
+      "💡 Bijna! " +
+      mission.hint +
+      "<br><br>Probeer het nog eens.";
+
+    return;
+
+  }
+
+
+  /*
+    Centrale opdrachtmotor.
+
+    Deze opdracht kan later opnieuw worden
+    gespeeld, maar geeft pas na de ingestelde
+    cooldown opnieuw sterren.
+  */
+
+  const result =
+    Baby4AllProgress.completeTask(
+
+      "hoofdstuk-1-deel-3-poort",
+
+      {
+
+        stars:
+          mission.reward,
+
+        subject:
+          mission.subject
+
+      }
+
+    );
+
+
+  if(result.rewarded){
+
+    message.innerHTML =
+
+      mission.success +
+
+      "<br><br>" +
+
+      "⭐ +" +
+      mission.reward +
+      " sterren!";
+
+  }
+
+  else if(
+    result.reason ===
+    "cooldown"
+  ){
+
+    message.innerHTML =
+
+      mission.success +
+
+      "<br><br>" +
+
+      "🌟 Je hebt deze opdracht kort geleden al gedaan." +
+
+      "<br>" +
+
+      "Je kunt ondertussen andere dingen ontdekken.";
+
+  }
+
+  else{
+
+    message.innerHTML =
+      mission.success;
+
+  }
+
+
+  updateStars();
+
+  openPassage();
+
+}
+
+
+/* =====================================================
+   DOORGANG OPEN
+===================================================== */
+
+function openPassage(){
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>🌿 De doorgang gaat open!</h2>
+
+      <p style="font-size:4rem;">
+        🌿 ↙️ ✨ ↘️ 🌿
+      </p>
+
+      <p>
+        De bladeren beginnen langzaam
+        uit elkaar te schuiven.
+      </p>
+
+      <p>
+        Achter de struiken ligt een plek
+        die jullie nog nooit eerder
+        hebben gezien.
+      </p>
+
+      <button
+        class="main-button"
+        onclick="enterHiddenPlace()"
+      >
+        ✨ Ga naar binnen
+      </button>
+
+    </div>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   VERBORGEN PLEK
+===================================================== */
+
+function enterHiddenPlace(){
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>🌳 De verborgen open plek</h2>
+
+      <p>
+        ${playerName}, Robo, Lila,
+        Novi en Eli lopen door
+        de opening.
+      </p>
+
+      <p>
+        Aan de andere kant is het
+        plotseling helemaal stil.
+      </p>
+
+      <p style="font-size:4rem;">
+        🌳 ✨ 🌸 ✨ 🌳
+      </p>
+
+      <p>
+        Midden op de open plek staat
+        een klein nest tussen zachte
+        bladeren.
+      </p>
+
+      <div class="character robo">
+
+        <div class="face">🤖</div>
+
+        <div>
+
+          <strong>Robo:</strong><br><br>
+
+          “Daar komt het signaal vandaan!”
+
+        </div>
+
+      </div>
+
+      <button
+        class="main-button"
+        onclick="discoverTheEgg()"
+      >
+        🔍 Kijk voorzichtig in het nest
+      </button>
+
+    </div>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   HET EI WORDT ONTDEKT
+===================================================== */
+
+function discoverTheEgg(){
+
+  Baby4AllProgress.discoverEgg();
+
+
+  Baby4AllProgress.discoverItem(
+    "eggs",
+    "eerste-mysterieuze-ei"
+  );
+
+
+  Baby4AllProgress.discoverClue(
+    "hoofdstuk-1",
+    "mysterieuze-ei"
+  );
+
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>🥚 Een mysterieuze ontdekking!</h2>
+
+      <div class="egg">
+        🥚
+      </div>
+
+      <p>
+        Tussen de bladeren ligt...
+      </p>
+
+      <p style="font-size:1.4rem;">
+        <strong>een ei.</strong>
+      </p>
+
+      <p>
+        Maar dit is geen gewoon ei.
+      </p>
+
+      <p>
+        Kleine gekleurde lichtjes
+        bewegen langzaam over de schaal.
+      </p>
+
+      <p style="font-size:2rem;">
+        ✨ 🥚 ✨
+      </p>
+
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">🐰</div>
+
+      <div>
+
+        <strong>Lila:</strong><br><br>
+
+        “Oooo... dus dát maakte
+        die lichtjes!”
+
+      </div>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">🦊</div>
+
+      <div>
+
+        <strong>Novi:</strong><br><br>
+
+        “Maar hoe kan een ei nou
+        helemaal hier terechtkomen?”
+
+      </div>
+
+    </div>
+
+
+    <div class="character eli">
+
+      <div class="face">🐘</div>
+
+      <div>
+
+        <strong>Eli:</strong><br><br>
+
+        “En wat zou erin zitten?”
+
+      </div>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">🤖</div>
+
+      <div>
+
+        <strong>Robo:</strong><br><br>
+
+        “Geen idee.
+
+        Mijn scanner herkent het niet.”
+
+        <br><br>
+
+        “Maar ik weet wel één ding:
+        we kunnen het hier niet alleen
+        achterlaten.”
+
+      </div>
+
+    </div>
+
+
+    <div class="small-note">
+
+      🔎 <strong>Grote ontdekking!</strong>
+
+      <br><br>
+
+      Je hebt het mysterieuze
+      Baby4All-ei gevonden.
+
+      <br><br>
+
+      Niemand weet nog wat erin zit.
+
+    </div>
+
+
+    <button
+      class="main-button"
+      onclick="takeEggHome()"
+    >
+      🥚 Neem het ei voorzichtig mee
+    </button>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   EI MEENEMEN
+===================================================== */
+
+function takeEggHome(){
+
+  Baby4AllProgress.obtainEgg();
+
+
+  Baby4AllProgress.completeAdventurePart(
+    "hoofdstuk-1",
+    3
+  );
+
+
+  const box =
+    document.getElementById(
+      "afterMission"
+    );
+
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>🥚 Het ei gaat met je mee</h2>
+
+      <div class="egg">
+        🥚✨
+      </div>
+
+      <p>
+        ${playerName} tilt het ei
+        voorzichtig op.
+      </p>
+
+      <p>
+        Heel even wordt de schaal warm.
+      </p>
+
+      <p style="font-size:2rem;">
+        ✨ ... ✨
+      </p>
+
+      <p>
+        Daarna wordt het weer stil.
+      </p>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">🤖</div>
+
+      <div>
+
+        <strong>Robo:</strong><br><br>
+
+        “Volgens mij reageerde het
+        op jou...”
+
+      </div>
+
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">🐰</div>
+
+      <div>
+
+        <strong>Lila:</strong><br><br>
+
+        “We moeten er goed voor zorgen!”
+
+      </div>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">🦊</div>
+
+      <div>
+
+        <strong>Novi:</strong><br><br>
+
+        “En uitzoeken waar het
+        vandaan komt.”
+
+      </div>
+
+    </div>
+
+
+    <div class="character eli">
+
+      <div class="face">🐘</div>
+
+      <div>
+
+        <strong>Eli:</strong><br><br>
+
+        “En natuurlijk ontdekken
+        wat erin zit!”
+
+      </div>
+
+    </div>
+
+
+    <div class="small-note">
+
+      🥚 <strong>Nieuw in Mijn Baby4All</strong>
+
+      <br><br>
+
+      Het mysterieuze ei hoort nu
+      bij jouw avontuur.
+
+      <br><br>
+
+      Door nieuwe avonturen,
+      ontdekkingen en keuzes zal
+      het langzaam op jou reageren.
+
+    </div>
+
+
+    <button
+      class="main-button"
+      onclick="goHome()"
+    >
+      ⭐ Ga naar Mijn Baby4All
+    </button>
+
+  `;
+
+
+  box.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   NAAR MIJN BABY4ALL
+===================================================== */
+
+function goHome(){
+
+  window.location.href =
+    "../../../../mijn-baby4all/";
+
+}
+
+</script>
+
+</body>
+</html>
