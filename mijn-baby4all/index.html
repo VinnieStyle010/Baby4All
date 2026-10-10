@@ -553,25 +553,132 @@
 
 
 <script>
-  /*
-    Baby4All prototype-opslag.
-
-    Later koppelen we hier onder andere aan:
-    - sterren
-    - avatar
-    - vriendjes
-    - ontdekte eieren
-    - voertuigen
-    - inventaris
-    - voortgang
-
-    Voorlopig bewaren we alleen lokaal op dit apparaat.
-  */
+  /* ==============================
+     BABY4ALL PROFIEL LADEN
+  ============================== */
 
   const savedStars = localStorage.getItem("baby4all-stars");
 
   if (savedStars !== null) {
     document.getElementById("starCount").textContent = savedStars;
+  }
+
+
+  /* ==============================
+     AVATAR LADEN
+  ============================== */
+
+  const savedAvatar = localStorage.getItem("baby4all-avatar");
+
+  if (savedAvatar) {
+
+    try {
+
+      const avatarData = JSON.parse(savedAvatar);
+
+      /* Naam */
+
+      const profileTitle =
+        document.querySelector(".profile h2");
+
+      if (avatarData.name) {
+        profileTitle.textContent = avatarData.name;
+      }
+
+
+      /* Leeftijd opnieuw berekenen */
+
+      if (avatarData.birthday) {
+
+        const birth = new Date(avatarData.birthday);
+        const today = new Date();
+
+        let age =
+          today.getFullYear() - birth.getFullYear();
+
+        const month =
+          today.getMonth() - birth.getMonth();
+
+        if (
+          month < 0 ||
+          (
+            month === 0 &&
+            today.getDate() < birth.getDate()
+          )
+        ) {
+          age--;
+        }
+
+
+        /* Levensfase */
+
+        let stage = "🌟 Grote avonturier";
+
+        if (age <= 1) {
+          stage = "👶 Kleine ontdekker";
+        }
+        else if (age <= 3) {
+          stage = "🧸 Peuter-avonturier";
+        }
+        else if (age <= 5) {
+          stage = "🎨 Kleuter-avonturier";
+        }
+        else if (age <= 8) {
+          stage = "🚀 Avonturier";
+        }
+
+        const profileTexts =
+          document.querySelectorAll(".profile p");
+
+        if (profileTexts.length > 0) {
+          profileTexts[0].textContent =
+            stage + " • " + age + " jaar";
+        }
+
+      }
+
+
+      /* Avatarvoorbeeld */
+
+      const avatarBox =
+        document.querySelector(".avatar");
+
+      if (avatarBox) {
+
+        avatarBox.textContent =
+          avatarData.face || "😊";
+
+        avatarBox.style.background =
+          avatarData.skin || "#f7d8bd";
+
+      }
+
+
+      /* Knop veranderen */
+
+      const avatarButton =
+        document.querySelector('.profile .button');
+
+      if (avatarButton) {
+
+        avatarButton.textContent =
+          "✏️ Pas mijn avatar aan";
+
+        avatarButton.href =
+          "avatar/";
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.log(
+        "Baby4All kon de avatar niet laden."
+      );
+
+    }
+
   }
 </script>
 
