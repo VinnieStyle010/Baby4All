@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Het Begin van Baby4All</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#17325c;
+  background:linear-gradient(#aee8ff,#e9f9ff 55%,#d9f5b5);
+  min-height:100vh;
+}
+
+header{
+  background:white;
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  font-size:1.8rem;
+  font-weight:900;
+  color:#7046e5;
+  text-decoration:none;
+}
+
+.stars{
+  background:#fff3b0;
+  padding:10px 17px;
+  border-radius:25px;
+  font-weight:900;
+}
+
+main{
+  width:min(950px,92%);
+  margin:35px auto 80px;
+}
+
+.story{
+  background:white;
+  border-radius:35px;
+  padding:30px;
+  box-shadow:0 15px 40px rgba(50,40,100,.12);
+}
+
+.world{
+  text-align:center;
+  font-size:5rem;
+  padding:20px;
+}
+
+h1{
+  text-align:center;
+  font-size:clamp(2rem,6vw,3.8rem);
+  margin:5px;
+}
+
+.subtitle{
+  text-align:center;
+  line-height:1.6;
+  margin-bottom:30px;
+}
+
+.character{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  background:#f4efff;
+  padding:20px;
+  border-radius:25px;
+  margin:20px 0;
+}
+
+.face{
+  font-size:4rem;
+}
+
+.speech{
+  line-height:1.6;
+  font-size:1.05rem;
+}
+
+.mission{
+  margin-top:25px;
+  padding:25px;
+  background:#edf9ff;
+  border-radius:25px;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+
+button{
+  border:0;
+  padding:17px;
+  border-radius:20px;
+  font-size:1rem;
+  font-weight:900;
+  cursor:pointer;
+  background:#7447e8;
+  color:white;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+.answer{
+  background:white;
+  color:#17325c;
+  border:3px solid #ddd8ed;
+}
+
+.answer:hover{
+  border-color:#7447e8;
+}
+
+.message{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:20px;
+  background:#e1f8df;
+  font-weight:800;
+}
+
+.next{
+  display:none;
+  margin-top:20px;
+  width:100%;
+}
+
+.locked{
+  margin-top:30px;
+  padding:20px;
+  border-radius:25px;
+  background:#fff7d8;
+  text-align:center;
+}
+
+.progress{
+  height:16px;
+  background:#e3e4ec;
+  border-radius:20px;
+  overflow:hidden;
+  margin:20px 0;
+}
+
+.progressbar{
+  height:100%;
+  width:20%;
+  background:linear-gradient(90deg,#ffbd32,#ff8b39);
+}
+
+@media(max-width:600px){
+  .answers{grid-template-columns:1fr}
+  .character{align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a class="logo" href="../../../">
+🌈 Baby4All
+</a>
+
+<div class="stars">
+⭐ <span id="stars">0</span>
+</div>
+
+</header>
+
+<main>
+
+<section class="story">
+
+<div class="world">
+🌈🏰☁️
+</div>
+
+<h1>Het Begin van Baby4All</h1>
+
+<p class="subtitle">
+Welkom avonturier! Vandaag begint jouw reis door een wereld
+vol geheimen, vriendjes en bijzondere ontdekkingen.
+</p>
+
+
+<div class="progress">
+<div class="progressbar"></div>
+</div>
+
+
+<div class="character">
+
+<div class="face">🤖</div>
+
+<div class="speech">
+
+<strong>Robo:</strong><br><br>
+
+“Hé! Jij bent nieuw hier!”
+
+<br><br>
+
+“Er is vannacht iets vreemds gebeurd.
+Overal in Baby4All zijn kleine lichtjes verschenen.”
+
+<br><br>
+
+“Wil jij me helpen ontdekken wat er aan de hand is?”
+
+</div>
+
+</div>
+
+
+<div class="mission">
+
+<h2>⭐ Eerste opdracht</h2>
+
+<p id="question">
+Robo ziet <strong>2 gele sterren</strong> en
+<strong>1 blauwe ster</strong>.
+Hoeveel sterren ziet Robo in totaal?
+</p>
+
+
+<div class="answers">
+
+<button class="answer" onclick="answer(2)">
+⭐ 2
+</button>
+
+<button class="answer" onclick="answer(3)">
+⭐ 3
+</button>
+
+<button class="answer" onclick="answer(4)">
+⭐ 4
+</button>
+
+<button class="answer" onclick="answer(5)">
+⭐ 5
+</button>
+
+</div>
+
+
+<div class="message" id="message"></div>
+
+
+<button class="next" id="next" onclick="nextPart()">
+Verder op avontuur ➜
+</button>
+
+</div>
+
+
+<div class="locked" id="mystery">
+
+🔒 <strong>???</strong>
+
+<p>
+Er lijkt verderop iets tussen de struiken te glinsteren...
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* ==========================
+   BABY4ALL STERREN
+========================== */
+
+let stars =
+  Number(
+    localStorage.getItem("baby4all-stars")
+  ) || 0;
+
+document.getElementById("stars")
+.textContent = stars;
+
+
+/* ==========================
+   OPDRACHT
+========================== */
+
+let completed =
+  localStorage.getItem(
+    "baby4all-h1-opdracht1"
+  ) === "done";
+
+
+if(completed){
+
+  document.getElementById("message")
+  .style.display = "block";
+
+  document.getElementById("message")
+  .innerHTML =
+  "🌟 Deze opdracht heb je al gedaan!";
+
+  document.getElementById("next")
+  .style.display = "block";
+
+}
+
+
+function answer(value){
+
+  const message =
+    document.getElementById("message");
+
+  message.style.display = "block";
+
+
+  if(value === 3){
+
+    message.innerHTML =
+      "🎉 Goed gedaan! 2 + 1 = 3.<br>⭐ +5 sterren!";
+
+
+    /*
+      Dezelfde opdracht geeft
+      maar één keer sterren.
+    */
+
+    if(!completed){
+
+      stars += 5;
+
+      localStorage.setItem(
+        "baby4all-stars",
+        stars
+      );
+
+      localStorage.setItem(
+        "baby4all-total-stars",
+        (
+          Number(
+            localStorage.getItem(
+              "baby4all-total-stars"
+            )
+          ) || 0
+        ) + 5
+      );
+
+      localStorage.setItem(
+        "baby4all-h1-opdracht1",
+        "done"
+      );
+
+      completed = true;
+
+      document.getElementById("stars")
+      .textContent = stars;
+
+    }
+
+    document.getElementById("next")
+    .style.display = "block";
+
+  }
+
+  else{
+
+    message.innerHTML =
+      "🌈 Bijna! Tel de twee gele sterren en de blauwe ster nog eens samen.";
+
+  }
+
+}
+
+
+/* ==========================
+   VERHAAL VERDER
+========================== */
+
+function nextPart(){
+
+  const mystery =
+    document.getElementById("mystery");
+
+  mystery.innerHTML = `
+
+    ✨ <strong>Er gebeurt iets...</strong>
+
+    <p>
+    Robo loopt naar de struiken.
+    Het licht wordt steeds feller.
+    </p>
+
+    <p>
+    Maar voordat jullie kunnen zien
+    wat er verstopt ligt, klinkt er
+    ergens verderop een vreemd geluid...
+    </p>
+
+    <p>
+    🤖 <strong>Robo:</strong>
+    “Volgens mij zijn we niet alleen.”
+    </p>
+
+    <p>
+    <strong>Wordt vervolgd...</strong>
+    </p>
+
+  `;
+
+  mystery.scrollIntoView({
+    behavior:"smooth"
+  });
+
+
+  localStorage.setItem(
+    "baby4all-h1-started",
+    "true"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
