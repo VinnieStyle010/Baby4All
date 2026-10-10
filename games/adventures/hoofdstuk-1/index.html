@@ -965,66 +965,59 @@ function nextPart(){
   const mystery =
     document.getElementById("mystery");
 
-
   mystery.innerHTML = `
 
-    ✨ <strong>Wacht eens...</strong>
+    <div id="scene2">
 
-    <p>
-      Robo stopt plotseling.
-    </p>
+      <h2>🌳 Scène 2 — Het vreemde licht</h2>
 
-    <p>
-      Tussen de struiken flitst opnieuw
-      dat vreemde licht.
-    </p>
+      <p>
+        Robo en ${playerName} lopen voorzichtig
+        door de struiken.
+      </p>
 
-    <p>
-      🤖 <strong>Robo:</strong><br>
-      “${playerName}, zag jij dat ook?”
-    </p>
+      <p>
+        Het vreemde licht is verdwenen...
+        maar op de grond liggen kleine
+        glinsterende sporen.
+      </p>
 
-    <p>
-      Jullie lopen voorzichtig dichterbij.
-      Maar vlak voordat jullie kunnen zien
-      wat daar ligt...
-    </p>
+      <div style="
+        font-size:4rem;
+        text-align:center;
+        margin:25px 0;
+      ">
+        🌿 ✨ 🌿 ✨ 🌿
+      </div>
 
-    <p>
-      klinkt achter jullie:
-    </p>
+      <p>
+        🤖 <strong>Robo:</strong><br><br>
 
-    <p style="font-size:2rem;">
-      <strong>RITS... RITS... ✨</strong>
-    </p>
+        “Kijk! Die lichtjes vormen een spoor.
+        Misschien kunnen we ontdekken
+        waar het naartoe gaat!”
+      </p>
 
-    <p>
-      Robo draait zich om.
-    </p>
+      <button
+        style="width:100%;margin-top:15px;"
+        onclick="meetFriend()"
+      >
+        ✨ Volg het lichtspoor
+      </button>
 
-    <p>
-      🤖 <strong>“Volgens mij begint ons
-      avontuur nu pas echt...”</strong>
-    </p>
-
-    <p>
-      🌈 <strong>Wordt vervolgd...</strong>
-    </p>
+    </div>
 
   `;
-
 
   localStorage.setItem(
     "baby4all-h1-started",
     "true"
   );
 
-
   localStorage.setItem(
     "baby4all-h1-scene",
-    "1"
+    "2"
   );
-
 
   mystery.scrollIntoView({
     behavior:"smooth"
@@ -1032,7 +1025,454 @@ function nextPart(){
 
 }
 
-</script>
 
-</body>
-</html>
+/* =========================================
+   EERSTE ONTMOETING
+========================================= */
+
+function meetFriend(){
+
+  const scene =
+    document.getElementById("scene2");
+
+  scene.innerHTML = `
+
+    <h2>🌳 Wie zit daar?</h2>
+
+    <p>
+      Het spoor loopt steeds verder
+      het bos in.
+    </p>
+
+    <p>
+      Dan horen jullie ineens:
+    </p>
+
+    <div style="
+      font-size:2rem;
+      text-align:center;
+      margin:25px 0;
+    ">
+      <strong>RITS... RITS... 🌿</strong>
+    </div>
+
+    <p>
+      Twee lange oren verschijnen
+      voorzichtig boven een struik.
+    </p>
+
+    <div style="
+      font-size:6rem;
+      text-align:center;
+      margin:20px;
+    ">
+      🐰
+    </div>
+
+    <p>
+      <strong>Lila:</strong><br><br>
+
+      “O! Jullie zagen de lichtjes dus ook!”
+    </p>
+
+    <p>
+      Robo kijkt verbaasd.
+    </p>
+
+    <p>
+      🤖 <strong>Robo:</strong><br><br>
+
+      “Lila! We proberen uit te zoeken
+      waar ze vandaan komen.”
+    </p>
+
+    <p>
+      🐰 <strong>Lila:</strong><br><br>
+
+      “Dan moeten jullie dit zien.
+      Ik heb verderop iets gevonden...”
+    </p>
+
+    <button
+      style="width:100%;margin-top:15px;"
+      onclick="startSearchMission()"
+    >
+      🌿 Ga met Lila mee
+    </button>
+
+  `;
+
+  localStorage.setItem(
+    "baby4all-h1-scene",
+    "3"
+  );
+
+}
+
+
+/* =========================================
+   ZOEKOPDRACHT
+========================================= */
+
+function startSearchMission(){
+
+  const scene =
+    document.getElementById("scene2");
+
+  let instruction = "";
+
+  if(age <= 2){
+
+    instruction =
+      "Kun jij samen met je grote helper de ✨ ster vinden?";
+
+  }
+
+  else if(age <= 4){
+
+    instruction =
+      "Lila zag een gele ster tussen de planten. Kun jij hem vinden?";
+
+  }
+
+  else if(age <= 6){
+
+    instruction =
+      "Er zijn drie voorwerpen verstopt. Vind de ster die bij het lichtspoor hoort.";
+
+  }
+
+  else if(age <= 8){
+
+    instruction =
+      "Niet alles in het bos hoort bij het mysterieuze spoor. Welk voorwerp geeft hetzelfde licht als het spoor?";
+
+  }
+
+  else if(age <= 10){
+
+    instruction =
+      "Lila zegt dat het juiste spoor licht geeft, niet groeit en geen dier is. Wat zoek je?";
+
+  }
+
+  else{
+
+    instruction =
+      "Gebruik Lila's aanwijzing: het gezochte voorwerp is geen levend wezen, maakt zelf geen geluid en geeft licht. Kies het beste bewijsstuk.";
+
+  }
+
+
+  scene.innerHTML = `
+
+    <h2>🔎 Zoek met Lila</h2>
+
+    <p>
+      🐰 <strong>Lila:</strong><br><br>
+      “Volgens mij heeft het vreemde licht
+      hier iets achtergelaten.”
+    </p>
+
+    <p>
+      <strong>${instruction}</strong>
+    </p>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:15px;
+      margin-top:25px;
+    ">
+
+      <button
+        class="answer"
+        style="font-size:3rem;"
+        onclick="searchAnswer(false)"
+      >
+        🌸
+      </button>
+
+      <button
+        class="answer"
+        style="font-size:3rem;"
+        onclick="searchAnswer(true)"
+      >
+        ✨
+      </button>
+
+      <button
+        class="answer"
+        style="font-size:3rem;"
+        onclick="searchAnswer(false)"
+      >
+        🍄
+      </button>
+
+      <button
+        class="answer"
+        style="font-size:3rem;"
+        onclick="searchAnswer(false)"
+      >
+        🐞
+      </button>
+
+    </div>
+
+    <div
+      class="message"
+      id="searchMessage">
+    </div>
+
+  `;
+
+  localStorage.setItem(
+    "baby4all-h1-scene",
+    "4"
+  );
+
+}
+
+
+/* =========================================
+   ZOEKRESULTAAT
+========================================= */
+
+function searchAnswer(correct){
+
+  const message =
+    document.getElementById("searchMessage");
+
+  message.style.display =
+    "block";
+
+
+  if(!correct){
+
+    message.innerHTML = `
+      🔎 Dat hoort bij het bos,
+      maar het lijkt niet op het vreemde licht.
+      Kijk nog eens goed!
+    `;
+
+    return;
+  }
+
+
+  const rewardKey =
+    "baby4all-h1-search";
+
+
+  const alreadyRewarded =
+    localStorage.getItem(
+      rewardKey
+    ) === "done";
+
+
+  if(!alreadyRewarded){
+
+    const reward =
+      age <= 4 ? 5 :
+      age <= 8 ? 7 :
+      10;
+
+
+    spendableStars += reward;
+    totalStars += reward;
+
+
+    localStorage.setItem(
+      "baby4all-stars",
+      spendableStars
+    );
+
+
+    localStorage.setItem(
+      "baby4all-total-stars",
+      totalStars
+    );
+
+
+    localStorage.setItem(
+      rewardKey,
+      "done"
+    );
+
+
+    document.getElementById("stars")
+    .textContent =
+      spendableStars;
+
+
+    message.innerHTML = `
+
+      🎉 Gevonden!
+
+      <br><br>
+
+      ⭐ +${reward} sterren
+
+      <br><br>
+
+      🐰 <strong>Lila:</strong><br>
+      “Ja! Precies dat licht zag ik!”
+
+      <br><br>
+
+      <button
+        style="width:100%;"
+        onclick="discoverClue()"
+      >
+        ✨ Bekijk wat Lila heeft gevonden
+      </button>
+
+    `;
+
+  }
+
+  else{
+
+    message.innerHTML = `
+
+      ✨ Die had je al gevonden!
+
+      <br><br>
+
+      <button
+        style="width:100%;"
+        onclick="discoverClue()"
+      >
+        Bekijk de ontdekking
+      </button>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================
+   HET MYSTERIE WORDT GROTER
+========================================= */
+
+function discoverClue(){
+
+  const scene =
+    document.getElementById("scene2");
+
+  scene.innerHTML = `
+
+    <h2>✨ Een bijzondere ontdekking</h2>
+
+    <p>
+      Lila brengt jullie naar een open plek
+      tussen de bomen.
+    </p>
+
+    <p>
+      Midden in het gras ligt een
+      klein hoopje glinsterende blaadjes.
+    </p>
+
+    <div style="
+      font-size:5rem;
+      text-align:center;
+      margin:25px;
+    ">
+      🌿✨🌿
+    </div>
+
+    <p>
+      Robo scant de plek.
+    </p>
+
+    <p>
+      🤖 <strong>Robo:</strong><br><br>
+
+      “Hmm... hier lag iets.”
+    </p>
+
+    <p>
+      🐰 <strong>Lila:</strong><br><br>
+
+      “Dat zei ik toch!
+      En kijk eens naar de grond...”
+    </p>
+
+    <div style="
+      font-size:4rem;
+      text-align:center;
+      margin:25px;
+    ">
+      ✨ ・・・ ✨ ・・・ ✨ ➜
+    </div>
+
+    <p>
+      Het glinsterende spoor loopt
+      verder richting een deel van
+      Baby4All dat jullie nog niet kennen.
+    </p>
+
+    <p style="
+      background:#fff7d8;
+      padding:20px;
+      border-radius:20px;
+      text-align:center;
+    ">
+
+      🔍 <strong>Nieuwe aanwijzing ontdekt!</strong>
+
+      <br><br>
+
+      Er is duidelijk iets door het bos gegaan...
+
+      <br><br>
+
+      Maar wat?
+
+    </p>
+
+    <button
+      style="width:100%;"
+      onclick="finishChapterPart()"
+    >
+      🌈 Terug naar Baby4All
+    </button>
+
+  `;
+
+
+  localStorage.setItem(
+    "baby4all-h1-clue-1",
+    "discovered"
+  );
+
+
+  localStorage.setItem(
+    "baby4all-h1-scene",
+    "5"
+  );
+
+}
+
+
+/* =========================================
+   DEEL OPSLAAN
+========================================= */
+
+function finishChapterPart(){
+
+  localStorage.setItem(
+    "baby4all-h1-part1",
+    "complete"
+  );
+
+  alert(
+    "🌟 Eerste deel voltooid!\n\nRobo en Lila hebben een vreemd spoor ontdekt..."
+  );
+
+  window.location.href =
+    "../../../mijn-baby4all/";
+
+}
