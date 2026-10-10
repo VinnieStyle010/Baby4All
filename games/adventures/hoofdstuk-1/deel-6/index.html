@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Baby4All – Het Fluisterende Pad</title>
+
+<style>
+
+:root{
+  --purple:#7757ff;
+  --pink:#ff72b6;
+  --yellow:#ffd84d;
+  --blue:#62c9ff;
+  --green:#69d391;
+  --dark:#302d45;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color:var(--dark);
+
+  background:
+    linear-gradient(
+      180deg,
+      #dff7ff,
+      #f2eaff 45%,
+      #fff5d9
+    );
+
+  min-height:100vh;
+}
+
+
+/* HEADER */
+
+header{
+  background:white;
+
+  padding:14px 20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:sticky;
+  top:0;
+  z-index:30;
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  color:var(--purple);
+  font-weight:900;
+  font-size:1.35rem;
+}
+
+.stars{
+  background:#fff5c5;
+
+  border-radius:30px;
+
+  padding:8px 14px;
+
+  font-weight:900;
+}
+
+
+/* PAGINA */
+
+main{
+  width:min(950px,94%);
+  margin:30px auto 70px;
+}
+
+.card{
+  background:rgba(255,255,255,.96);
+
+  border-radius:30px;
+
+  padding:28px;
+
+  box-shadow:
+    0 18px 50px rgba(70,50,120,.15);
+}
+
+.chapter{
+  text-align:center;
+
+  color:var(--purple);
+
+  font-weight:900;
+}
+
+h1{
+  text-align:center;
+
+  font-size:clamp(
+    2rem,
+    6vw,
+    3.5rem
+  );
+
+  margin:5px 0;
+}
+
+.subtitle{
+  text-align:center;
+  opacity:.8;
+
+  margin-bottom:25px;
+}
+
+.age{
+  display:inline-block;
+
+  background:#eee9ff;
+
+  color:#5e46cc;
+
+  border-radius:20px;
+
+  padding:7px 12px;
+
+  font-weight:850;
+}
+
+
+/* =============================
+   CARTOON SCÈNE
+============================= */
+
+.scene{
+  position:relative;
+
+  height:480px;
+
+  margin:20px 0 28px;
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(255,255,255,.8),
+      transparent 20%
+    ),
+    linear-gradient(
+      180deg,
+      #76d5ff 0%,
+      #c8f3ff 45%,
+      #8edb82 46%,
+      #50ad66 100%
+    );
+
+  box-shadow:
+    inset 0 0 50px rgba(255,255,255,.3),
+    0 12px 30px rgba(0,0,0,.12);
+}
+
+
+/* ZON / WOLKEN */
+
+.sun{
+  position:absolute;
+
+  top:25px;
+  right:40px;
+
+  font-size:4.5rem;
+
+  animation:sunGlow 3s infinite;
+}
+
+@keyframes sunGlow{
+
+  50%{
+    transform:scale(1.08);
+  }
+
+}
+
+.cloud{
+  position:absolute;
+
+  font-size:4rem;
+
+  animation:cloudMove 12s
+    ease-in-out infinite alternate;
+}
+
+.cloud.one{
+  left:8%;
+  top:35px;
+}
+
+.cloud.two{
+  right:20%;
+  top:75px;
+
+  animation-delay:2s;
+}
+
+@keyframes cloudMove{
+
+  from{
+    transform:translateX(-10px);
+  }
+
+  to{
+    transform:translateX(18px);
+  }
+
+}
+
+
+/* BOS */
+
+.tree{
+  position:absolute;
+  bottom:60px;
+
+  font-size:7rem;
+}
+
+.tree.t1{
+  left:-15px;
+}
+
+.tree.t2{
+  right:-15px;
+}
+
+.tree.t3{
+  left:15%;
+  bottom:110px;
+
+  font-size:5rem;
+}
+
+
+/* PAD */
+
+.path{
+  position:absolute;
+
+  bottom:-30px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:270px;
+  height:260px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e6c488,
+      #c89a59
+    );
+
+  clip-path:
+    polygon(
+      42% 0,
+      58% 0,
+      100% 100%,
+      0 100%
+    );
+}
+
+
+/* MAGISCHE SPOREN */
+
+.magic-trail{
+  position:absolute;
+
+  left:50%;
+  top:145px;
+
+  transform:translateX(-50%);
+
+  z-index:5;
+}
+
+.magic-dot{
+  position:absolute;
+
+  font-size:1.6rem;
+
+  animation:
+    magicPulse 1.5s infinite;
+}
+
+.magic-dot:nth-child(1){
+  top:0;
+  left:-10px;
+}
+
+.magic-dot:nth-child(2){
+  top:50px;
+  left:25px;
+
+  animation-delay:.3s;
+}
+
+.magic-dot:nth-child(3){
+  top:105px;
+  left:-15px;
+
+  animation-delay:.6s;
+}
+
+.magic-dot:nth-child(4){
+  top:160px;
+  left:35px;
+
+  animation-delay:.9s;
+}
+
+@keyframes magicPulse{
+
+  0%,100%{
+    opacity:.25;
+    transform:scale(.7);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.25);
+  }
+
+}
+
+
+/* EI */
+
+.egg-area{
+  position:absolute;
+
+  left:50%;
+  bottom:105px;
+
+  transform:translateX(-50%);
+
+  z-index:12;
+
+  text-align:center;
+}
+
+.egg-glow{
+  position:absolute;
+
+  width:125px;
+  height:125px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,245,130,.95),
+      rgba(205,150,255,.4),
+      transparent 70%
+    );
+
+  animation:
+    glow 1.7s infinite;
+}
+
+@keyframes glow{
+
+  50%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.35);
+
+    opacity:.7;
+  }
+
+}
+
+.egg{
+  position:relative;
+
+  z-index:3;
+
+  font-size:6rem;
+
+  cursor:pointer;
+
+  animation:
+    eggMove 2s infinite;
+
+  filter:
+    drop-shadow(
+      0 8px 7px rgba(0,0,0,.2)
+    );
+}
+
+@keyframes eggMove{
+
+  0%,70%,100%{
+    transform:
+      rotate(0deg)
+      translateY(0);
+  }
+
+  78%{
+    transform:
+      rotate(-9deg)
+      translateY(-5px);
+  }
+
+  86%{
+    transform:
+      rotate(9deg)
+      translateY(-8px);
+  }
+
+  94%{
+    transform:
+      rotate(-5deg)
+      translateY(-4px);
+  }
+
+}
+
+
+/* PERSONAGES */
+
+.character{
+  position:absolute;
+
+  bottom:18px;
+
+  z-index:15;
+
+  text-align:center;
+}
+
+.face{
+  font-size:4rem;
+
+  filter:
+    drop-shadow(
+      0 6px 4px rgba(0,0,0,.17)
+    );
+}
+
+.name{
+  background:white;
+
+  border-radius:20px;
+
+  padding:3px 9px;
+
+  font-weight:900;
+
+  font-size:.78rem;
+}
+
+.robo{
+  left:5%;
+}
+
+.lila{
+  left:24%;
+}
+
+.novi{
+  right:24%;
+}
+
+.eli{
+  right:5%;
+}
+
+
+/* TEKSTBALLON */
+
+.speech{
+  position:absolute;
+
+  top:25px;
+  left:13%;
+
+  max-width:280px;
+
+  background:white;
+
+  border-radius:
+    22px 22px 22px 5px;
+
+  padding:14px 17px;
+
+  font-weight:800;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.15);
+
+  z-index:20;
+}
+
+.speech::after{
+  content:"";
+
+  position:absolute;
+
+  left:28px;
+  bottom:-13px;
+
+  border-width:
+    13px 13px 0 0;
+
+  border-style:solid;
+
+  border-color:
+    white transparent transparent transparent;
+}
+
+
+/* VERHAAL */
+
+.story{
+  background:#f8f6ff;
+
+  border-radius:20px;
+
+  padding:20px;
+
+  line-height:1.65;
+
+  font-size:1.08rem;
+}
+
+
+/* MISSIE */
+
+.mission{
+  margin-top:28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eefaff,
+      #f8eeff
+    );
+
+  border-radius:25px;
+
+  padding:22px;
+}
+
+.mission h2{
+  text-align:center;
+}
+
+
+/* ROUTES */
+
+.routes{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:15px;
+
+  max-width:700px;
+
+  margin:20px auto;
+}
+
+.route{
+  border:none;
+
+  border-radius:25px;
+
+  background:white;
+
+  padding:22px 14px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.1);
+
+  transition:
+    transform .2s,
+    box-shadow .2s;
+}
+
+.route:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 13px 28px rgba(0,0,0,.14);
+}
+
+.route-icon{
+  display:block;
+
+  font-size:3.3rem;
+
+  margin-bottom:8px;
+}
+
+.route-name{
+  font-weight:900;
+
+  font-size:1rem;
+}
+
+
+/* OPDRACHT */
+
+.challenge{
+  display:none;
+
+  margin-top:25px;
+
+  padding:22px;
+
+  background:#fff;
+
+  border-radius:24px;
+
+  text-align:center;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+}
+
+.challenge.show{
+  display:block;
+
+  animation:
+    appear .5s ease;
+}
+
+@keyframes appear{
+
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+.answers{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+  max-width:550px;
+
+  margin:18px auto;
+}
+
+.answer{
+  border:none;
+
+  border-radius:20px;
+
+  padding:17px;
+
+  background:#f2efff;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  font-size:1rem;
+}
+
+.answer:hover{
+  background:#e8e1ff;
+}
+
+
+/* RESULTAAT */
+
+.result{
+  display:none;
+
+  margin-top:25px;
+
+  border-radius:25px;
+
+  padding:22px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff6c9,
+      #ffe9f5
+    );
+}
+
+.result.show{
+  display:block;
+}
+
+
+/* KNOP */
+
+.continue{
+  display:none;
+
+  border:none;
+
+  margin:25px auto 0;
+
+  padding:15px 25px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7657ff,
+      #a05cff
+    );
+
+  color:white;
+
+  font-weight:900;
+
+  font-size:1rem;
+
+  cursor:pointer;
+}
+
+.continue.show{
+  display:block;
+}
+
+
+/* MOBIEL */
+
+@media(max-width:650px){
+
+  .card{
+    padding:17px;
+  }
+
+  .scene{
+    height:410px;
+  }
+
+  .face{
+    font-size:2.9rem;
+  }
+
+  .robo{
+    left:2%;
+  }
+
+  .lila{
+    left:23%;
+  }
+
+  .novi{
+    right:23%;
+  }
+
+  .eli{
+    right:2%;
+  }
+
+  .egg{
+    font-size:5rem;
+  }
+
+  .tree{
+    font-size:5rem;
+  }
+
+  .speech{
+    top:18px;
+    left:6%;
+
+    max-width:220px;
+
+    font-size:.88rem;
+  }
+
+  .routes,
+  .answers{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🌈 Baby4All
+  </div>
+
+  <div class="stars">
+    ⭐ <span id="starCount">0</span>
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="card">
+
+  <div class="chapter">
+    HOOFDSTUK 1 • DEEL 6
+  </div>
+
+  <h1>
+    ✨ Het Fluisterende Pad
+  </h1>
+
+  <p class="subtitle">
+    Het mysterieuze ei wil ergens naartoe...
+  </p>
+
+  <div
+    class="age"
+    id="ageBadge"
+  >
+    Avontuur laden...
+  </div>
+
+
+  <!--
+    Tijdelijke emoji-scène.
+    Later komen hier de echte
+    Baby4All-cartoonpersonages.
+  -->
+
+  <div class="scene">
+
+    <div class="sun">
+      ☀️
+    </div>
+
+    <div class="cloud one">
+      ☁️
+    </div>
+
+    <div class="cloud two">
+      ☁️
+    </div>
+
+    <div class="tree t1">
+      🌳
+    </div>
+
+    <div class="tree t2">
+      🌲
+    </div>
+
+    <div class="tree t3">
+      🌳
+    </div>
+
+    <div class="path"></div>
+
+
+    <div class="magic-trail">
+
+      <div class="magic-dot">
+        ✨
+      </div>
+
+      <div class="magic-dot">
+        ⭐
+      </div>
+
+      <div class="magic-dot">
+        ✨
+      </div>
+
+      <div class="magic-dot">
+        ⭐
+      </div>
+
+    </div>
+
+
+    <div
+      class="speech"
+      id="speech"
+    >
+      Novi: Hé... kijk naar het ei!
+      Volgens mij wil het ergens heen.
+    </div>
+
+
+    <div class="egg-area">
+
+      <div class="egg-glow"></div>
+
+      <div
+        class="egg"
+        id="egg"
+        onclick="touchEgg()"
+      >
+        🥚✨
+      </div>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">
+        🤖
+      </div>
+
+      <div class="name">
+        Robo
+      </div>
+
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">
+        🐰
+      </div>
+
+      <div class="name">
+        Lila
+      </div>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">
+        🦊
+      </div>
+
+      <div class="name">
+        Novi
+      </div>
+
+    </div>
+
+
+    <div class="character eli">
+
+      <div class="face">
+        🐘
+      </div>
+
+      <div class="name">
+        Eli
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="story">
+
+    <strong id="playerName">
+      Avonturier
+    </strong>
+    kijkt naar het mysterieuze ei.
+
+    <br><br>
+
+    Sinds de laatste ontdekking is
+    er iets veranderd.
+
+    <br><br>
+
+    Het ei wiebelt niet meer zomaar.
+
+    Iedere keer wanneer de groep
+    langs een klein bospaadje loopt,
+    begint de schaal te gloeien.
+
+    <br><br>
+
+    Dan verschijnt er ineens een
+    spoor van kleine lichtjes.
+
+    <br><br>
+
+    <strong>
+      ✨ Eén spoor... maar vier mogelijke routes.
+    </strong>
+
+  </div>
+
+
+  <div class="mission">
+
+    <h2>
+      🗺️ Welke route zullen we onderzoeken?
+    </h2>
+
+    <p style="text-align:center;">
+      Het ei reageert op jouw keuze.
+    </p>
+
+
+    <div class="routes">
+
+      <button
+        class="route"
+        onclick="chooseRoute('sky')"
+      >
+
+        <span class="route-icon">
+          ☁️
+        </span>
+
+        <span class="route-name">
+          Het hoge wolkenpad
+        </span>
+
+      </button>
+
+
+      <button
+        class="route"
+        onclick="chooseRoute('water')"
+      >
+
+        <span class="route-icon">
+          💧
+        </span>
+
+        <span class="route-name">
+          Het kabbelende water
+        </span>
+
+      </button>
+
+
+      <button
+        class="route"
+        onclick="chooseRoute('nature')"
+      >
+
+        <span class="route-icon">
+          🌿
+        </span>
+
+        <span class="route-name">
+          Het verborgen bospad
+        </span>
+
+      </button>
+
+
+      <button
+        class="route"
+        onclick="chooseRoute('secret')"
+      >
+
+        <span class="route-icon">
+          🔮
+        </span>
+
+        <span class="route-name">
+          De mysterieuze doorgang
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <div
+      class="challenge"
+      id="challenge"
+    >
+
+      <h2 id="challengeTitle">
+        Opdracht
+      </h2>
+
+      <p id="challengeQuestion">
+      </p>
+
+      <div
+        class="answers"
+        id="answers"
+      >
+      </div>
+
+      <p id="hint"></p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="result"
+    id="result"
+  >
+  </div>
+
+
+  <button
+    class="continue"
+    id="continueButton"
+    onclick="finishPart()"
+  >
+    🥚 Neem het ei verder mee
+  </button>
+
+</section>
+
+</main>
+
+
+<script src="../../../../assets/js/baby4all-progress.js"></script>
+
+<script>
+
+/* ==========================
+   AVATAR
+========================== */
+
+function loadAvatar(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "baby4all-avatar"
+      )
+    ) || {};
+
+  }catch(error){
+
+    return {};
+
+  }
+
+}
+
+const avatar =
+  loadAvatar();
+
+const playerName =
+  avatar.name ||
+  avatar.naam ||
+  "Avonturier";
+
+document.getElementById(
+  "playerName"
+).textContent =
+  playerName;
+
+
+/* ==========================
+   LEEFTIJD
+========================== */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+  if(!birthday){
+    return 6;
+  }
+
+  const birth =
+    new Date(birthday);
+
+  const today =
+    new Date();
+
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
+
+  const month =
+    today.getMonth() -
+    birth.getMonth();
+
+  if(
+    month < 0 ||
+    (
+      month === 0 &&
+      today.getDate() <
+      birth.getDate()
+    )
+  ){
+    age--;
+  }
+
+  return Math.max(
+    0,
+    Math.min(12,age)
+  );
+
+}
+
+const age =
+  calculateAge();
+
+document.getElementById(
+  "ageBadge"
+).textContent =
+  "🎂 Avontuur voor " +
+  age +
+  " jaar";
+
+
+/* ==========================
+   START
+========================== */
+
+Baby4AllProgress.startAdventure(
+  "hoofdstuk-1"
+);
+
+function updateStars(){
+
+  const progress =
+    Baby4AllProgress.load();
+
+  document.getElementById(
+    "starCount"
+  ).textContent =
+    progress.stars.spendable;
+
+}
+
+updateStars();
+
+
+/* ==========================
+   EI
+========================== */
+
+function touchEgg(){
+
+  const egg =
+    document.getElementById(
+      "egg"
+    );
+
+  const speech =
+    document.getElementById(
+      "speech"
+    );
+
+  speech.textContent =
+    "Lila: Wauw! Het ei trekt echt naar het lichtspoor toe!";
+
+  egg.style.animation =
+    "none";
+
+  setTimeout(
+    function(){
+
+      egg.style.animation =
+        "eggMove .45s ease-in-out 5";
+
+    },
+    20
+  );
+
+}
+
+
+/* ==========================
+   ROUTE
+========================== */
+
+let selectedRoute =
+  null;
+
+const routeNames = {
+
+  sky:
+    "☁️ het hoge wolkenpad",
+
+  water:
+    "💧 het kabbelende water",
+
+  nature:
+    "🌿 het verborgen bospad",
+
+  secret:
+    "🔮 de mysterieuze doorgang"
+
+};
+
+
+function chooseRoute(route){
+
+  if(selectedRoute){
+    return;
+  }
+
+  selectedRoute =
+    route;
+
+  Baby4AllProgress.setEggTrait(
+    "curiosity",
+    route
+  );
+
+  const speech =
+    document.getElementById(
+      "speech"
+    );
+
+  if(route === "sky"){
+
+    speech.textContent =
+      "Eli: Omhoog? Dan moeten we een slimme weg vinden!";
+
+  }
+
+  if(route === "water"){
+
+    speech.textContent =
+      "Lila: Het licht danst helemaal over het water!";
+
+  }
+
+  if(route === "nature"){
+
+    speech.textContent =
+      "Novi: Dit spoor loopt diep het bos in!";
+
+  }
+
+  if(route === "secret"){
+
+    speech.textContent =
+      "Robo: Mijn scanner ziet daar iets wat er eerst niet was!";
+
+  }
+
+  showChallenge();
+
+}
+
+
+/* ==========================
+   LEEFTIJDSOPDRACHT
+========================== */
+
+function getMission(){
+
+  if(age <= 2){
+
+    return{
+      title:
+        "👀 Zoek het licht",
+
+      question:
+        "Welke hiervan geeft licht?",
+
+      answers:[
+        ["✨","yes"],
+        ["🍃","no"],
+        ["🪨","no"],
+        ["🌳","no"]
+      ],
+
+      reward:4,
+
+      subject:"logic"
+    };
+
+  }
+
+
+  if(age <= 4){
+
+    return{
+      title:
+        "🔢 Tel de lichtjes",
+
+      question:
+        "Er zijn ⭐ ⭐ ⭐. Hoeveel zijn dat?",
+
+      answers:[
+        ["2","no"],
+        ["3","yes"],
+        ["4","no"],
+        ["5","no"]
+      ],
+
+      reward:5,
+
+      subject:"math"
+    };
+
+  }
+
+
+  if(age <= 6){
+
+    return{
+      title:
+        "✨ Maak het patroon af",
+
+      question:
+        "✨ ⭐ ✨ ⭐ ✨ ... Wat komt hierna?",
+
+      answers:[
+        ["⭐","yes"],
+        ["🌿","no"],
+        ["☁️","no"],
+        ["💧","no"]
+      ],
+
+      reward:6,
+
+      subject:"logic"
+    };
+
+  }
+
+
+  if(age <= 8){
+
+    return{
+      title:
+        "🔢 Vind het volgende getal",
+
+      question:
+        "Het spoor geeft 3, 6, 9, 12... Wat komt daarna?",
+
+      answers:[
+        ["13","no"],
+        ["14","no"],
+        ["15","yes"],
+        ["18","no"]
+      ],
+
+      reward:7,
+
+      subject:"math"
+    };
+
+  }
+
+
+  if(age <= 10){
+
+    return{
+      title:
+        "🧠 Ontcijfer het spoor",
+
+      question:
+        "De lichtjes verdubbelen: 2, 4, 8, 16... Wat komt daarna?",
+
+      answers:[
+        ["20","no"],
+        ["24","no"],
+        ["32","yes"],
+        ["36","no"]
+      ],
+
+      reward:8,
+
+      subject:"math"
+    };
+
+  }
+
+
+  return{
+    title:
+      "🧠 Kraak de lichtcode",
+
+    question:
+      "De code is 2, 6, 12, 20, 30... Welk getal volgt?",
+
+    answers:[
+      ["36","no"],
+      ["40","no"],
+      ["42","yes"],
+      ["44","no"]
+    ],
+
+    reward:10,
+
+    subject:"logic"
+  };
+
+}
+
+
+const mission =
+  getMission();
+
+
+function showChallenge(){
+
+  const challenge =
+    document.getElementById(
+      "challenge"
+    );
+
+  challenge.classList.add(
+    "show"
+  );
+
+  document.getElementById(
+    "challengeTitle"
+  ).textContent =
+    mission.title;
+
+  document.getElementById(
+    "challengeQuestion"
+  ).textContent =
+    mission.question;
+
+  const answers =
+    document.getElementById(
+      "answers"
+    );
+
+  answers.innerHTML =
+    "";
+
+  mission.answers.forEach(
+    function(answer){
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.className =
+        "answer";
+
+      button.textContent =
+        answer[0];
+
+      button.onclick =
+        function(){
+
+          checkAnswer(
+            answer[1]
+          );
+
+        };
+
+      answers.appendChild(
+        button
+      );
+
+    }
+  );
+
+  challenge.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* ==========================
+   ANTWOORD
+========================== */
+
+let completed =
+  false;
+
+
+function checkAnswer(answer){
+
+  if(completed){
+    return;
+  }
+
+
+  if(answer !== "yes"){
+
+    document.getElementById(
+      "hint"
+    ).textContent =
+      "🌱 Bijna! Kijk nog eens goed naar het spoor.";
+
+    return;
+  }
+
+
+  completed =
+    true;
+
+
+  const task =
+    Baby4AllProgress.completeTask(
+      "hoofdstuk-1-deel-6-spoor",
+      {
+        stars:
+          mission.reward,
+
+        subject:
+          mission.subject
+      }
+    );
+
+
+  /*
+    DERDE BETEKENISVOLLE
+    EI-MOMENT.
+
+    Hierdoor gaat het ei
+    volgens ons centrale systeem
+    naar minimaal fase 4.
+  */
+
+  Baby4AllProgress.addEggMoment(
+    "fluisterende-pad"
+  );
+
+
+  Baby4AllProgress.discoverClue(
+    "hoofdstuk-1",
+    "fluisterende-pad"
+  );
+
+
+  updateStars();
+
+
+  let rewardText =
+    "";
+
+  if(
+    task &&
+    task.success
+  ){
+
+    rewardText =
+      "<br><br>⭐ Je verdient <strong>" +
+      mission.reward +
+      " sterren</strong>!";
+
+  }else{
+
+    rewardText =
+      "<br><br>🌱 Je had deze opdracht al gedaan. Je avontuur blijft gewoon bewaard.";
+
+  }
+
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
+  result.innerHTML =
+    "✨ <strong>Het spoor reageert!</strong>" +
+    "<br><br>" +
+    playerName +
+    " koos voor " +
+    routeNames[selectedRoute] +
+    "." +
+    "<br><br>" +
+    "Plotseling springt het ei een klein stukje omhoog." +
+    "<br><br>" +
+    "🥚 <strong>BONK!</strong>" +
+    "<br><br>" +
+    "Robo kijkt verbaasd." +
+    "<br>" +
+    "“Dat was geen gewoon gewiebel meer...”" +
+    "<br><br>" +
+    "Heel even verschijnt er een vreemd teken op de schaal." +
+    "<br><br>" +
+    "✨ Misschien begint het vriendje binnenin steeds sterker te worden." +
+    rewardText;
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Novi: Zag je dat?! Het ei sprong gewoon!";
+
+
+  const egg =
+    document.getElementById(
+      "egg"
+    );
+
+  egg.textContent =
+    "🥚✨";
+
+  egg.style.animation =
+    "eggMove .35s ease-in-out 6";
+
+
+  document.getElementById(
+    "continueButton"
+  ).classList.add(
+    "show"
+  );
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* ==========================
+   AFRONDEN
+========================== */
+
+function finishPart(){
+
+  Baby4AllProgress.completeAdventurePart(
+    "hoofdstuk-1",
+    6
+  );
+
+  window.location.href =
+    "../../../../mijn-baby4all/";
+
+}
+
+</script>
+
+</body>
+</html>
