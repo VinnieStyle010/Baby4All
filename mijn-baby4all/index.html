@@ -352,28 +352,63 @@
   <section class="grid">
 
 
-    <article class="card egg-card">
+ <article class="card egg-card" id="firstEggCard">
 
-      <div class="egg">
-        🥚
-      </div>
+  <div class="egg" id="eggIcon">
+    🔒
+  </div>
 
-      <h2>Mijn eerste vriendje</h2>
+  <h2 id="eggTitle">
+    Mijn eerste vriendje
+  </h2>
 
-      <p>
-        Er wacht ergens in de wereld van Baby4All
-        een heel bijzonder ei op jou.
-      </p>
+  <p id="eggText">
+    Er wacht ergens in de wereld van Baby4All
+    een heel bijzonder ei op jou.
+  </p>
 
-      <p>
-        Ontdek het tijdens je eerste avontuur.
-      </p>
+  <div
+    id="eggProgress"
+    style="
+      display:none;
+      margin:18px 0;
+      background:#e8e8ef;
+      height:14px;
+      border-radius:20px;
+      overflow:hidden;
+    "
+  >
 
-      <div class="lock">
-        🔒 Nog niet ontdekt
-      </div>
+    <div
+      id="eggProgressBar"
+      style="
+        width:0%;
+        height:100%;
+        background:linear-gradient(
+          90deg,
+          #ffd34e,
+          #ff8e45
+        );
+        transition:width .5s ease;
+      "
+    ></div>
 
-    </article>
+  </div>
+
+  <div class="lock" id="eggStage">
+    🔒 Nog niet ontdekt
+  </div>
+
+  <button
+    id="eggButton"
+    class="button"
+    style="display:none;"
+    onclick="openEgg()"
+  >
+    🥚 Bekijk mijn ei
+  </button>
+
+</article>
 
 
     <article class="card">
@@ -551,7 +586,7 @@
   🌈 Baby4All — Ieder kind verdient een wereld vol speelplezier en fantasie!
 </footer>
 
-
+<script src="../assets/js/baby4all-progress.js"></script>
 <script>
   /* ==============================
      BABY4ALL PROFIEL LADEN
@@ -680,6 +715,273 @@
     }
 
   }
+  /* =========================================
+   MYSTERIEUS EI - MIJN BABY4ALL
+========================================= */
+
+function updateEggCard() {
+
+  const progress =
+    Baby4AllProgress.load();
+
+  const egg =
+    progress.egg;
+
+  const icon =
+    document.getElementById("eggIcon");
+
+  const title =
+    document.getElementById("eggTitle");
+
+  const text =
+    document.getElementById("eggText");
+
+  const stage =
+    document.getElementById("eggStage");
+
+  const progressBox =
+    document.getElementById("eggProgress");
+
+  const progressBar =
+    document.getElementById("eggProgressBar");
+
+  const button =
+    document.getElementById("eggButton");
+
+
+  /* =====================================
+     EI NOG NIET GEVONDEN
+  ===================================== */
+
+  if (!egg.discovered) {
+
+    icon.textContent =
+      "🔒";
+
+    title.textContent =
+      "Mijn eerste vriendje";
+
+    text.textContent =
+      "Er wacht ergens in de wereld van Baby4All een heel bijzonder ei op jou.";
+
+    stage.textContent =
+      "🔒 Nog niet ontdekt";
+
+    progressBox.style.display =
+      "none";
+
+    button.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  /* =====================================
+     EI IS GEVONDEN
+  ===================================== */
+
+  progressBox.style.display =
+    "block";
+
+  button.style.display =
+    "inline-block";
+
+
+  const stages = {
+
+    1: {
+      icon: "🥚✨",
+      title: "Mijn mysterieuze ei",
+      name: "🥚 Fase 1 — Net gevonden",
+      text:
+        "Je hebt een mysterieus ei gevonden. Niemand weet nog wat erin zit.",
+      percent: 14
+    },
+
+    2: {
+      icon: "🥚✨",
+      title: "Mijn mysterieuze ei",
+      name: "✨ Fase 2 — Het ei reageert",
+      text:
+        "Soms wordt de schaal warm en verschijnen er kleine lichtjes.",
+      percent: 28
+    },
+
+    3: {
+      icon: "🌈🥚",
+      title: "Mijn mysterieuze ei",
+      name: "🌈 Fase 3 — Er verandert iets",
+      text:
+        "Er verschijnen langzaam kleuren en bijzondere tekens op de schaal.",
+      percent: 43
+    },
+
+    4: {
+      icon: "💫🥚",
+      title: "Mijn mysterieuze ei",
+      name: "💫 Fase 4 — Het beweegt!",
+      text:
+        "Af en toe wiebelt het ei. Er zit duidelijk iets in.",
+      percent: 57
+    },
+
+    5: {
+      icon: "🐣",
+      title: "Mijn mysterieuze ei",
+      name: "🥚 Fase 5 — Barstjes!",
+      text:
+        "Er verschijnen kleine barstjes. Het duurt niet lang meer...",
+      percent: 75
+    },
+
+    6: {
+      icon: "🌟🥚🌟",
+      title: "Mijn mysterieuze ei",
+      name: "🌟 Fase 6 — Bijna zover!",
+      text:
+        "Het ei straalt van binnenuit. Het speciale uitbroedavontuur is beschikbaar!",
+      percent: 92
+    },
+
+    7: {
+      icon: "🐾✨",
+      title: "Mijn vriendje",
+      name: "🎉 Uitgekomen!",
+      text:
+        "Je mysterieuze ei is uitgekomen. Je hebt een eigen Baby4All-vriendje!",
+      percent: 100
+    }
+
+  };
+
+
+  const current =
+    stages[egg.stage] ||
+    stages[1];
+
+
+  icon.textContent =
+    current.icon;
+
+  title.textContent =
+    current.title;
+
+  stage.textContent =
+    current.name;
+
+  text.textContent =
+    current.text;
+
+  progressBar.style.width =
+    current.percent + "%";
+
+
+  /* =====================================
+     KNOP AANPASSEN AAN FASE
+  ===================================== */
+
+  if (
+    egg.stage >= 6 &&
+    !egg.hatched
+  ) {
+
+    button.textContent =
+      "🌟 Start het uitbroedavontuur";
+
+  }
+
+  else if (egg.hatched) {
+
+    button.textContent =
+      "🐾 Bekijk mijn vriendje";
+
+  }
+
+  else {
+
+    button.textContent =
+      "🥚 Bekijk mijn ei";
+
+  }
+
+}
+
+
+/* =========================================
+   EI-KNOP
+========================================= */
+
+function openEgg() {
+
+  const progress =
+    Baby4AllProgress.load();
+
+  const egg =
+    progress.egg;
+
+
+  if (!egg.discovered) {
+    return;
+  }
+
+
+  /* Klaar om uit te komen */
+
+  if (
+    egg.stage >= 6 &&
+    !egg.hatched
+  ) {
+
+    alert(
+      "🌟 Je mysterieuze ei is klaar voor een heel bijzonder avontuur!"
+    );
+
+    /*
+      Hier koppelen we later de echte
+      uitbroedpagina aan.
+    */
+
+    return;
+
+  }
+
+
+  /* Al uitgekomen */
+
+  if (egg.hatched) {
+
+    alert(
+      "🐾 Hier komt straks de persoonlijke pagina van jouw Baby4All-vriendje."
+    );
+
+    return;
+
+  }
+
+
+  /* Ei is nog aan het groeien */
+
+  const moments =
+    egg.moments.length;
+
+  alert(
+    "🥚 Jouw mysterieuze ei\n\n" +
+    "Bijzondere momenten beleefd: " +
+    moments +
+    "\n\n" +
+    "Blijf avonturen beleven om te ontdekken wat er met het ei gebeurt!"
+  );
+
+}
+
+
+/* =========================================
+   DASHBOARD BIJWERKEN
+========================================= */
+
+updateEggCard();
 </script>
 
 </body>
