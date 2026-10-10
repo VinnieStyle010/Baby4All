@@ -1,1 +1,766 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="site-root" content="./"><meta name="theme-color" content="#7455db"><meta name="description" content="Baby4All: gratis spelletjes, kleuren, tekenen en fantasie voor de allerkleinsten."><title>Baby4All — Speelplezier en fantasie</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/css/style.css"><script defer src="assets/js/i18n.js"></script></head><body><header><nav class="nav"><a class="logo" href="index.html">Baby<span>4</span>All 🌈</a><div class="navlinks"><a href="#spelen" data-i18n="navPlay">Spelen</a><a href="#werelden" data-i18n="navWorlds">Werelden</a><a href="parents/index.html" data-i18n="navParents">Voor ouders</a><select class="lang" data-lang-select aria-label="Kies taal"></select></div></nav></header><main><section class="hero"><div class="hero-inner"><div class="eyebrow" data-i18n="heroEyebrow">Welkom bij Baby4All</div><h1 data-i18n="heroTitle">Een wereld vol <em>speelplezier</em> en fantasie!</h1><p data-i18n="heroText">Ontdek vrolijke spelletjes, kleuren, tekenen en nog veel meer. Samen ontdekken, op jouw tempo.</p><a class="cta" href="#spelen" data-i18n="heroButton">Ontdek de spelletjes</a><div class="hero-icons" aria-hidden="true"><span>🐻</span><span>🦋</span><span>🚀</span><span>🐙</span><span>🦄</span></div></div></section><section class="wrap" id="spelen"><h2 class="section-title" data-i18n="activitiesTitle">Wat gaan we vandaag doen?</h2><p class="sub" data-i18n="activitiesText">Kies een activiteit en laat je fantasie groeien!</p><div class="cards"><a class="card" href="games/draw/index.html"><div class="art pink">🎨</div><h3 data-i18n="drawTitle">Lekker tekenen</h3><p data-i18n="drawDesc">Maak je eigen kleurrijke kunstwerk.</p><span class="go" data-i18n="playNow">Speel nu →</span></a><a class="card" href="games/colors/index.html"><div class="art blue">🌈</div><h3 data-i18n="colorsTitle">Kleuren ontdekken</h3><p data-i18n="colorsDesc">Kun jij de juiste kleur vinden?</p><span class="go" data-i18n="playNow">Speel nu →</span></a><div class="card"><div class="art yellow">🧩</div><h3 data-i18n="soonTitle">Binnenkort meer!</h3><p data-i18n="soonDesc">Nieuwe spelletjes en verrassingen zijn onderweg.</p><span class="go" data-i18n="comingSoon">Binnenkort</span></div></div></section><section id="werelden" class="worlds"><div class="wrap"><h2 class="section-title" data-i18n="worldsTitle">Ontdek onze werelden</h2><p class="sub" data-i18n="worldsText">Van de diepzee tot de sterren: er is altijd iets te ontdekken.</p><div class="world-grid"><div class="world"><span>🐮</span><span data-i18n="worldFarm">Boerderij</span></div><div class="world"><span>🐬</span><span data-i18n="worldSea">Onderwater</span></div><div class="world"><span>🪐</span><span data-i18n="worldSpace">Ruimte</span></div><div class="world"><span>🦁</span><span data-i18n="worldJungle">Jungle</span></div></div></div></section><section class="wrap"><div class="promise"><strong data-i18n="safeTitle">Samen veilig ontdekken</strong><p data-i18n="safeText">Baby4All is gratis, zonder advertenties in de kinderactiviteiten. Voor de allerkleinsten raden we samen spelen met een volwassene aan.</p></div></section></main><footer><div class="logo">Baby<span>4</span>All</div><p data-i18n="footerText">Ieder kind verdient een wereld vol speelplezier en fantasie!</p><a href="parents/index.html" data-i18n="navParents">Voor ouders</a></footer></body></html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Baby4All — Een wereld vol speelplezier en fantasie!</title>
+  <meta name="description" content="Ontdek de wereld van Baby4All: spelletjes, avonturen, verhalen, kleurplaten, leren en Baby4All TV.">
+
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #17325c;
+      background: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding: 14px 5%;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 4px 18px rgba(38,48,100,.10);
+    }
+
+    .logo {
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .logo .baby { color: #774be8; }
+    .logo .four { color: #ff8a00; }
+    .logo .all { color: #25a8d8; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .nav a {
+      padding: 10px 13px;
+      border-radius: 18px;
+      font-weight: 800;
+    }
+
+    .nav a:hover {
+      background: #f0eaff;
+    }
+
+    .language {
+      padding: 10px 14px;
+      border: 2px solid #eadfff;
+      border-radius: 20px;
+      background: #fff;
+      color: #17325c;
+      font-weight: 700;
+    }
+
+    /* =========================
+       HERO / BABY4ALL WERELD
+    ========================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+      padding: 65px 5% 45px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.95) 0 4%, transparent 5%),
+        radial-gradient(circle at 90% 18%, rgba(255,255,255,.9) 0 5%, transparent 6%),
+        linear-gradient(135deg, #dff8ff 0%, #e9e2ff 38%, #ffe5f1 70%, #fff2c9 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -5%;
+      right: -5%;
+      bottom: -70px;
+      height: 170px;
+      border-radius: 50% 50% 0 0;
+      background: #bceaa5;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #744ce6;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 950px;
+      margin: 0 auto;
+      font-size: clamp(2.5rem, 7vw, 5.6rem);
+      line-height: .98;
+      font-weight: 900;
+    }
+
+    .pink {
+      color: #f04491;
+    }
+
+    .blue {
+      color: #179bd7;
+    }
+
+    .intro {
+      max-width: 750px;
+      margin: 24px auto;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.6;
+    }
+
+    .main-button {
+      display: inline-block;
+      margin: 8px 0 35px;
+      padding: 17px 30px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, #8c56ee, #6240d5);
+      box-shadow: 0 8px 0 #5130b6;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    /* =========================
+       VRIENDJES
+    ========================== */
+
+    .friends-stage {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 13px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .friend {
+      width: 145px;
+      min-height: 175px;
+      padding: 15px 10px 12px;
+      border: 4px solid rgba(255,255,255,.85);
+      border-radius: 45% 45% 25px 25px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 12px 25px rgba(61,67,120,.15);
+      transition: transform .2s ease;
+    }
+
+    .friend:hover {
+      transform: translateY(-8px) rotate(-1deg);
+    }
+
+    .friend-icon {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 4.5rem;
+    }
+
+    .friend strong {
+      display: block;
+      font-size: 1.15rem;
+    }
+
+    .friend small {
+      display: block;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+
+    /* =========================
+       CATEGORIEËN
+    ========================== */
+
+    .section {
+      padding: 65px 5%;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .section-subtitle {
+      max-width: 700px;
+      margin: 0 auto 35px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .activity {
+      min-height: 260px;
+      padding: 28px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(38,48,100,.10);
+      transition: transform .2s ease;
+    }
+
+    .activity:hover {
+      transform: translateY(-6px);
+    }
+
+    .activity-icon {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 3.2rem;
+    }
+
+    .activity h3 {
+      margin: 0 0 10px;
+      font-size: 1.55rem;
+    }
+
+    .activity p {
+      line-height: 1.55;
+    }
+
+    .games { background: #e5fbdc; }
+    .stories { background: #ffe4f1; }
+    .coloring { background: #fff2b9; }
+    .learning { background: #dff3ff; }
+    .tv { background: #eee3ff; }
+    .parents { background: #dcf8f6; }
+
+    /* =========================
+       AVONTUUR
+    ========================== */
+
+    .adventure {
+      background: linear-gradient(135deg, #f1e8ff, #ffe7f2, #e0f7ff);
+    }
+
+    .adventure-box {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 30px;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px;
+      border: 5px solid #fff;
+      border-radius: 35px;
+      background: rgba(255,255,255,.65);
+      box-shadow: 0 15px 40px rgba(62,53,122,.12);
+    }
+
+    .adventure-box h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .adventure-visual {
+      display: grid;
+      place-items: center;
+      min-height: 280px;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, #bcecff 0 55%, #bdeaa4 55% 100%);
+      font-size: 6rem;
+    }
+
+    .pink-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 15px 25px;
+      border-radius: 999px;
+      background: #ff408b;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    /* =========================
+       ALLE VRIENDJES
+    ========================== */
+
+    .universe {
+      background: #fff;
+    }
+
+    .universe-row {
+      display: flex;
+      gap: 15px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 10px 5px 20px;
+      overflow-x: auto;
+    }
+
+    .mini-friend {
+      flex: 0 0 115px;
+      padding: 16px 10px;
+      border-radius: 25px;
+      background: #f8f5ff;
+      text-align: center;
+    }
+
+    .mini-friend span {
+      display: block;
+      font-size: 3.4rem;
+    }
+
+    .mini-friend strong {
+      display: block;
+      margin-top: 6px;
+    }
+
+    /* =========================
+       PRINTEN
+    ========================== */
+
+    .print-section {
+      background: #f4fff7;
+    }
+
+    .print-box {
+      max-width: 900px;
+      margin: auto;
+      padding: 35px;
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(38,48,100,.10);
+    }
+
+    .print-options {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .print-option {
+      padding: 20px;
+      border-radius: 20px;
+      background: #f5f3ff;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 35px 5%;
+      text-align: center;
+      color: #fff;
+      background: #5638bd;
+    }
+
+    footer strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    /* =========================
+       MOBIEL
+    ========================== */
+
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+      }
+
+      .activity-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .adventure-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        gap: 4px;
+      }
+
+      .nav a {
+        padding: 8px;
+        font-size: .85rem;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .friend {
+        width: 125px;
+      }
+
+      .activity-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .print-options {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#">
+    🌈 <span class="baby">Baby</span><span class="four">4</span><span class="all">All</span>
+  </a>
+
+  <nav class="nav">
+    <a href="#">🏠 Home</a>
+    <a href="#spelen">🎮 Spelen</a>
+    <a href="#verhalen">📖 Verhalen</a>
+    <a href="#kleuren">🎨 Kleurplaten</a>
+    <a href="#leren">🎓 Leren</a>
+    <a href="#tv">📺 Baby4All TV</a>
+    <a href="#ouders">💗 Voor ouders</a>
+  </nav>
+
+  <select class="language" aria-label="Kies je taal">
+    <option>Nederlands</option>
+    <option>English</option>
+    <option>Deutsch</option>
+    <option>Français</option>
+    <option>Español</option>
+    <option>Italiano</option>
+    <option>Português</option>
+    <option>Polski</option>
+    <option>Türkçe</option>
+    <option>العربية</option>
+    <option>中文</option>
+    <option>日本語</option>
+    <option>Русский</option>
+    <option>Українська</option>
+    <option>한국어</option>
+  </select>
+</header>
+
+
+<main>
+
+  <!-- ======================
+       BABY4ALL WERELD
+  ======================= -->
+
+  <section class="hero">
+    <div class="hero-content">
+
+      <p class="eyebrow">Welkom in de wereld van Baby4All</p>
+
+      <h1>
+        Een wereld vol
+        <span class="pink">speelplezier</span>
+        en <span class="blue">fantasie!</span>
+      </h1>
+
+      <p class="intro">
+        Ontmoet onze vriendjes uit allerlei werelden.
+        Speel, ontdek, lees verhalen, kleur, leer en beleef
+        samen de grootste Baby4All-avonturen.
+      </p>
+
+      <a class="main-button" href="#spelen">
+        Ontdek de avonturen →
+      </a>
+
+      <div class="friends-stage">
+
+        <div class="friend">
+          <span class="friend-icon">🐻</span>
+          <strong>Bikko</strong>
+          <small>De dappere ontdekkingsbeer</small>
+        </div>
+
+        <div class="friend">
+          <span class="friend-icon">🐰</span>
+          <strong>Lila</strong>
+          <small>De creatieve konijnvriendin</small>
+        </div>
+
+        <div class="friend">
+          <span class="friend-icon">🦊</span>
+          <strong>Novi</strong>
+          <small>De slimme vos</small>
+        </div>
+
+        <div class="friend">
+          <span class="friend-icon">🐘</span>
+          <strong>Eli</strong>
+          <small>De vrolijke olifant</small>
+        </div>
+
+        <div class="friend">
+          <span class="friend-icon">🤖</span>
+          <strong>Robo</strong>
+          <small>De nieuwsgierige robot</small>
+        </div>
+
+        <div class="friend">
+          <span class="friend-icon">🧒</span>
+          <strong>Sam</strong>
+          <small>De jonge avonturier</small>
+        </div>
+
+        <div class="friend">
+          <span class="friend-icon">🦄</span>
+          <strong>Luna</strong>
+          <small>De magische vriendin</small>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================
+       WAT WIL JE DOEN?
+  ======================= -->
+
+  <section class="section" id="spelen">
+
+    <h2 class="section-title">Wat wil je vandaag ontdekken?</h2>
+
+    <p class="section-subtitle">
+      Kies zelf waar je zin in hebt. In Baby4All is er altijd iets nieuws te beleven.
+    </p>
+
+    <div class="activity-grid">
+
+      <a class="activity games" href="games/">
+        <span class="activity-icon">🗺️</span>
+        <h3>Avonturen & spelletjes</h3>
+        <p>
+          Zoekspelletjes, puzzels, verborgen voorwerpen en grote avonturen
+          door de verschillende Baby4All-werelden.
+        </p>
+      </a>
+
+      <a class="activity stories" id="verhalen" href="#">
+        <span class="activity-icon">📚</span>
+        <h3>Verhalen & tijdschriften</h3>
+        <p>
+          Onze eigen verhalen, strips en digitale tijdschriften met alle
+          Baby4All-vriendjes.
+        </p>
+      </a>
+
+      <a class="activity coloring" id="kleuren" href="#">
+        <span class="activity-icon">🎨</span>
+        <h3>Kleurplaten & printen</h3>
+        <p>
+          Kleurplaten, zoekplaten en boekjes. Kies straks zelf tussen kleur
+          en een inktvriendelijke zwart-witversie.
+        </p>
+      </a>
+
+      <a class="activity learning" id="leren" href="#">
+        <span class="activity-icon">🎓</span>
+        <h3>Leren & ontdekken</h3>
+        <p>
+          Kleuren, vormen, tellen, dieren, eerste woordjes en nog veel meer,
+          spelenderwijs en op je eigen tempo.
+        </p>
+      </a>
+
+      <a class="activity tv" id="tv" href="#">
+        <span class="activity-icon">📺</span>
+        <h3>Baby4All TV</h3>
+        <p>
+          Hier komen onze eigen filmpjes en tekenfilmavonturen waarin bekende
+          vriendjes steeds opnieuw terugkomen.
+        </p>
+      </a>
+
+      <a class="activity parents" id="ouders" href="parents/">
+        <span class="activity-icon">💗</span>
+        <h3>Voor ouders</h3>
+        <p>
+          Informatie, handige tips, printmateriaal en uitleg over Baby4All.
+        </p>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ======================
+       EERSTE GROTE AVONTUUR
+  ======================= -->
+
+  <section class="section adventure">
+
+    <div class="adventure-box">
+
+      <div>
+        <p class="eyebrow">Het eerste grote Baby4All-avontuur</p>
+
+        <h2>🌈 De Verdwenen Regenboog</h2>
+
+        <p class="intro" style="margin-left:0;">
+          De kleuren van de grote Baby4All-regenboog zijn verdwenen!
+          Vriendjes uit verschillende werelden moeten samenwerken om ze
+          terug te vinden.
+        </p>
+
+        <p>
+          Zoek verborgen kleuren, los eenvoudige opdrachten op en ontdek
+          onderweg nieuwe vriendjes.
+        </p>
+
+        <a class="pink-button" href="games/">
+          Speel het avontuur →
+        </a>
+      </div>
+
+      <div class="adventure-visual" aria-label="Baby4All avontuur">
+        🏰 🌈 🚀
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================
+       ALLE VRIENDJES
+  ======================= -->
+
+  <section class="section universe">
+
+    <h2 class="section-title">⭐ Ontmoet de Baby4All-vriendjes</h2>
+
+    <p class="section-subtitle">
+      Ieder vriendje kan zijn eigen wereld, verhalen en avonturen hebben.
+      Soms komen ze allemaal samen voor één groot avontuur.
+    </p>
+
+    <div class="universe-row">
+
+      <div class="mini-friend"><span>🐻</span><strong>Bikko</strong></div>
+      <div class="mini-friend"><span>🐰</span><strong>Lila</strong></div>
+      <div class="mini-friend"><span>🦊</span><strong>Novi</strong></div>
+      <div class="mini-friend"><span>🐘</span><strong>Eli</strong></div>
+      <div class="mini-friend"><span>🐧</span><strong>Pip</strong></div>
+      <div class="mini-friend"><span>🦄</span><strong>Luna</strong></div>
+      <div class="mini-friend"><span>🧒</span><strong>Sam</strong></div>
+      <div class="mini-friend"><span>👧</span><strong>Emma</strong></div>
+      <div class="mini-friend"><span>🤖</span><strong>Robo</strong></div>
+      <div class="mini-friend"><span>🐲</span><strong>Draakie</strong></div>
+      <div class="mini-friend"><span>👽</span><strong>Nova</strong></div>
+      <div class="mini-friend"><span>☁️</span><strong>Wolkie</strong></div>
+
+      <div class="mini-friend">
+        <span>➕</span>
+        <strong>Meer vriendjes!</strong>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================
+       PRINTEN
+  ======================= -->
+
+  <section class="section print-section">
+
+    <h2 class="section-title">🖨️ Gratis lezen, kleuren & printen</h2>
+
+    <p class="section-subtitle">
+      Ouders bepalen zelf hoe ze onze verhalen, tijdschriften,
+      leerboekjes en kleurplaten willen gebruiken.
+    </p>
+
+    <div class="print-box">
+
+      <h3>Bij printbare Baby4All-uitgaven willen we deze keuzes aanbieden:</h3>
+
+      <div class="print-options">
+
+        <div class="print-option">
+          🌈<br><br>
+          Kleurenversie
+        </div>
+
+        <div class="print-option">
+          ✏️<br><br>
+          Zwart-wit & zelf inkleuren
+        </div>
+
+        <div class="print-option">
+          🖨️<br><br>
+          Extra inktbesparend
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <strong>🌈 Baby4All</strong>
+  Ieder kind verdient een wereld vol speelplezier en fantasie!
+</footer>
+
+</body>
+</html>
