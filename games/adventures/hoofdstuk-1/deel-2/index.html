@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Het Geheimzinnige Spoor | Baby4All</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#17325c;
+  background:linear-gradient(#b8ebff,#eefaff 50%,#dff4bd);
+  min-height:100vh;
+}
+
+header{
+  background:#fff;
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  text-decoration:none;
+  color:#7046e5;
+  font-size:1.8rem;
+  font-weight:900;
+}
+
+.stars{
+  background:#fff3b0;
+  padding:10px 17px;
+  border-radius:25px;
+  font-weight:900;
+}
+
+main{
+  width:min(900px,92%);
+  margin:35px auto 80px;
+}
+
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:35px;
+  box-shadow:0 15px 40px rgba(40,50,100,.12);
+}
+
+h1{
+  text-align:center;
+  font-size:clamp(2rem,6vw,3.5rem);
+}
+
+.world{
+  text-align:center;
+  font-size:4.5rem;
+}
+
+.story{
+  line-height:1.7;
+  font-size:1.05rem;
+}
+
+.character{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px;
+  margin:20px 0;
+  border-radius:25px;
+}
+
+.robo{background:#eeeaff}
+.lila{background:#fff0f7}
+.novi{background:#fff0dc}
+
+.face{
+  font-size:4rem;
+}
+
+.mission{
+  background:#eef9ff;
+  padding:25px;
+  border-radius:25px;
+  margin-top:25px;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+button{
+  border:0;
+  border-radius:20px;
+  padding:17px;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.answer{
+  background:white;
+  border:3px solid #ddd9ec;
+  color:#17325c;
+}
+
+.answer:hover{
+  border-color:#7046e5;
+}
+
+.main-button{
+  width:100%;
+  margin-top:20px;
+  background:#7046e5;
+  color:white;
+}
+
+.message{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:20px;
+  background:#e2f8df;
+  font-weight:800;
+  line-height:1.6;
+}
+
+.clue{
+  background:#fff6ce;
+  border-radius:25px;
+  padding:22px;
+  margin-top:25px;
+  text-align:center;
+}
+
+.progress{
+  height:15px;
+  background:#e7e7ef;
+  border-radius:20px;
+  overflow:hidden;
+  margin:25px 0;
+}
+
+.progress div{
+  width:40%;
+  height:100%;
+  background:linear-gradient(90deg,#ffbd32,#ff8b39);
+}
+
+@media(max-width:600px){
+  .answers{grid-template-columns:1fr}
+  .character{align-items:flex-start}
+  .card{padding:20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a class="logo" href="../../../../">
+🌈 Baby4All
+</a>
+
+<div class="stars">
+⭐ <span id="stars">0</span>
+</div>
+
+</header>
+
+<main>
+
+<section class="card">
+
+<div class="world">
+🌲🌳✨🌳🌲
+</div>
+
+<h1>Het Geheimzinnige Spoor</h1>
+
+<div class="progress">
+<div></div>
+</div>
+
+<div class="story">
+
+<p>
+Het glinsterende spoor loopt steeds dieper het bos in.
+</p>
+
+<div class="character robo">
+
+<div class="face">🤖</div>
+
+<div>
+<strong>Robo:</strong><br><br>
+“Mijn scanner zegt dat het spoor hier ergens
+een andere richting op gaat.”
+</div>
+
+</div>
+
+<div class="character lila">
+
+<div class="face">🐰</div>
+
+<div>
+<strong>Lila:</strong><br><br>
+“Maar ik zie helemaal niets meer!”
+</div>
+
+</div>
+
+<p>
+Plotseling klinkt er iets vanuit de bomen.
+</p>
+
+<p style="text-align:center;font-size:2rem;">
+<strong>KRAK... RITS... 🍂</strong>
+</p>
+
+<div class="character novi">
+
+<div class="face">🦊</div>
+
+<div>
+<strong>Novi:</strong><br><br>
+
+“Zoeken jullie soms naar dat vreemde
+glinsterende ding?”
+</div>
+
+</div>
+
+<p>
+Robo en Lila kijken elkaar verbaasd aan.
+</p>
+
+<div class="character novi">
+
+<div class="face">🦊</div>
+
+<div>
+<strong>Novi:</strong><br><br>
+
+“Ik zag vannacht iets langs mijn huis komen.
+Het liet overal dezelfde lichtjes achter.”
+
+<br><br>
+
+“Maar ik weet niet welke kant het daarna
+opging.”
+</div>
+
+</div>
+
+<div class="mission">
+
+<h2>🧠 Help Novi het spoor terugvinden</h2>
+
+<p id="question"></p>
+
+<div class="answers" id="answers"></div>
+
+<div class="message" id="message"></div>
+
+</div>
+
+<div id="afterMission"></div>
+
+</div>
+
+</section>
+
+</main>
+
+<script>
+
+/* =========================================
+   AVATAR
+========================================= */
+
+let avatar = {};
+
+try{
+  avatar =
+    JSON.parse(
+      localStorage.getItem("baby4all-avatar")
+    ) || {};
+}
+catch(error){
+  avatar = {};
+}
+
+const playerName =
+  avatar.name ||
+  avatar.naam ||
+  "avonturier";
+
+
+/* =========================================
+   LEEFTIJD
+========================================= */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+  if(!birthday){
+    return 6;
+  }
+
+  const birthDate =
+    new Date(birthday);
+
+  if(isNaN(birthDate.getTime())){
+    return 6;
+  }
+
+  const today = new Date();
+
+  let age =
+    today.getFullYear() -
+    birthDate.getFullYear();
+
+  const month =
+    today.getMonth() -
+    birthDate.getMonth();
+
+  if(
+    month < 0 ||
+    (
+      month === 0 &&
+      today.getDate() < birthDate.getDate()
+    )
+  ){
+    age--;
+  }
+
+  return Math.max(
+    0,
+    Math.min(12,age)
+  );
+}
+
+const age = calculateAge();
+
+
+/* =========================================
+   STERREN
+========================================= */
+
+let spendableStars =
+  Number(
+    localStorage.getItem("baby4all-stars")
+  ) || 0;
+
+let totalStars =
+  Number(
+    localStorage.getItem("baby4all-total-stars")
+  ) || 0;
+
+document.getElementById("stars")
+.textContent = spendableStars;
+
+
+/* =========================================
+   LOGICA-OPDRACHT
+========================================= */
+
+function getPuzzle(){
+
+  if(age <= 2){
+
+    return{
+      question:
+        "Novi zag deze lichtjes: ✨ 🌿 ✨. Welke hoort bij het glinsterende spoor?",
+
+      answers:[
+        ["✨",true],
+        ["🌿",false],
+        ["🍄",false]
+      ],
+
+      hint:
+        "Zoek samen naar het ding dat glinstert.",
+
+      success:
+        "✨ Gevonden! Dat is hetzelfde licht als het spoor.",
+
+      reward:5
+    };
+  }
+
+
+  if(age <= 4){
+
+    return{
+      question:
+        "Kijk naar het patroon: ✨ 🌿 ✨ 🌿 ✨ ... Wat komt daarna?",
+
+      answers:[
+        ["🌿",true],
+        ["✨",false],
+        ["🌸",false]
+      ],
+
+      hint:
+        "Het gaat steeds: lichtje, blaadje, lichtje, blaadje...",
+
+      success:
+        "Goed gekeken! 🌿 Het patroon wisselt steeds.",
+
+      reward:5
+    };
+  }
+
+
+  if(age <= 6){
+
+    return{
+      question:
+        "Novi vond een spoor: ✨ ✨ 🍃 ✨ ✨ 🍃 ... Wat komt daarna?",
+
+      answers:[
+        ["✨",true],
+        ["🍃",false],
+        ["🌸",false],
+        ["🍄",false]
+      ],
+
+      hint:
+        "Kijk naar de groepjes: twee lichtjes en daarna één blaadje.",
+
+      success:
+        "Precies! ✨ Het patroon begint opnieuw.",
+
+      reward:6
+    };
+  }
+
+
+  if(age <= 8){
+
+    return{
+      question:
+        "De afstanden tussen de lichtjes zijn 2, 4, 6, 8 meter. Welke afstand verwacht Novi daarna?",
+
+      answers:[
+        ["9 meter",false],
+        ["10 meter",true],
+        ["12 meter",false],
+        ["16 meter",false]
+      ],
+
+      hint:
+        "Iedere afstand wordt steeds 2 meter groter.",
+
+      success:
+        "Juist! 🧠 Na 8 komt 10.",
+
+      reward:7
+    };
+  }
+
+
+  if(age <= 10){
+
+    return{
+      question:
+        "Robo meet het licht: 3, 6, 12, 24... Welke waarde hoort logisch daarna?",
+
+      answers:[
+        ["27",false],
+        ["30",false],
+        ["36",false],
+        ["48",true]
+      ],
+
+      hint:
+        "Iedere waarde is twee keer zo groot als de vorige.",
+
+      success:
+        "Gekraakt! ⚡ 24 × 2 = 48.",
+
+      reward:8
+    };
+  }
+
+
+  return{
+    question:
+      "Novi noteerde 2, 6, 12, 20, 30... Welke waarde volgt als het patroon doorgaat?",
+
+    answers:[
+      ["36",false],
+      ["40",false],
+      ["42",true],
+      ["44",false]
+    ],
+
+    hint:
+      "Kijk naar de verschillen: +4, +6, +8, +10...",
+
+    success:
+      "Perfect! 🧠 Het volgende verschil is +12, dus 30 + 12 = 42.",
+
+    reward:10
+  };
+}
+
+
+const puzzle = getPuzzle();
+
+document.getElementById("question")
+.innerHTML =
+  "<strong>" +
+  puzzle.question +
+  "</strong>";
+
+
+const answers =
+  document.getElementById("answers");
+
+
+puzzle.answers.forEach(
+  (item,index)=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className = "answer";
+
+    button.textContent =
+      item[0];
+
+    button.onclick =
+      ()=>checkAnswer(index);
+
+    answers.appendChild(button);
+
+  }
+);
+
+
+/* =========================================
+   ANTWOORD
+========================================= */
+
+function checkAnswer(index){
+
+  const message =
+    document.getElementById("message");
+
+  message.style.display = "block";
+
+  const correct =
+    puzzle.answers[index][1];
+
+
+  if(!correct){
+
+    message.innerHTML =
+      "💡 Nog niet. " +
+      puzzle.hint +
+      "<br><br>Probeer het nog eens.";
+
+    return;
+  }
+
+
+  const rewardKey =
+    "baby4all-h1-deel2-puzzle";
+
+
+  if(
+    localStorage.getItem(rewardKey)
+    !== "done"
+  ){
+
+    spendableStars +=
+      puzzle.reward;
+
+    totalStars +=
+      puzzle.reward;
+
+
+    localStorage.setItem(
+      "baby4all-stars",
+      spendableStars
+    );
+
+    localStorage.setItem(
+      "baby4all-total-stars",
+      totalStars
+    );
+
+    localStorage.setItem(
+      rewardKey,
+      "done"
+    );
+
+
+    document.getElementById("stars")
+    .textContent =
+      spendableStars;
+
+
+    message.innerHTML =
+
+      puzzle.success +
+
+      "<br><br>⭐ +" +
+      puzzle.reward +
+      " sterren!";
+
+  }
+
+  else{
+
+    message.innerHTML =
+      puzzle.success +
+      "<br><br>🌟 Deze beloning had je al verdiend.";
+
+  }
+
+
+  showDiscovery();
+
+}
+
+
+/* =========================================
+   NIEUWE AANWIJZING
+========================================= */
+
+function showDiscovery(){
+
+  const box =
+    document.getElementById("afterMission");
+
+
+  box.innerHTML = `
+
+    <div class="clue">
+
+      <h2>🔍 Het spoor is terug!</h2>
+
+      <p>
+        Novi wijst tussen twee grote bomen.
+      </p>
+
+      <p style="font-size:3rem;">
+        🌳 ✨ ✨ ✨ ➜ 🌳
+      </p>
+
+      <p>
+        🦊 <strong>Novi:</strong><br><br>
+
+        “Daar ging het heen!”
+      </p>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">🤖</div>
+
+      <div>
+
+        <strong>Robo:</strong><br><br>
+
+        “Wacht eens...
+
+        mijn scanner vindt nu nóg iets.”
+
+      </div>
+
+    </div>
+
+
+    <p style="
+      text-align:center;
+      font-size:1.15rem;
+    ">
+
+      Robo loopt naar een boom
+      en haalt iets kleins tussen
+      de wortels vandaan.
+
+    </p>
+
+
+    <div style="
+      text-align:center;
+      font-size:5rem;
+      margin:25px;
+    ">
+      🪶✨
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">🐰</div>
+
+      <div>
+
+        <strong>Lila:</strong><br><br>
+
+        “Een glinsterend veertje?”
+
+      </div>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">🦊</div>
+
+      <div>
+
+        <strong>Novi:</strong><br><br>
+
+        “Maar van welk dier is dát nou weer?”
+
+      </div>
+
+    </div>
+
+
+    <div class="clue">
+
+      🔎 <strong>Aanwijzing 2 gevonden</strong>
+
+      <br><br>
+
+      🪶 Een vreemd glinsterend veertje.
+
+      <br><br>
+
+      Het mysterieuze wezen lijkt dus
+      misschien veren te hebben...
+
+      <br><br>
+
+      <strong>Of is er iets heel anders aan de hand?</strong>
+
+    </div>
+
+
+    <button
+      class="main-button"
+      onclick="finishPart()"
+    >
+      🌈 Bewaar de aanwijzing
+    </button>
+
+  `;
+
+
+  localStorage.setItem(
+    "baby4all-h1-clue-2",
+    "feather"
+  );
+
+}
+
+
+/* =========================================
+   AFRONDEN
+========================================= */
+
+function finishPart(){
+
+  localStorage.setItem(
+    "baby4all-h1-part2",
+    "complete"
+  );
+
+  alert(
+    "🔍 Aanwijzing bewaard!\n\n" +
+    "Jij, Robo, Lila en Novi hebben " +
+    "een glinsterend veertje gevonden."
+  );
+
+  window.location.href =
+    "../../../../mijn-baby4all/";
+}
+
+</script>
+
+</body>
+</html>
