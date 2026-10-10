@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Baby4All – Bijna Zover!</title>
+
+<style>
+
+:root{
+  --purple:#7657ff;
+  --pink:#ff72b6;
+  --yellow:#ffd84d;
+  --blue:#65ccff;
+  --green:#68d391;
+  --dark:#302d45;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--dark);
+
+  background:
+    linear-gradient(
+      180deg,
+      #dff7ff,
+      #eee7ff 45%,
+      #fff4d7
+    );
+
+  min-height:100vh;
+}
+
+
+/* HEADER */
+
+header{
+  background:white;
+  padding:14px 20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.08);
+}
+
+.logo{
+  color:var(--purple);
+  font-size:1.35rem;
+  font-weight:900;
+}
+
+.stars{
+  background:#fff5c5;
+  padding:8px 14px;
+  border-radius:30px;
+  font-weight:900;
+}
+
+
+/* PAGINA */
+
+main{
+  width:min(950px,94%);
+  margin:30px auto 70px;
+}
+
+.card{
+  background:rgba(255,255,255,.96);
+  border-radius:30px;
+  padding:28px;
+
+  box-shadow:
+    0 18px 50px rgba(70,50,120,.15);
+}
+
+.chapter{
+  text-align:center;
+  color:var(--purple);
+  font-weight:900;
+}
+
+h1{
+  text-align:center;
+  margin:5px 0;
+
+  font-size:clamp(
+    2rem,
+    6vw,
+    3.5rem
+  );
+}
+
+.subtitle{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:22px;
+}
+
+.age{
+  display:inline-block;
+
+  padding:7px 12px;
+
+  border-radius:20px;
+
+  background:#eee9ff;
+  color:#5e46cc;
+
+  font-weight:850;
+}
+
+
+/* =========================
+   CARTOON SCÈNE
+========================= */
+
+.scene{
+  position:relative;
+
+  height:520px;
+
+  margin:20px 0 28px;
+
+  overflow:hidden;
+
+  border-radius:28px;
+
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(255,248,170,.95),
+      rgba(202,170,255,.55) 25%,
+      transparent 48%
+    ),
+    linear-gradient(
+      180deg,
+      #7665c9 0%,
+      #a987e2 38%,
+      #87ca9c 70%,
+      #4f9d67 100%
+    );
+
+  box-shadow:
+    inset 0 0 70px rgba(255,255,255,.25),
+    0 12px 30px rgba(0,0,0,.15);
+}
+
+
+/* STERREN */
+
+.sky-star{
+  position:absolute;
+
+  font-size:1.5rem;
+
+  animation:
+    twinkle 1.6s infinite;
+}
+
+.sky-star.s1{
+  left:8%;
+  top:45px;
+}
+
+.sky-star.s2{
+  left:25%;
+  top:85px;
+  animation-delay:.3s;
+}
+
+.sky-star.s3{
+  right:22%;
+  top:55px;
+  animation-delay:.6s;
+}
+
+.sky-star.s4{
+  right:8%;
+  top:110px;
+  animation-delay:.9s;
+}
+
+@keyframes twinkle{
+
+  0%,100%{
+    opacity:.3;
+    transform:scale(.7);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.2);
+  }
+
+}
+
+
+/* TEMPEL */
+
+.temple{
+  position:absolute;
+
+  left:50%;
+  top:100px;
+
+  transform:translateX(-50%);
+
+  width:330px;
+  height:280px;
+
+  border-radius:
+    150px 150px 20px 20px;
+
+  border:
+    14px solid rgba(255,255,255,.5);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(132,100,210,.9),
+      rgba(78,57,143,.95)
+    );
+
+  box-shadow:
+    0 0 55px rgba(255,232,120,.55);
+}
+
+.temple-symbol{
+  position:absolute;
+
+  left:50%;
+  top:40px;
+
+  transform:translateX(-50%);
+
+  font-size:4rem;
+
+  animation:
+    templeGlow 2s infinite;
+}
+
+@keyframes templeGlow{
+
+  50%{
+    filter:
+      drop-shadow(
+        0 0 20px #fff3a2
+      );
+
+    transform:
+      translateX(-50%)
+      scale(1.15);
+  }
+
+}
+
+
+/* KRISTALLEN */
+
+.crystal{
+  position:absolute;
+
+  z-index:25;
+
+  width:68px;
+  height:68px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.85);
+
+  font-size:2.2rem;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 0 20px rgba(255,255,180,.7);
+
+  animation:
+    crystalFloat 2s ease-in-out infinite;
+
+  transition:.3s;
+}
+
+.crystal.one{
+  left:10%;
+  top:180px;
+}
+
+.crystal.two{
+  right:10%;
+  top:190px;
+  animation-delay:.3s;
+}
+
+.crystal.three{
+  left:25%;
+  top:330px;
+  animation-delay:.6s;
+}
+
+.crystal.four{
+  right:25%;
+  top:330px;
+  animation-delay:.9s;
+}
+
+.crystal.active{
+  background:#fff7b0;
+
+  box-shadow:
+    0 0 35px #fff29a;
+
+  transform:scale(1.15);
+
+  animation:none;
+
+  pointer-events:none;
+}
+
+@keyframes crystalFloat{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+}
+
+
+/* EI */
+
+.egg-area{
+  position:absolute;
+
+  left:50%;
+  bottom:80px;
+
+  transform:translateX(-50%);
+
+  z-index:20;
+
+  text-align:center;
+}
+
+.egg-glow{
+  position:absolute;
+
+  width:155px;
+  height:155px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,250,150,1),
+      rgba(220,155,255,.6),
+      transparent 70%
+    );
+
+  animation:
+    glow 1.2s infinite;
+}
+
+@keyframes glow{
+
+  50%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.4);
+
+    opacity:.7;
+  }
+
+}
+
+.egg{
+  position:relative;
+
+  z-index:3;
+
+  font-size:6.5rem;
+
+  cursor:pointer;
+
+  filter:
+    drop-shadow(
+      0 8px 8px rgba(0,0,0,.25)
+    );
+
+  animation:
+    eggShake 1.6s infinite;
+}
+
+@keyframes eggShake{
+
+  0%,55%,100%{
+    transform:
+      rotate(0deg)
+      translateY(0);
+  }
+
+  62%{
+    transform:
+      rotate(-10deg)
+      translateY(-4px);
+  }
+
+  70%{
+    transform:
+      rotate(10deg)
+      translateY(-9px);
+  }
+
+  78%{
+    transform:
+      rotate(-8deg)
+      translateY(-4px);
+  }
+
+  86%{
+    transform:
+      rotate(8deg)
+      translateY(-8px);
+  }
+
+}
+
+
+/* PERSONAGES */
+
+.character{
+  position:absolute;
+
+  bottom:12px;
+
+  z-index:30;
+
+  text-align:center;
+}
+
+.face{
+  font-size:3.7rem;
+
+  filter:
+    drop-shadow(
+      0 6px 4px rgba(0,0,0,.2)
+    );
+}
+
+.character-name{
+  background:white;
+
+  border-radius:20px;
+
+  padding:3px 9px;
+
+  font-size:.78rem;
+  font-weight:900;
+}
+
+.robo{
+  left:3%;
+}
+
+.lila{
+  left:20%;
+}
+
+.novi{
+  right:20%;
+}
+
+.eli{
+  right:3%;
+}
+
+
+/* SPRAAKBALLON */
+
+.speech{
+  position:absolute;
+
+  top:20px;
+  left:8%;
+
+  z-index:40;
+
+  max-width:300px;
+
+  background:white;
+
+  padding:14px 17px;
+
+  border-radius:
+    22px 22px 22px 5px;
+
+  font-weight:800;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.16);
+}
+
+
+/* VERHAAL */
+
+.story{
+  background:#f8f6ff;
+
+  border-radius:20px;
+
+  padding:20px;
+
+  line-height:1.65;
+
+  font-size:1.08rem;
+}
+
+
+/* MISSIE */
+
+.mission{
+  margin-top:28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eefaff,
+      #f8eeff
+    );
+
+  padding:22px;
+
+  border-radius:25px;
+
+  text-align:center;
+}
+
+.counter{
+  display:inline-block;
+
+  background:white;
+
+  padding:10px 18px;
+
+  border-radius:25px;
+
+  margin-top:10px;
+
+  font-weight:900;
+}
+
+
+/* LEEFTIJDSOPDRACHT */
+
+.challenge{
+  display:none;
+
+  margin-top:25px;
+
+  padding:22px;
+
+  border-radius:24px;
+
+  background:white;
+
+  text-align:center;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+}
+
+.challenge.show{
+  display:block;
+  animation:appear .5s ease;
+}
+
+.answers{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+  max-width:560px;
+
+  margin:18px auto;
+}
+
+.answer{
+  border:none;
+
+  border-radius:20px;
+
+  padding:17px;
+
+  background:#f1edff;
+
+  font-size:1rem;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.answer:hover{
+  background:#e6dfff;
+}
+
+.hint{
+  min-height:25px;
+  font-weight:800;
+}
+
+
+/* EI-KEUZE */
+
+.egg-choice{
+  display:none;
+
+  margin-top:25px;
+
+  padding:24px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5c7,
+      #ffe8f5
+    );
+}
+
+.egg-choice.show{
+  display:block;
+  animation:appear .5s ease;
+}
+
+.needs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+  max-width:650px;
+
+  margin:20px auto;
+}
+
+.need{
+  border:none;
+
+  border-radius:24px;
+
+  background:white;
+
+  padding:20px 12px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 7px 20px rgba(0,0,0,.09);
+
+  font-weight:900;
+
+  transition:.2s;
+}
+
+.need:hover{
+  transform:translateY(-4px);
+}
+
+.need-icon{
+  display:block;
+
+  font-size:3rem;
+
+  margin-bottom:7px;
+}
+
+
+/* RESULTAAT */
+
+.result{
+  display:none;
+
+  margin-top:25px;
+
+  padding:25px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5bf,
+      #eadcff
+    );
+}
+
+.result.show{
+  display:block;
+  animation:appear .5s ease;
+}
+
+@keyframes appear{
+
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* KNOP */
+
+.continue{
+  display:none;
+
+  margin:25px auto 0;
+
+  border:none;
+
+  padding:16px 26px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7657ff,
+      #a05cff
+    );
+
+  color:white;
+
+  font-size:1rem;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.continue.show{
+  display:block;
+}
+
+
+/* MOBIEL */
+
+@media(max-width:650px){
+
+  .card{
+    padding:17px;
+  }
+
+  .scene{
+    height:440px;
+  }
+
+  .temple{
+    width:230px;
+    height:245px;
+    top:105px;
+  }
+
+  .egg{
+    font-size:5.2rem;
+  }
+
+  .face{
+    font-size:2.7rem;
+  }
+
+  .robo{
+    left:1%;
+  }
+
+  .lila{
+    left:20%;
+  }
+
+  .novi{
+    right:20%;
+  }
+
+  .eli{
+    right:1%;
+  }
+
+  .speech{
+    left:5%;
+    top:14px;
+
+    max-width:220px;
+
+    font-size:.86rem;
+  }
+
+  .crystal{
+    width:54px;
+    height:54px;
+
+    font-size:1.7rem;
+  }
+
+  .answers,
+  .needs{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🌈 Baby4All
+  </div>
+
+  <div class="stars">
+    ⭐ <span id="starCount">0</span>
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="card">
+
+  <div class="chapter">
+    HOOFDSTUK 1 • DEEL 8
+  </div>
+
+  <h1>
+    🌟 Bijna Zover!
+  </h1>
+
+  <p class="subtitle">
+    De eerste barstjes zijn verschenen...
+  </p>
+
+  <div
+    class="age"
+    id="ageBadge"
+  >
+    Avontuur laden...
+  </div>
+
+
+  <div class="scene">
+
+    <div class="sky-star s1">✨</div>
+    <div class="sky-star s2">⭐</div>
+    <div class="sky-star s3">✨</div>
+    <div class="sky-star s4">⭐</div>
+
+
+    <div class="temple">
+
+      <div class="temple-symbol">
+        🌟
+      </div>
+
+    </div>
+
+
+    <div
+      class="speech"
+      id="speech"
+    >
+      Robo: De vier kristallen lijken verbonden met het ei!
+    </div>
+
+
+    <button
+      class="crystal one"
+      onclick="activateCrystal(this,'light')"
+      aria-label="Activeer lichtkristal"
+    >
+      💎
+    </button>
+
+    <button
+      class="crystal two"
+      onclick="activateCrystal(this,'nature')"
+      aria-label="Activeer natuurkristal"
+    >
+      💎
+    </button>
+
+    <button
+      class="crystal three"
+      onclick="activateCrystal(this,'friendship')"
+      aria-label="Activeer vriendschapskristal"
+    >
+      💎
+    </button>
+
+    <button
+      class="crystal four"
+      onclick="activateCrystal(this,'courage')"
+      aria-label="Activeer moedkristal"
+    >
+      💎
+    </button>
+
+
+    <div class="egg-area">
+
+      <div class="egg-glow"></div>
+
+      <div
+        class="egg"
+        id="egg"
+        onclick="touchEgg()"
+      >
+        🥚⚡
+      </div>
+
+    </div>
+
+
+    <div class="character robo">
+
+      <div class="face">
+        🤖
+      </div>
+
+      <div class="character-name">
+        Robo
+      </div>
+
+    </div>
+
+
+    <div class="character lila">
+
+      <div class="face">
+        🐰
+      </div>
+
+      <div class="character-name">
+        Lila
+      </div>
+
+    </div>
+
+
+    <div class="character novi">
+
+      <div class="face">
+        🦊
+      </div>
+
+      <div class="character-name">
+        Novi
+      </div>
+
+    </div>
+
+
+    <div class="character eli">
+
+      <div class="face">
+        🐘
+      </div>
+
+      <div class="character-name">
+        Eli
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="story">
+
+    Achter de magische poort ligt
+    een ronde kamer vol zacht licht.
+
+    <br><br>
+
+    Midden in de kamer staan vier
+    kristallen.
+
+    <br><br>
+
+    Zodra
+    <strong id="playerName">
+      Avonturier
+    </strong>
+    met het ei naar binnen loopt,
+    beginnen ze één voor één te
+    glinsteren.
+
+    <br><br>
+
+    <strong>
+      KRRR...
+    </strong>
+
+    <br><br>
+
+    Het kleine barstje in het ei
+    wordt iets groter.
+
+    <br><br>
+
+    Robo kijkt naar zijn scanner.
+
+    <br><br>
+
+    <strong>
+      “Het vriendje is bijna klaar.
+      Maar de kristallen moeten eerst
+      wakker worden!”
+    </strong>
+
+  </div>
+
+
+  <div class="mission">
+
+    <h2>
+      💎 Activeer de vier kristallen
+    </h2>
+
+    <p>
+      Tik in de scène op alle vier
+      de kristallen.
+    </p>
+
+    <div
+      class="counter"
+      id="counter"
+    >
+      💎 0 van 4 actief
+    </div>
+
+  </div>
+
+
+  <div
+    class="challenge"
+    id="challenge"
+  >
+
+    <h2>
+      ✨ De kristallen vormen een code
+    </h2>
+
+    <p id="question"></p>
+
+    <div
+      class="answers"
+      id="answers"
+    >
+    </div>
+
+    <div
+      class="hint"
+      id="hint"
+    >
+    </div>
+
+  </div>
+
+
+  <div
+    class="egg-choice"
+    id="eggChoice"
+  >
+
+    <h2>
+      🥚 Wat heeft het ei nu nodig?
+    </h2>
+
+    <p>
+      Er is geen verkeerde keuze.
+      Kijk samen wat volgens jou
+      bij het ei past.
+    </p>
+
+    <div class="needs">
+
+      <button
+        class="need"
+        onclick="chooseNeed('warmth')"
+      >
+        <span class="need-icon">
+          ☀️
+        </span>
+
+        Warmte
+      </button>
+
+
+      <button
+        class="need"
+        onclick="chooseNeed('music')"
+      >
+        <span class="need-icon">
+          🎵
+        </span>
+
+        Muziek
+      </button>
+
+
+      <button
+        class="need"
+        onclick="chooseNeed('movement')"
+      >
+        <span class="need-icon">
+          💫
+        </span>
+
+        Beweging
+      </button>
+
+
+      <button
+        class="need"
+        onclick="chooseNeed('friendship')"
+      >
+        <span class="need-icon">
+          💛
+        </span>
+
+        Vriendjes dichtbij
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="result"
+    id="result"
+  >
+  </div>
+
+
+  <button
+    class="continue"
+    id="continueButton"
+    onclick="finishPart()"
+  >
+    🌟 Ga naar het laatste avontuur
+  </button>
+
+</section>
+
+</main>
+
+
+<script src="../../../../assets/js/baby4all-progress.js"></script>
+
+<script>
+
+/* =========================
+   AVATAR
+========================= */
+
+function loadAvatar(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "baby4all-avatar"
+      )
+    ) || {};
+
+  }catch(error){
+
+    return {};
+
+  }
+
+}
+
+const avatar =
+  loadAvatar();
+
+const playerName =
+  avatar.name ||
+  avatar.naam ||
+  "Avonturier";
+
+document.getElementById(
+  "playerName"
+).textContent =
+  playerName;
+
+
+/* =========================
+   LEEFTIJD
+========================= */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+  if(!birthday){
+    return 6;
+  }
+
+  const birth =
+    new Date(birthday);
+
+  const today =
+    new Date();
+
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
+
+  const month =
+    today.getMonth() -
+    birth.getMonth();
+
+  if(
+    month < 0 ||
+    (
+      month === 0 &&
+      today.getDate() <
+      birth.getDate()
+    )
+  ){
+    age--;
+  }
+
+  return Math.max(
+    0,
+    Math.min(12,age)
+  );
+
+}
+
+const age =
+  calculateAge();
+
+document.getElementById(
+  "ageBadge"
+).textContent =
+  "🎂 Avontuur voor " +
+  age +
+  " jaar";
+
+
+/* =========================
+   START
+========================= */
+
+Baby4AllProgress.startAdventure(
+  "hoofdstuk-1"
+);
+
+
+function updateStars(){
+
+  const progress =
+    Baby4AllProgress.load();
+
+  document.getElementById(
+    "starCount"
+  ).textContent =
+    progress.stars.spendable;
+
+}
+
+updateStars();
+
+
+/* =========================
+   EI
+========================= */
+
+function touchEgg(){
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Lila: Ssst... volgens mij beweegt het vriendje daarbinnen!";
+
+  const egg =
+    document.getElementById(
+      "egg"
+    );
+
+  egg.style.animation =
+    "none";
+
+  setTimeout(
+    function(){
+
+      egg.style.animation =
+        "eggShake .3s ease-in-out 7";
+
+    },
+    20
+  );
+
+}
+
+
+/* =========================
+   KRISTALLEN
+========================= */
+
+const activated =
+  new Set();
+
+
+const crystalMessages = {
+
+  light:
+    "Robo: Lichtkristal actief! ✨",
+
+  nature:
+    "Novi: Deze voelt alsof het hele bos erin zit! 🌿",
+
+  friendship:
+    "Lila: Deze wordt warmer als we dichtbij staan! 💛",
+
+  courage:
+    "Eli: Deze straalt heel sterk! 🌟"
+
+};
+
+
+function activateCrystal(
+  button,
+  crystal
+){
+
+  if(
+    activated.has(crystal)
+  ){
+    return;
+  }
+
+  activated.add(
+    crystal
+  );
+
+  button.classList.add(
+    "active"
+  );
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    crystalMessages[crystal];
+
+
+  document.getElementById(
+    "counter"
+  ).textContent =
+    "💎 " +
+    activated.size +
+    " van 4 actief";
+
+
+  if(
+    activated.size === 4
+  ){
+
+    setTimeout(
+      showChallenge,
+      600
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LEEFTIJDSOPDRACHT
+========================= */
+
+function getMission(){
+
+  if(age <= 2){
+
+    return{
+      question:
+        "Welke is een ster?",
+
+      answers:[
+        ["⭐",true],
+        ["🍃",false],
+        ["🐟",false],
+        ["🚗",false]
+      ],
+
+      reward:5,
+      subject:"logic"
+    };
+
+  }
+
+
+  if(age <= 4){
+
+    return{
+      question:
+        "We hebben 💎 💎 💎 💎. Hoeveel kristallen zijn dat?",
+
+      answers:[
+        ["2",false],
+        ["3",false],
+        ["4",true],
+        ["5",false]
+      ],
+
+      reward:6,
+      subject:"math"
+    };
+
+  }
+
+
+  if(age <= 6){
+
+    return{
+      question:
+        "Twee kristallen branden en twee gaan erbij aan. Hoeveel zijn er dan?",
+
+      answers:[
+        ["3",false],
+        ["4",true],
+        ["5",false],
+        ["6",false]
+      ],
+
+      reward:7,
+      subject:"math"
+    };
+
+  }
+
+
+  if(age <= 8){
+
+    return{
+      question:
+        "Elk kristal geeft 5 lichtpunten. Er zijn 4 kristallen. Hoeveel lichtpunten zijn dat?",
+
+      answers:[
+        ["15",false],
+        ["20",true],
+        ["25",false],
+        ["30",false]
+      ],
+
+      reward:8,
+      subject:"math"
+    };
+
+  }
+
+
+  if(age <= 10){
+
+    return{
+      question:
+        "De energie groeit zo: 4, 8, 16, 32... Wat komt daarna?",
+
+      answers:[
+        ["40",false],
+        ["48",false],
+        ["64",true],
+        ["72",false]
+      ],
+
+      reward:9,
+      subject:"logic"
+    };
+
+  }
+
+
+  return{
+    question:
+      "De kristallen tonen 2, 5, 10, 17, 26... Welk getal volgt?",
+
+    answers:[
+      ["35",false],
+      ["36",false],
+      ["37",true],
+      ["38",false]
+    ],
+
+    reward:11,
+    subject:"logic"
+  };
+
+}
+
+
+const mission =
+  getMission();
+
+
+function showChallenge(){
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Robo: Alle kristallen zijn actief! Nu moeten we de laatste code oplossen.";
+
+  const challenge =
+    document.getElementById(
+      "challenge"
+    );
+
+  challenge.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "question"
+  ).textContent =
+    mission.question;
+
+
+  const answers =
+    document.getElementById(
+      "answers"
+    );
+
+  answers.innerHTML =
+    "";
+
+
+  mission.answers.forEach(
+    function(answer){
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.className =
+        "answer";
+
+      button.textContent =
+        answer[0];
+
+      button.onclick =
+        function(){
+
+          checkAnswer(
+            answer[1]
+          );
+
+        };
+
+      answers.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  challenge.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================
+   ANTWOORD
+========================= */
+
+let challengeComplete =
+  false;
+
+
+function checkAnswer(
+  correct
+){
+
+  if(challengeComplete){
+    return;
+  }
+
+
+  if(!correct){
+
+    document.getElementById(
+      "hint"
+    ).textContent =
+      "🌱 Nog niet helemaal. Probeer het rustig opnieuw.";
+
+    return;
+  }
+
+
+  challengeComplete =
+    true;
+
+
+  const task =
+    Baby4AllProgress.completeTask(
+      "hoofdstuk-1-deel-8-kristallen",
+      {
+        stars:
+          mission.reward,
+
+        subject:
+          mission.subject
+      }
+    );
+
+
+  updateStars();
+
+
+  document.getElementById(
+    "hint"
+  ).textContent =
+    "✨ Goed gedaan! Alle kristallen geven nu licht.";
+
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Eli: Kijk! Al het licht gaat naar het ei!";
+
+
+  document.getElementById(
+    "eggChoice"
+  ).classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "eggChoice"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================
+   LAATSTE EI-INVLOED
+========================= */
+
+let needChosen =
+  false;
+
+
+const needNames = {
+
+  warmth:
+    "☀️ warmte",
+
+  music:
+    "🎵 muziek",
+
+  movement:
+    "💫 beweging",
+
+  friendship:
+    "💛 vriendjes dichtbij"
+
+};
+
+
+function chooseNeed(
+  need
+){
+
+  if(needChosen){
+    return;
+  }
+
+  needChosen =
+    true;
+
+
+  /*
+    Dit is opnieuw slechts
+    één invloed.
+
+    Deze keuze bepaalt dus
+    NIET rechtstreeks welk
+    dier of wezen uitkomt.
+  */
+
+  Baby4AllProgress.setEggTrait(
+    "hatchingNeed",
+    need
+  );
+
+
+  /*
+    VIJFDE BETEKENISVOLLE
+    EI-MOMENT.
+
+    Hiermee bereikt het ei
+    fase 6: bijna zover.
+  */
+
+  Baby4AllProgress.addEggMoment(
+    "kristallen-ontwaakt"
+  );
+
+
+  Baby4AllProgress.discoverClue(
+    "hoofdstuk-1",
+    "ei-bijna-klaar"
+  );
+
+
+  const egg =
+    document.getElementById(
+      "egg"
+    );
+
+  egg.textContent =
+    "🥚🌟";
+
+  egg.style.animation =
+    "eggShake .22s ease-in-out 10";
+
+
+  document.getElementById(
+    "speech"
+  ).textContent =
+    "Robo: De schaal verandert! Het ei is bijna klaar!";
+
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
+  result.innerHTML =
+    "🌟 <strong>Het ei reageert!</strong>" +
+    "<br><br>" +
+    playerName +
+    " koos voor " +
+    needNames[need] +
+    "." +
+    "<br><br>" +
+    "De vier kristallen sturen hun licht naar het ei." +
+    "<br><br>" +
+    "🥚✨ <strong>KRRR... KRAK...</strong>" +
+    "<br><br>" +
+    "De kleine barstjes worden groter." +
+    "<br><br>" +
+    "Heel even is er door een opening in de schaal een vreemd licht te zien." +
+    "<br><br>" +
+    "🐰 Lila kijkt naar " +
+    playerName +
+    "." +
+    "<br><br>" +
+    "<strong>“Volgens mij gaat het écht bijna gebeuren...”</strong>" +
+    "<br><br>" +
+    "🌟 Het ei is nu klaar voor het laatste avontuur!";
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "continueButton"
+  ).classList.add(
+    "show"
+  );
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* =========================
+   AFRONDEN
+========================= */
+
+function finishPart(){
+
+  Baby4AllProgress.completeAdventurePart(
+    "hoofdstuk-1",
+    8
+  );
+
+  /*
+    Deel 9 maken we hierna.
+    Daarom sturen we voorlopig
+    terug naar Mijn Baby4All.
+  */
+
+  window.location.href =
+    "../../../../mijn-baby4all/";
+
+}
+
+</script>
+
+</body>
+</html>
