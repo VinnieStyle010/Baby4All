@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Baby4All – Het Ei Verandert</title>
+
+<style>
+:root{
+  --purple:#7b5cff;
+  --pink:#ff70b7;
+  --yellow:#ffd84d;
+  --blue:#64c8ff;
+  --green:#68d391;
+  --dark:#302d45;
+  --white:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color:var(--dark);
+
+  background:
+    linear-gradient(
+      180deg,
+      #dff7ff 0%,
+      #f3e9ff 45%,
+      #fff4d8 100%
+    );
+
+  min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+  background:white;
+  padding:14px 20px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logo{
+  font-size:1.35rem;
+  font-weight:900;
+  color:var(--purple);
+}
+
+.stars{
+  background:#fff6c7;
+  padding:8px 14px;
+  border-radius:30px;
+  font-weight:800;
+}
+
+/* PAGINA */
+
+main{
+  width:min(950px,94%);
+  margin:30px auto 70px;
+}
+
+.story-card{
+  background:rgba(255,255,255,.94);
+  border-radius:30px;
+  padding:28px;
+  box-shadow:
+    0 18px 50px rgba(70,50,120,.15);
+
+  overflow:hidden;
+}
+
+.chapter{
+  text-align:center;
+  color:var(--purple);
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+h1{
+  text-align:center;
+  margin:0 0 8px;
+  font-size:clamp(2rem,6vw,3.5rem);
+}
+
+.subtitle{
+  text-align:center;
+  font-size:1.1rem;
+  opacity:.8;
+  margin-bottom:25px;
+}
+
+/* CARTOON SCENE */
+
+.scene{
+  position:relative;
+
+  min-height:430px;
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      rgba(255,255,255,.95),
+      transparent 22%
+    ),
+    linear-gradient(
+      180deg,
+      #8ddcff 0%,
+      #c9f3ff 45%,
+      #9de28e 46%,
+      #63bd70 100%
+    );
+
+  box-shadow:
+    inset 0 0 40px rgba(255,255,255,.35),
+    0 10px 30px rgba(0,0,0,.12);
+
+  margin:20px 0 30px;
+}
+
+/* achtergrond */
+
+.cloud{
+  position:absolute;
+  font-size:4rem;
+  opacity:.8;
+  animation:cloudMove 12s ease-in-out infinite alternate;
+}
+
+.cloud.one{
+  top:20px;
+  left:7%;
+}
+
+.cloud.two{
+  top:55px;
+  right:8%;
+  animation-delay:2s;
+}
+
+@keyframes cloudMove{
+  from{
+    transform:translateX(-8px);
+  }
+  to{
+    transform:translateX(15px);
+  }
+}
+
+.tree{
+  position:absolute;
+  font-size:7rem;
+  bottom:45px;
+}
+
+.tree.left{
+  left:-15px;
+}
+
+.tree.right{
+  right:-15px;
+}
+
+/* EI */
+
+.egg-area{
+  position:absolute;
+  left:50%;
+  top:48%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:6;
+}
+
+.egg-glow{
+  position:absolute;
+  width:150px;
+  height:150px;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,240,120,.95),
+      rgba(255,190,255,.35),
+      transparent 70%
+    );
+
+  animation:glow 2s ease-in-out infinite;
+}
+
+@keyframes glow{
+  0%,100%{
+    transform:
+      translate(-50%,-50%)
+      scale(.9);
+
+    opacity:.6;
+  }
+
+  50%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.25);
+
+    opacity:1;
+  }
+}
+
+.egg{
+  position:relative;
+  z-index:2;
+
+  font-size:7rem;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  filter:
+    drop-shadow(
+      0 10px 8px rgba(0,0,0,.18)
+    );
+
+  animation:eggWiggle 2.4s ease-in-out infinite;
+}
+
+@keyframes eggWiggle{
+  0%,75%,100%{
+    transform:rotate(0deg);
+  }
+
+  80%{
+    transform:rotate(-8deg);
+  }
+
+  85%{
+    transform:rotate(8deg);
+  }
+
+  90%{
+    transform:rotate(-5deg);
+  }
+
+  95%{
+    transform:rotate(5deg);
+  }
+}
+
+.spark{
+  position:absolute;
+  font-size:1.5rem;
+  animation:sparkle 2s infinite;
+}
+
+.spark.s1{
+  left:-25px;
+  top:5px;
+}
+
+.spark.s2{
+  right:-30px;
+  top:30px;
+  animation-delay:.5s;
+}
+
+.spark.s3{
+  right:5px;
+  bottom:-10px;
+  animation-delay:1s;
+}
+
+@keyframes sparkle{
+  0%,100%{
+    opacity:.2;
+    transform:scale(.7);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.3);
+  }
+}
+
+/* PERSONAGES */
+
+.character{
+  position:absolute;
+  bottom:18px;
+  text-align:center;
+  z-index:8;
+}
+
+.character .face{
+  font-size:4.2rem;
+  filter:
+    drop-shadow(
+      0 7px 4px rgba(0,0,0,.16)
+    );
+}
+
+.character-name{
+  background:white;
+  border-radius:20px;
+  padding:3px 9px;
+  font-weight:900;
+  font-size:.8rem;
+}
+
+.robo{
+  left:8%;
+}
+
+.lila{
+  left:27%;
+}
+
+.novi{
+  right:27%;
+}
+
+.eli{
+  right:8%;
+}
+
+/* TEKSTBALLON */
+
+.speech{
+  position:absolute;
+
+  max-width:260px;
+
+  background:white;
+
+  border-radius:
+    22px 22px 22px 6px;
+
+  padding:13px 16px;
+
+  font-weight:750;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.15);
+
+  z-index:12;
+
+  transition:.3s;
+}
+
+.speech::after{
+  content:"";
+
+  position:absolute;
+
+  bottom:-12px;
+  left:24px;
+
+  border-width:
+    12px 12px 0 0;
+
+  border-style:solid;
+
+  border-color:
+    white transparent transparent transparent;
+}
+
+#speechBubble{
+  left:15%;
+  top:35px;
+}
+
+/* VERHAAL */
+
+.story-text{
+  font-size:1.08rem;
+  line-height:1.65;
+
+  background:#f8f6ff;
+
+  padding:18px;
+
+  border-radius:20px;
+
+  margin:20px 0;
+}
+
+.age-badge{
+  display:inline-block;
+
+  background:#eee8ff;
+  color:#5f45cf;
+
+  border-radius:20px;
+
+  padding:7px 12px;
+
+  font-weight:850;
+
+  margin-bottom:12px;
+}
+
+/* AANWIJZINGEN */
+
+.clue-title{
+  text-align:center;
+  margin-top:30px;
+}
+
+.clues{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+  max-width:600px;
+  margin:20px auto;
+}
+
+.clue{
+  border:none;
+
+  background:white;
+
+  border-radius:22px;
+
+  padding:22px 10px;
+
+  font-size:2.4rem;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.10);
+
+  transition:
+    transform .2s,
+    box-shadow .2s;
+}
+
+.clue:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 12px 25px rgba(0,0,0,.15);
+}
+
+.clue span{
+  display:block;
+
+  font-size:.9rem;
+
+  margin-top:8px;
+
+  font-weight:800;
+
+  color:var(--dark);
+}
+
+.clue.found{
+  background:#e5ffe9;
+  outline:3px solid #72d98a;
+}
+
+/* RESULTAAT */
+
+.result{
+  display:none;
+
+  margin-top:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff7c8,
+      #ffe7f4
+    );
+
+  border-radius:24px;
+
+  padding:22px;
+
+  text-align:center;
+}
+
+.result.show{
+  display:block;
+  animation:appear .5s ease;
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* KEUZE */
+
+.trait-area{
+  display:none;
+
+  margin-top:25px;
+
+  text-align:center;
+}
+
+.trait-area.show{
+  display:block;
+}
+
+.trait-options{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+  max-width:650px;
+
+  margin:
+    20px auto;
+}
+
+.trait{
+  border:none;
+
+  background:white;
+
+  padding:18px;
+
+  border-radius:22px;
+
+  cursor:pointer;
+
+  font-size:1rem;
+
+  font-weight:850;
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.1);
+}
+
+.trait .icon{
+  display:block;
+  font-size:3rem;
+  margin-bottom:8px;
+}
+
+.trait:hover{
+  transform:translateY(-3px);
+}
+
+.continue-button{
+  display:none;
+
+  margin:
+    25px auto 5px;
+
+  border:none;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      #a15cff
+    );
+
+  color:white;
+
+  padding:
+    15px 24px;
+
+  border-radius:25px;
+
+  font-size:1rem;
+
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.continue-button.show{
+  display:block;
+}
+
+/* MOBIEL */
+
+@media(max-width:650px){
+
+  .story-card{
+    padding:17px;
+  }
+
+  .scene{
+    min-height:390px;
+  }
+
+  .egg{
+    font-size:5.5rem;
+  }
+
+  .character .face{
+    font-size:3rem;
+  }
+
+  .robo{
+    left:3%;
+  }
+
+  .lila{
+    left:24%;
+  }
+
+  .novi{
+    right:24%;
+  }
+
+  .eli{
+    right:3%;
+  }
+
+  #speechBubble{
+    left:7%;
+    top:25px;
+    max-width:220px;
+  }
+
+  .tree{
+    font-size:5rem;
+  }
+
+  .clues,
+  .trait-options{
+    grid-template-columns:1fr 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🌈 Baby4All
+  </div>
+
+  <div class="stars">
+    ⭐ <span id="starCount">0</span>
+  </div>
+
+</header>
+
+<main>
+
+<section class="story-card">
+
+  <div class="chapter">
+    HOOFDSTUK 1 • DEEL 5
+  </div>
+
+  <h1>
+    🥚 Het Ei Verandert
+  </h1>
+
+  <p class="subtitle">
+    Er gebeurt iets vreemds met je nieuwe vriendje...
+  </p>
+
+  <div class="age-badge" id="ageBadge">
+    Avontuur laden...
+  </div>
+
+  <!--
+    Later vervangen we de emoji-personages
+    door de echte Baby4All cartoonillustraties.
+  -->
+
+  <div class="scene">
+
+    <div class="cloud one">
+      ☁️
+    </div>
+
+    <div class="cloud two">
+      ☁️
+    </div>
+
+    <div class="tree left">
+      🌳
+    </div>
+
+    <div class="tree right">
+      🌳
+    </div>
+
+    <div
+      class="speech"
+      id="speechBubble"
+    >
+      Ssst... volgens mij probeert het ei
+      ons iets te vertellen!
+    </div>
+
+    <div class="egg-area">
+
+      <div class="egg-glow"></div>
+
+      <div
+        class="spark s1"
+      >
+        ✨
+      </div>
+
+      <div
+        class="spark s2"
+      >
+        ✨
+      </div>
+
+      <div
+        class="spark s3"
+      >
+        ⭐
+      </div>
+
+      <div
+        class="egg"
+        id="storyEgg"
+        onclick="touchEgg()"
+      >
+        🥚
+      </div>
+
+    </div>
+
+    <div class="character robo">
+
+      <div class="face">
+        🤖
+      </div>
+
+      <div class="character-name">
+        Robo
+      </div>
+
+    </div>
+
+    <div class="character lila">
+
+      <div class="face">
+        🐰
+      </div>
+
+      <div class="character-name">
+        Lila
+      </div>
+
+    </div>
+
+    <div class="character novi">
+
+      <div class="face">
+        🦊
+      </div>
+
+      <div class="character-name">
+        Novi
+      </div>
+
+    </div>
+
+    <div class="character eli">
+
+      <div class="face">
+        🐘
+      </div>
+
+      <div class="character-name">
+        Eli
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="story-text" id="storyText">
+
+    <strong id="playerName">
+      Avonturier
+    </strong>
+    heeft het mysterieuze ei meegenomen.
+
+    <br><br>
+
+    Maar vandaag gebeurt er iets nieuws.
+
+    <br><br>
+
+    Het ei wiebelt. Heel zachtjes klinkt er:
+
+    <strong>tik... tik... brrr...</strong>
+
+    <br><br>
+
+    Robo kijkt verbaasd naar de anderen.
+
+    “Volgens mij reageert het ergens op!”
+
+  </div>
+
+  <h2 class="clue-title">
+    🔎 Onderzoek wat het ei probeert te vertellen
+  </h2>
+
+  <p style="text-align:center;">
+    Tik op de aanwijzingen rond het ei.
+  </p>
+
+  <div class="clues">
+
+    <button
+      class="clue"
+      id="clueSound"
+      onclick="findClue('sound')"
+    >
+      🎵
+      <span>
+        Luister goed
+      </span>
+    </button>
+
+    <button
+      class="clue"
+      id="clueMovement"
+      onclick="findClue('movement')"
+    >
+      💫
+      <span>
+        Bekijk de beweging
+      </span>
+    </button>
+
+    <button
+      class="clue"
+      id="clueLight"
+      onclick="findClue('light')"
+    >
+      ✨
+      <span>
+        Bekijk het licht
+      </span>
+    </button>
+
+    <button
+      class="clue"
+      id="clueFriends"
+      onclick="findClue('friends')"
+    >
+      💛
+      <span>
+        Vraag de vriendjes
+      </span>
+    </button>
+
+  </div>
+
+  <div
+    class="result"
+    id="clueResult"
+  >
+  </div>
+
+  <div
+    class="trait-area"
+    id="traitArea"
+  >
+
+    <h2>
+      🥚 Waar lijkt het ei het meest op te reageren?
+    </h2>
+
+    <p id="traitQuestion">
+      Kies samen met Robo, Lila, Novi en Eli.
+    </p>
+
+    <div class="trait-options">
+
+      <button
+        class="trait"
+        onclick="chooseTrait('music')"
+      >
+        <span class="icon">
+          🎵
+        </span>
+
+        Muziek en geluid
+      </button>
+
+      <button
+        class="trait"
+        onclick="chooseTrait('movement')"
+      >
+        <span class="icon">
+          💨
+        </span>
+
+        Bewegen en avontuur
+      </button>
+
+      <button
+        class="trait"
+        onclick="chooseTrait('light')"
+      >
+        <span class="icon">
+          ✨
+        </span>
+
+        Licht en magie
+      </button>
+
+      <button
+        class="trait"
+        onclick="chooseTrait('friends')"
+      >
+        <span class="icon">
+          💛
+        </span>
+
+        Vriendjes helpen
+      </button>
+
+    </div>
+
+  </div>
+
+  <button
+    class="continue-button"
+    id="continueButton"
+    onclick="finishPart()"
+  >
+    🌟 Verder met mijn avontuur
+  </button>
+
+</section>
+
+</main>
+
+<script src="../../../../assets/js/baby4all-progress.js"></script>
+
+<script>
+
+/* ===============================
+   AVATAR
+================================ */
+
+function loadAvatar(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "baby4all-avatar"
+      )
+    ) || {};
+
+  }catch(error){
+
+    return {};
+
+  }
+
+}
+
+const avatar = loadAvatar();
+
+const name =
+  avatar.name ||
+  avatar.naam ||
+  "Avonturier";
+
+document.getElementById(
+  "playerName"
+).textContent = name;
+
+
+/* ===============================
+   LEEFTIJD
+================================ */
+
+function calculateAge(){
+
+  const birthday =
+    avatar.birthday ||
+    avatar.geboortedatum;
+
+  if(!birthday){
+    return 6;
+  }
+
+  const birth =
+    new Date(birthday);
+
+  const today =
+    new Date();
+
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
+
+  const month =
+    today.getMonth() -
+    birth.getMonth();
+
+  if(
+    month < 0 ||
+    (
+      month === 0 &&
+      today.getDate() <
+      birth.getDate()
+    )
+  ){
+    age--;
+  }
+
+  return Math.max(
+    0,
+    Math.min(12,age)
+  );
+
+}
+
+const age = calculateAge();
+
+document.getElementById(
+  "ageBadge"
+).textContent =
+  "🎂 Avontuur voor " +
+  age +
+  " jaar";
+
+
+/* ===============================
+   VOORTGANG
+================================ */
+
+Baby4AllProgress.startAdventure(
+  "hoofdstuk-1"
+);
+
+function updateStars(){
+
+  const progress =
+    Baby4AllProgress.load();
+
+  document.getElementById(
+    "starCount"
+  ).textContent =
+    progress.stars.spendable;
+
+}
+
+updateStars();
+
+
+/* ===============================
+   EI AANRAKEN
+================================ */
+
+let eggTouched = false;
+
+function touchEgg(){
+
+  if(eggTouched){
+
+    document.getElementById(
+      "speechBubble"
+    ).textContent =
+      "Daar! Het deed het alweer!";
+
+    return;
+  }
+
+  eggTouched = true;
+
+  document.getElementById(
+    "speechBubble"
+  ).textContent =
+    "Wauw! Het ei voelde dat je dichtbij was!";
+
+  const egg =
+    document.getElementById(
+      "storyEgg"
+    );
+
+  egg.style.animation =
+    "none";
+
+  setTimeout(
+    function(){
+
+      egg.style.animation =
+        "eggWiggle .55s ease-in-out 3";
+
+    },
+    20
+  );
+
+}
+
+
+/* ===============================
+   AANWIJZINGEN
+================================ */
+
+const foundClues =
+  new Set();
+
+const clueMessages = {
+
+  sound:
+    "🎵 Je hoort een zacht ritme uit het ei: tik... tik... tik!",
+
+  movement:
+    "💫 Het ei wiebelt zodra iedereen dichterbij komt.",
+
+  light:
+    "✨ De gloed wordt sterker wanneer het ei iets leuk vindt.",
+
+  friends:
+    "💛 Lila merkt iets op: het ei reageert wanneer de vriendjes samenwerken."
+
+};
+
+function findClue(type){
+
+  foundClues.add(type);
+
+  const button =
+    document.getElementById(
+      "clue" +
+      type.charAt(0).toUpperCase() +
+      type.slice(1)
+    );
+
+  if(button){
+    button.classList.add(
+      "found"
+    );
+  }
+
+  const result =
+    document.getElementById(
+      "clueResult"
+    );
+
+  result.innerHTML =
+    clueMessages[type] +
+    "<br><br><strong>" +
+    foundClues.size +
+    " van 4 aanwijzingen gevonden.</strong>";
+
+  result.classList.add(
+    "show"
+  );
+
+  reactCharacter(
+    type
+  );
+
+  if(
+    foundClues.size === 4
+  ){
+
+    setTimeout(
+      revealTraitQuestion,
+      700
+    );
+
+  }
+
+}
+
+
+/* ===============================
+   PERSONAGES REAGEREN
+================================ */
+
+function reactCharacter(type){
+
+  const bubble =
+    document.getElementById(
+      "speechBubble"
+    );
+
+  if(type === "sound"){
+
+    bubble.textContent =
+      "Robo: Mijn sensoren horen een ritme!";
+
+  }
+
+  if(type === "movement"){
+
+    bubble.textContent =
+      "Novi: Kijk! Het beweegt!";
+
+  }
+
+  if(type === "light"){
+
+    bubble.textContent =
+      "Eli: Het licht wordt steeds sterker!";
+
+  }
+
+  if(type === "friends"){
+
+    bubble.textContent =
+      "Lila: Misschien wil het gewoon bij ons zijn!";
+
+  }
+
+}
+
+
+/* ===============================
+   ALLE AANWIJZINGEN
+================================ */
+
+function revealTraitQuestion(){
+
+  document.getElementById(
+    "speechBubble"
+  ).textContent =
+    "Robo: We hebben alle aanwijzingen!";
+
+  const result =
+    document.getElementById(
+      "clueResult"
+    );
+
+  result.innerHTML =
+    "🌟 <strong>Alle aanwijzingen gevonden!</strong>" +
+    "<br><br>" +
+    "Het lijkt erop dat het ei een eigen karakter begint te krijgen.";
+
+  document.getElementById(
+    "traitArea"
+  ).classList.add(
+    "show"
+  );
+
+  document.getElementById(
+    "traitArea"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* ===============================
+   LEEFTIJDSOPDRACHT
+================================ */
+
+function rewardForAge(){
+
+  if(age <= 2){
+    return 4;
+  }
+
+  if(age <= 4){
+    return 5;
+  }
+
+  if(age <= 6){
+    return 6;
+  }
+
+  if(age <= 8){
+    return 7;
+  }
+
+  if(age <= 10){
+    return 8;
+  }
+
+  return 10;
+
+}
+
+
+/* ===============================
+   EIGENSCHAP KIEZEN
+================================ */
+
+let traitChosen = false;
+
+function chooseTrait(trait){
+
+  if(traitChosen){
+    return;
+  }
+
+  traitChosen = true;
+
+  const names = {
+
+    music:
+      "🎵 Muziek en geluid",
+
+    movement:
+      "💨 Bewegen en avontuur",
+
+    light:
+      "✨ Licht en magie",
+
+    friends:
+      "💛 Vriendjes helpen"
+
+  };
+
+  /*
+    Deze keuze bepaalt NIET letterlijk
+    welk dier uit het ei komt.
+
+    Het wordt één van meerdere invloeden
+    op het uiteindelijke vriendje.
+  */
+
+  Baby4AllProgress.setEggTrait(
+    "firstInstinct",
+    trait
+  );
+
+  Baby4AllProgress.addEggMoment(
+    "eerste-instinct"
+  );
+
+  const reward =
+    rewardForAge();
+
+  const task =
+    Baby4AllProgress.completeTask(
+      "hoofdstuk-1-deel-5-onderzoek",
+      {
+        stars:reward,
+        subject:"logic"
+      }
+    );
+
+  updateStars();
+
+  let rewardText = "";
+
+  if(task && task.success){
+
+    rewardText =
+      "<br><br>⭐ Je verdient " +
+      reward +
+      " sterren!";
+
+  }else{
+
+    rewardText =
+      "<br><br>🌱 Deze ontdekking had je al gedaan. Je voortgang blijft natuurlijk bewaard.";
+
+  }
+
+  document.getElementById(
+    "traitArea"
+  ).innerHTML =
+    "<h2>✨ Het ei reageert!</h2>" +
+    "<p>Je koos <strong>" +
+    names[trait] +
+    "</strong>.</p>" +
+    "<p>Het ei begint zacht te trillen en er verschijnen heel even vreemde glinsteringen op de schaal.</p>" +
+    "<p>Misschien vertelt dit iets over het vriendje dat erin groeit...</p>" +
+    rewardText;
+
+  document.getElementById(
+    "speechBubble"
+  ).textContent =
+    "Lila: Zag je dat?! De schaal veranderde!";
+
+  const egg =
+    document.getElementById(
+      "storyEgg"
+    );
+
+  egg.textContent =
+    "🥚✨";
+
+  egg.style.animation =
+    "eggWiggle .5s ease-in-out 4";
+
+  document.getElementById(
+    "continueButton"
+  ).classList.add(
+    "show"
+  );
+
+}
+
+
+/* ===============================
+   DEEL AFRONDEN
+================================ */
+
+function finishPart(){
+
+  Baby4AllProgress.completeAdventurePart(
+    "hoofdstuk-1",
+    5
+  );
+
+  window.location.href =
+    "../../../../mijn-baby4all/";
+
+}
+
+</script>
+
+</body>
+</html>
