@@ -1204,7 +1204,7 @@
           );
 
 
-      if (moments >= 5)
+      if (moments >= 4)
         progress.egg.stage =
           Math.max(
             progress.egg.stage,
@@ -1212,7 +1212,7 @@
           );
 
 
-      if (moments >= 6)
+      if (moments >= 5)
         progress.egg.stage =
           Math.max(
             progress.egg.stage,
