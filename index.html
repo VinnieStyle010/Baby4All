@@ -79,6 +79,48 @@
     @media(max-width:1050px){.topbar{flex-wrap:wrap;justify-content:center}.nav{order:3;flex-basis:100%}.language{margin-left:auto}.world-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:650px){.topbar{gap:8px;padding:10px 12px}.brand img{width:165px}.language{max-width:125px;font-size:.82rem;padding:8px}.nav{gap:1px}.nav a{font-size:.78rem;padding:8px 7px}.hero{min-height:650px;background-position:54% center}.hero-inner{padding:26px 14px}.hero-card{padding:22px 19px;border-radius:22px}.world-grid,.feature-layout{grid-template-columns:1fr}.section{padding:50px 18px}.feature-panel{min-height:245px;padding:26px}.world-card{min-height:205px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.world-card{transition:none}}
+
+    /* K4A2L - magische, speelse wereldstijl */
+    body{background:#fff7ed}
+    .topbar{background:linear-gradient(105deg,#fff6ff 0%,#eafaff 55%,#fff6dd 100%);border-bottom:5px solid #ffe38d;box-shadow:0 8px 25px rgba(82,47,153,.15);gap:12px}
+    .brand{padding:5px;background:#fff;border:3px solid #fff;border-radius:21px;box-shadow:0 5px 0 #e9c7ff,0 9px 20px rgba(74,42,120,.12);transform:rotate(-1deg)}
+    .brand img{width:clamp(150px,15vw,205px);border-radius:15px}
+    .nav a{background:rgba(255,255,255,.75);border:1px solid rgba(161,122,235,.15);border-radius:999px;padding:10px 12px;box-shadow:0 3px 0 rgba(116,84,191,.08)}
+    .nav a:hover{background:#fff1ab;transform:translateY(-2px)}
+    .nav .my-link{background:linear-gradient(120deg,#743be0,#e44ea7);box-shadow:0 4px 0 #5524a5}
+    .language{border:2px solid #e3b5fa;box-shadow:0 4px 0 #f4d6fb}
+    .hero{min-height:clamp(590px,75vh,800px);align-items:flex-end;background-position:center 48%;border-bottom:9px solid #ffdc7e}
+    .hero:before{background:linear-gradient(0deg,rgba(29,17,72,.56) 0%,rgba(29,17,72,.12) 39%,transparent 72%)}
+    .hero:after{content:'✦     ✧       ✦';position:absolute;top:7%;right:7%;color:#fff8be;font-size:clamp(20px,3vw,43px);letter-spacing:23px;text-shadow:0 0 20px #fff,0 0 30px #ffc83d;pointer-events:none}
+    .hero-inner{padding:30px clamp(18px,5vw,64px) 37px}
+    .hero-card{max-width:490px;width:100%;padding:22px 25px 24px;background:linear-gradient(135deg,rgba(69,37,141,.79),rgba(48,28,110,.70));border:2px solid rgba(255,239,178,.72);border-radius:29px;box-shadow:0 8px 0 rgba(255,204,88,.35),0 15px 40px rgba(18,10,55,.24);backdrop-filter:blur(4px)}
+    .eyebrow{background:#fff3b0;color:#57269a;box-shadow:0 3px 0 #e7a8ff}
+    h1{font-size:clamp(2.2rem,3.8vw,3.4rem);margin:14px 0 10px;text-shadow:0 3px 0 rgba(39,15,92,.38)}
+    .hero-slogan{font-size:1rem;color:#ffe99a}
+    .hero-description{font-size:.94rem;line-height:1.55;margin-bottom:17px}
+    .btn-gold{background:linear-gradient(#ffe978,#ffc345);box-shadow:0 5px 0 #d68c27}
+    .btn-outline{background:rgba(255,255,255,.14)}
+    .section{position:relative}
+    #werelden{background:radial-gradient(circle at 15% 15%,#ffdef2,transparent 28%),radial-gradient(circle at 90% 80%,#d9f8ff,transparent 32%),#fff9ed}
+    .section-heading h2{color:#50309c}
+    .world-grid{gap:23px}
+    .world-card{border:3px solid rgba(255,255,255,.95);border-radius:32px;box-shadow:0 8px 0 rgba(111,69,182,.14),0 15px 30px rgba(52,41,112,.09);position:relative;overflow:hidden}
+    .world-card:before{content:'✦';position:absolute;right:19px;top:9px;color:rgba(255,255,255,.8);font-size:3rem}
+    .world-card:nth-child(1){background:linear-gradient(135deg,#d5c6ff,#f5dfff)}
+    .world-card:nth-child(2){background:linear-gradient(135deg,#ffd1e7,#fff0b8)}
+    .world-card:nth-child(3){background:linear-gradient(135deg,#ffe49e,#ffd6dd)}
+    .world-card:nth-child(4){background:linear-gradient(135deg,#baf3d6,#e5f8a9)}
+    .world-card:nth-child(5){background:linear-gradient(135deg,#c4eaff,#e5d4ff)}
+    .world-card:nth-child(6){background:linear-gradient(135deg,#f5d1ff,#c9eaff)}
+    .world-card .emoji{font-size:3.4rem;filter:drop-shadow(0 5px 4px rgba(40,20,90,.12))}
+    .world-card h3{color:#38226d;font-size:1.4rem}
+    .world-card p{color:#443b66}
+    .world-card .more{display:inline-block;background:rgba(255,255,255,.68);padding:9px 13px;border-radius:999px;align-self:flex-start}
+    .feature{background:linear-gradient(180deg,#fff,#fff4ff)}
+    .feature-panel{background:linear-gradient(130deg,#7346d4,#a856e9 60%,#e577b5);border:5px solid #fbe4a6;box-shadow:0 9px 0 #d9b2ff}
+    .promise{background:linear-gradient(115deg,#e4f9ff,#f3e6ff,#fff1c8)}
+    footer{background:linear-gradient(110deg,#302065,#5934a5)}
+    @media(max-width:650px){.hero{min-height:680px;background-position:56% center}.hero:after{font-size:18px;letter-spacing:8px}.hero-card{max-width:420px;padding:20px}.brand img{width:145px}.nav a{padding:8px 10px}.world-card{min-height:210px}}
   </style>
 </head>
 <body>
@@ -102,10 +144,10 @@
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-inner"><div class="hero-card">
-      <span class="eyebrow" data-i18n="welcome">✨ Welkom bij Kids4All2Learn</span>
+      <span class="eyebrow" data-i18n="welcome">✨ Stap binnen in onze magische wereld</span>
       <h1 id="hero-title" data-i18n="headline">Jouw wereld.<br>Jouw avontuur.</h1>
       <p class="hero-slogan" data-i18n="slogan">Spelen • Leren • Ontdekken • Fantaseren</p>
-      <p class="hero-description" data-i18n="intro">Ontdek een magische wereld vol vrienden, spannende missies, verhalen en creatieve verrassingen. Hier groeit jouw avontuur met je mee.</p>
+      <p class="hero-description" data-i18n="intro">Ontmoet bijzondere vrienden, ontdek geheime plekken en beleef elke dag een nieuw avontuur!</p>
       <div class="actions"><a class="btn btn-gold" href="games/adventures/hoofdstuk-1/" data-i18n="start">🚀 Start het avontuur</a><a class="btn btn-outline" href="#werelden" data-i18n="explore">🌍 Verken de wereld</a></div>
     </div></div>
   </section>
@@ -133,7 +175,7 @@
 (function(){
   'use strict';
   const translations={
-    nl:{home:'🏠 Home',play:'🎮 Spelen',stories:'📖 Verhalen',color:'🎨 Kleurplaten',learn:'🧠 Leren',tv:'📺 K4A2L TV',parents:'💗 Voor ouders',mine:'⭐ Mijn K4A2L',welcome:'✨ Welkom bij Kids4All2Learn',headline:'Jouw wereld.<br>Jouw avontuur.',slogan:'Spelen • Leren • Ontdekken • Fantaseren',intro:'Ontdek een magische wereld vol vrienden, spannende missies, verhalen en creatieve verrassingen. Hier groeit jouw avontuur met je mee.',start:'🚀 Start het avontuur',explore:'🌍 Verken de wereld',worldTitle:'Ontdek jouw wereld',worldIntro:'Zes bijzondere plekken, elk met hun eigen verrassingen. Kies waar je vandaag naartoe wilt!',island:'Avontureneiland',islandText:'Ga op missie, speel spelletjes en ontdek nieuwe vrienden.',valley:'Verhalenvallei',valleyText:'Duik in het eerste avontuur. Binnenkort groeien hier nog meer verhalen en boeken.',village:'Creatief Dorp',villageText:'Een plek voor tekenen, kleuren, knutselen en fantaseren. Meer activiteiten volgen.',academy:'Ontdekkersacademie',academyText:'Leer spelenderwijs over cijfers, taal, natuur, muziek en nog veel meer.',studio:'K4A2L Studio',studioText:'Onze toekomstige plek voor filmpjes, muziek en vrolijke avonturen.',base:'Mijn Thuisbasis',baseText:'Bekijk je avatar, sterren, ei, vriendjes en ontdekkingen.',discover:'Ontdekken →',eggTitle:'Het mysterieuze ei',eggPanel:'Een bijzonder ei, een geheime wereld en een nieuw vriendje. Wat zal er gebeuren?',chapterTitle:'Jouw eerste avontuur begint hier',chapterText:'Ontmoet de vrienden van Kids4All2Learn, volg aanwijzingen en ontdek wat er in het mysterieuze ei zit. Jouw keuzes maken het avontuur persoonlijk.',chapterButton:'Speel Hoofdstuk 1 →',creativeTitle:'Maak iets helemaal van jezelf',creativeText:'Kleurplaten, tekenideeën en printbare activiteiten krijgen hier binnenkort hun eigen plek. Ondertussen kun je alvast de wereld verkennen.',backWorld:'Terug naar de wereld ↑',growTitle:'Een wereld die met je meegroeit',growText:'Van de eerste vormen en kleuren tot uitdagende puzzels en ontdekkingen: Kids4All2Learn wordt stap voor stap uitgebreid met activiteiten voor verschillende leeftijden en interesses.',studioTitle:'Binnenkort: K4A2L Studio',studioComing:'We bouwen aan een plek voor originele filmpjes, muziek en verhalen. Houd deze wereld in de gaten!',footer:'Ieder kind verdient een wereld vol speelplezier en fantasie!'},
+    nl:{home:'🏠 Home',play:'🎮 Spelen',stories:'📖 Verhalen',color:'🎨 Kleurplaten',learn:'🧠 Leren',tv:'📺 K4A2L TV',parents:'💗 Voor ouders',mine:'⭐ Mijn K4A2L',welcome:'✨ Stap binnen in onze magische wereld',headline:'Jouw wereld.<br>Jouw avontuur.',slogan:'Spelen • Leren • Ontdekken • Fantaseren',intro:'Ontmoet bijzondere vrienden, ontdek geheime plekken en beleef elke dag een nieuw avontuur!',start:'🚀 Start het avontuur',explore:'🌍 Verken de wereld',worldTitle:'Ontdek jouw wereld',worldIntro:'Zes bijzondere plekken, elk met hun eigen verrassingen. Kies waar je vandaag naartoe wilt!',island:'Avontureneiland',islandText:'Ga op missie, speel spelletjes en ontdek nieuwe vrienden.',valley:'Verhalenvallei',valleyText:'Duik in het eerste avontuur. Binnenkort groeien hier nog meer verhalen en boeken.',village:'Creatief Dorp',villageText:'Een plek voor tekenen, kleuren, knutselen en fantaseren. Meer activiteiten volgen.',academy:'Ontdekkersacademie',academyText:'Leer spelenderwijs over cijfers, taal, natuur, muziek en nog veel meer.',studio:'K4A2L Studio',studioText:'Onze toekomstige plek voor filmpjes, muziek en vrolijke avonturen.',base:'Mijn Thuisbasis',baseText:'Bekijk je avatar, sterren, ei, vriendjes en ontdekkingen.',discover:'Ontdekken →',eggTitle:'Het mysterieuze ei',eggPanel:'Een bijzonder ei, een geheime wereld en een nieuw vriendje. Wat zal er gebeuren?',chapterTitle:'Jouw eerste avontuur begint hier',chapterText:'Ontmoet de vrienden van Kids4All2Learn, volg aanwijzingen en ontdek wat er in het mysterieuze ei zit. Jouw keuzes maken het avontuur persoonlijk.',chapterButton:'Speel Hoofdstuk 1 →',creativeTitle:'Maak iets helemaal van jezelf',creativeText:'Kleurplaten, tekenideeën en printbare activiteiten krijgen hier binnenkort hun eigen plek. Ondertussen kun je alvast de wereld verkennen.',backWorld:'Terug naar de wereld ↑',growTitle:'Een wereld die met je meegroeit',growText:'Van de eerste vormen en kleuren tot uitdagende puzzels en ontdekkingen: Kids4All2Learn wordt stap voor stap uitgebreid met activiteiten voor verschillende leeftijden en interesses.',studioTitle:'Binnenkort: K4A2L Studio',studioComing:'We bouwen aan een plek voor originele filmpjes, muziek en verhalen. Houd deze wereld in de gaten!',footer:'Ieder kind verdient een wereld vol speelplezier en fantasie!'},
     en:{home:'🏠 Home',play:'🎮 Play',stories:'📖 Stories',color:'🎨 Coloring',learn:'🧠 Learn',tv:'📺 K4A2L TV',parents:'💗 For parents',mine:'⭐ My K4A2L',welcome:'✨ Welcome to Kids4All2Learn',headline:'Your world.<br>Your adventure.',slogan:'Play • Learn • Discover • Imagine',intro:'Explore a magical world filled with friends, exciting missions, stories and creative surprises. Your adventure grows with you.',start:'🚀 Start the adventure',explore:'🌍 Explore the world',worldTitle:'Discover your world',worldIntro:'Six special places, each full of surprises. Where will you go today?',island:'Adventure Island',islandText:'Go on missions, play games and meet new friends.',valley:'Story Valley',valleyText:'Dive into the first adventure. More stories and books are on the way.',village:'Creative Village',villageText:'A place for drawing, coloring, making and imagining. More activities are coming.',academy:'Explorer Academy',academyText:'Learn through play about numbers, languages, nature, music and much more.',studio:'K4A2L Studio',studioText:'Our future home for videos, music and cheerful adventures.',base:'My Home Base',baseText:'See your avatar, stars, egg, friends and discoveries.',discover:'Explore →',eggTitle:'The mysterious egg',eggPanel:'A special egg, a secret world and a new friend. What will happen?',chapterTitle:'Your first adventure starts here',chapterText:'Meet the Kids4All2Learn friends, follow clues and discover what is inside the mysterious egg. Your choices make the adventure your own.',chapterButton:'Play Chapter 1 →',creativeTitle:'Make something of your own',creativeText:'Coloring pages, drawing ideas and printable activities will soon have a place here. In the meantime, explore the world.',backWorld:'Back to the world ↑',growTitle:'A world that grows with you',growText:'From first shapes and colors to challenging puzzles and discoveries: Kids4All2Learn is growing step by step with activities for different ages and interests.',studioTitle:'Coming soon: K4A2L Studio',studioComing:'We are creating a place for original videos, music and stories. Stay tuned!',footer:'Every child deserves a world full of play and imagination!'}
   };
   const slogans={'de':'Spielen • Lernen • Entdecken • Fantasieren','fr':'Jouer • Apprendre • Découvrir • Imaginer','es':'Jugar • Aprender • Descubrir • Imaginar','it':'Giocare • Imparare • Scoprire • Immaginare','pt':'Brincar • Aprender • Descobrir • Imaginar','pl':'Bawić się • Uczyć się • Odkrywać • Wyobrażać sobie','tr':'Oyna • Öğren • Keşfet • Hayal Et','ar':'العب • تعلّم • اكتشف • تخيّل','zh-CN':'玩耍 • 学习 • 探索 • 想象','ja':'遊ぶ • 学ぶ • 発見する • 想像する','ru':'Играть • Учиться • Открывать • Воображать','uk':'Грати • Навчатися • Відкривати • Уявляти','ko':'놀기 • 배우기 • 발견하기 • 상상하기'};
