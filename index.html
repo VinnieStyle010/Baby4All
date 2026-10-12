@@ -2,966 +2,161 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Baby4All — Ieder kind verdient een wereld vol speelplezier en fantasie!</title>
-  <meta name="description" content="Ontdek Baby4All: een fantasiewereld vol avonturen, spelletjes, verhalen, leren, vriendjes en creativiteit.">
-
-  <link rel="manifest" href="manifest.webmanifest">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5636b8">
+  <meta name="description" content="Kids4All2Learn: een kleurrijke wereld vol spelen, leren, verhalen, creativiteit en avontuur voor kinderen.">
+  <title>Kids4All2Learn | Jouw wereld. Jouw avontuur.</title>
+  <link rel="icon" type="image/png" href="assets/images/kids4all2learn-logo.png">
   <style>
-    :root {
-      --purple: #6f42d9;
-      --purple-dark: #4e2bad;
-      --pink: #ff4f9a;
-      --blue: #16a5e4;
-      --yellow: #ffd54a;
-      --green: #52c878;
-      --ink: #17325c;
-      --soft: #f8f6ff;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: #fff;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =========================
-       HEADER
-    ========================== */
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 76px;
-      padding: 10px 4%;
-      background: rgba(255,255,255,.96);
-      box-shadow: 0 5px 22px rgba(30,46,92,.13);
-      backdrop-filter: blur(12px);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 1000;
-      white-space: nowrap;
-    }
-
-    .logo-mark {
-      margin-right: 6px;
-      font-size: 1.25em;
-    }
-
-    .logo .baby { color: #7045dc; }
-    .logo .four { color: #ff8a00; }
-    .logo .all { color: #18a4db; }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .nav a {
-      padding: 9px 11px;
-      border-radius: 999px;
-      font-size: .93rem;
-      font-weight: 800;
-      transition: .2s;
-    }
-
-    .nav a:hover {
-      background: #f0eaff;
-      transform: translateY(-2px);
-    }
-
-    .my-button {
-      color: #fff !important;
-      background: linear-gradient(135deg, #8052e8, #5d36c8);
-    }
-
-    .language {
-      padding: 9px 12px;
-      border: 2px solid #e8ddff;
-      border-radius: 999px;
-      background: #fff;
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-      position: relative;
-      min-height: min(820px, calc(100vh - 76px));
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(13,29,60,.03) 0%,
-          rgba(13,29,60,.02) 38%,
-          rgba(12,29,60,.30) 68%,
-          rgba(22,18,65,.78) 100%
-        ),
-        url("assets/images/Baby4all-wereld.jpg") center center / cover no-repeat;
-    }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  padding: 70px 5% 30px;
-}
-    }
-
-.hero-card {
-  max-width: 525px;
-  padding: 24px 28px 26px;
-  border: 2px solid rgba(255,255,255,.45);
-  border-radius: 26px;
-  color: #fff;
-  background: linear-gradient(
-    135deg,
-    rgba(55,30,125,.88),
-    rgba(39,26,94,.78)
-  );
-  box-shadow: 0 18px 45px rgba(15,20,65,.28);
-  backdrop-filter: blur(5px);
-}
-}
-    }
-
-    .hero-label {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 8px 15px;
-      border-radius: 999px;
-      color: #5631bc;
-      background: #fff;
-      font-size: .9rem;
-      font-weight: 900;
-    }
-
-    h1 {
-      margin: 0;
-      color: #fff;
-      font-size: clamp(2.3rem, 4.5vw, 3.8rem);
-      line-height: .98;
-      font-weight: 1000;
-      text-shadow: 0 3px 12px rgba(0,0,0,.18);
-    }
-
-.hero-slogan {
-  margin: 14px 0 6px;
-  color: #fff;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  line-height: 1.4;
-  font-weight: 800;
-}
-    }
-
-.hero-text {
-  max-width: 500px;
-  margin: 6px 0 19px;
-  color: rgba(255,255,255,.94);
-  font-size: .98rem;
-  line-height: 1.5;
-}
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .primary-button,
-    .secondary-button {
-      display: inline-block;
-      padding: 15px 23px;
-      border-radius: 999px;
-      font-weight: 900;
-      transition: .2s;
-    }
-
-    .primary-button {
-      color: #5527a9;
-      background: linear-gradient(135deg, #ffe05a, #ffb63d);
-      box-shadow: 0 7px 0 #dc8f22;
-    }
-
-    .secondary-button {
-      border: 2px solid rgba(255,255,255,.8);
-      color: #fff;
-      background: rgba(255,255,255,.15);
-    }
-
-    .primary-button:hover,
-    .secondary-button:hover {
-      transform: translateY(-3px);
-    }
-
-    /* =========================
-       WELKOM
-    ========================== */
-
-    .welcome {
-      position: relative;
-      padding: 65px 5% 40px;
-      text-align: center;
-      background:
-        radial-gradient(circle at 5% 10%, #fff0b9 0 7%, transparent 8%),
-        radial-gradient(circle at 95% 80%, #e3d7ff 0 8%, transparent 9%),
-        #fff;
-    }
-
-    .section-title {
-      max-width: 900px;
-      margin: 0 auto 12px;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.05;
-    }
-
-    .section-subtitle {
-      max-width: 760px;
-      margin: 0 auto 35px;
-      font-size: 1.08rem;
-      line-height: 1.65;
-    }
-
-    /* =========================
-       ACTIVITEITEN
-    ========================== */
-
-    .activities {
-      padding: 30px 5% 75px;
-    }
-
-    .activity-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .activity {
-      position: relative;
-      overflow: hidden;
-      min-height: 245px;
-      padding: 28px;
-      border: 3px solid rgba(255,255,255,.8);
-      border-radius: 30px;
-      box-shadow: 0 12px 35px rgba(38,48,100,.11);
-      transition: .22s;
-    }
-
-    .activity::after {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      right: -35px;
-      bottom: -35px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.38);
-    }
-
-    .activity:hover {
-      transform: translateY(-7px) rotate(-.4deg);
-      box-shadow: 0 18px 45px rgba(38,48,100,.16);
-    }
-
-    .activity-icon {
-      display: block;
-      margin-bottom: 14px;
-      font-size: 3.2rem;
-    }
-
-    .activity h3 {
-      margin: 0 0 9px;
-      font-size: 1.5rem;
-    }
-
-    .activity p {
-      margin-bottom: 0;
-      line-height: 1.55;
-    }
-
-    .games { background: linear-gradient(145deg,#d9f8cf,#bcefac); }
-    .stories { background: linear-gradient(145deg,#ffe0ee,#ffc8df); }
-    .coloring { background: linear-gradient(145deg,#fff3b9,#ffe17c); }
-    .learning { background: linear-gradient(145deg,#d9f3ff,#bde9ff); }
-    .tv { background: linear-gradient(145deg,#eee2ff,#dac7ff); }
-    .parents { background: linear-gradient(145deg,#d9faf5,#bcefe8); }
-
-    /* =========================
-       AVONTUUR
-    ========================== */
-
-    .adventure {
-      padding: 80px 5%;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,.8), transparent 25%),
-        linear-gradient(135deg,#6b42cf,#9a5be7 45%,#e750a0);
-    }
-
-    .adventure-box {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 35px;
-      align-items: center;
-      max-width: 1200px;
-      margin: auto;
-      padding: 42px;
-      border: 4px solid rgba(255,255,255,.5);
-      border-radius: 36px;
-      color: #fff;
-      background: rgba(255,255,255,.14);
-      box-shadow: 0 20px 60px rgba(42,18,97,.25);
-      backdrop-filter: blur(8px);
-    }
-
-    .adventure-box h2 {
-      margin: 5px 0 14px;
-      font-size: clamp(2rem,5vw,3.7rem);
-    }
-
-    .adventure-box p {
-      line-height: 1.6;
-    }
-
-    .adventure-label {
-      font-weight: 900;
-      color: #ffe16a;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .adventure-image {
-      min-height: 320px;
-      border: 5px solid rgba(255,255,255,.65);
-      border-radius: 30px;
-      background:
-        linear-gradient(rgba(15,20,60,.05),rgba(15,20,60,.25)),
-        url("assets/images/Baby4all-wereld.jpg") center 60% / cover no-repeat;
-      box-shadow: 0 16px 35px rgba(20,13,70,.25);
-    }
-
-    .pink-button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 15px 24px;
-      border-radius: 999px;
-      color: #6529b7;
-      background: #fff;
-      font-weight: 900;
-    }
-
-    /* =========================
-       VRIENDENGROEP
-    ========================== */
-
-    .friends-section {
-      padding: 80px 5%;
-      text-align: center;
-      background: #fff;
-    }
-
-    .friends-box {
-      max-width: 1100px;
-      margin: 35px auto 0;
-      padding: 35px;
-      border-radius: 35px;
-      background: linear-gradient(135deg,#fff5c9,#e8f9ff,#f4e6ff);
-      box-shadow: 0 14px 40px rgba(38,48,100,.10);
-    }
-
-    .friends-box h3 {
-      margin-top: 0;
-      font-size: 1.6rem;
-    }
-
-    .friends-box p {
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.7;
-    }
-
-    .friend-tags {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .friend-tag {
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: #fff;
-      font-weight: 800;
-      box-shadow: 0 5px 15px rgba(50,50,100,.08);
-    }
-
-    /* =========================
-       GROEI
-    ========================== */
-
-    .grow {
-      padding: 75px 5%;
-      background: #f6fbff;
-    }
-
-    .grow-row {
-      display: grid;
-      grid-template-columns: repeat(5,1fr);
-      gap: 14px;
-      max-width: 1100px;
-      margin: 35px auto 0;
-    }
-
-    .grow-step {
-      padding: 22px 14px;
-      border-radius: 24px;
-      background: #fff;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(38,48,100,.08);
-      font-weight: 800;
-    }
-
-    .grow-step span {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 2.6rem;
-    }
-
-    /* =========================
-       PRINTEN
-    ========================== */
-
-    .print-section {
-      padding: 75px 5%;
-      text-align: center;
-      background: #f4fff7;
-    }
-
-    .print-box {
-      max-width: 900px;
-      margin: 30px auto 0;
-      padding: 35px;
-      border-radius: 30px;
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(38,48,100,.10);
-    }
-
-    .print-options {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .print-option {
-      padding: 22px;
-      border-radius: 20px;
-      background: #f5f3ff;
-      font-weight: 800;
-    }
-
-    footer {
-      padding: 40px 5%;
-      text-align: center;
-      color: #fff;
-      background: #4d2baa;
-    }
-
-    footer strong {
-      display: block;
-      margin-bottom: 9px;
-      font-size: 1.5rem;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
-
-    @media (max-width: 1000px) {
-      .topbar {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .nav {
-        order: 3;
-        width: 100%;
-      }
-
-      .activity-grid {
-        grid-template-columns: repeat(2,1fr);
-      }
-
-      .adventure-box {
-        grid-template-columns: 1fr;
-      }
-
-      .grow-row {
-        grid-template-columns: repeat(3,1fr);
-      }
-    }
-
-    @media (max-width: 650px) {
-      .topbar {
-        position: relative;
-        padding: 12px;
-      }
-
-      .nav {
-        gap: 3px;
-      }
-
-      .nav a {
-        padding: 7px;
-        font-size: .78rem;
-      }
-
-      .language {
-        max-width: 135px;
-      }
-
-      .hero {
-        min-height: 720px;
-        background-position: 55% center;
-      }
-
-      .hero-content {
-        padding: 260px 18px 25px;
-      }
-
-      .hero-card {
-        padding: 24px 20px 27px;
-        border-radius: 27px;
-      }
-
-      h1 {
-        font-size: 2.55rem;
-      }
-
-      .activity-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .adventure {
-        padding: 55px 18px;
-      }
-
-      .adventure-box {
-        padding: 25px;
-      }
-
-      .adventure-image {
-        min-height: 220px;
-      }
-
-      .grow-row {
-        grid-template-columns: 1fr;
-      }
-
-      .print-options {
-        grid-template-columns: 1fr;
-      }
-    }
+    :root{--ink:#20284c;--purple:#5835bd;--purple-dark:#33206d;--pink:#f04ca0;--gold:#ffc84c;--paper:#fff;--mist:#f6f3ff;--line:#e9e4fa}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--mist)}
+    a{color:inherit;text-decoration:none}
+    button,select{font:inherit}
+    button,a,select{touch-action:manipulation}
+    :focus-visible{outline:3px solid #f9a928;outline-offset:4px}
+    .skip{position:absolute;top:-100px;left:12px;z-index:100;padding:12px;background:#fff;border-radius:8px}
+    .skip:focus{top:12px}
+    .topbar{position:relative;z-index:20;display:flex;align-items:center;gap:18px;justify-content:space-between;padding:12px clamp(16px,3vw,45px);background:#fff;box-shadow:0 3px 22px rgba(32,40,76,.08)}
+    .brand{display:flex;align-items:center;flex-shrink:0}
+    .brand img{display:block;width:clamp(165px,17vw,230px);height:auto;border-radius:10px}
+    .nav{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;flex:1}
+    .nav a{display:inline-flex;align-items:center;gap:5px;padding:10px 9px;font-size:.88rem;font-weight:750;border-radius:13px;white-space:nowrap}
+    .nav a:hover{background:#f2ecff;color:var(--purple)}
+    .nav .my-link{color:#fff;background:var(--purple);padding:11px 15px}
+    .nav .my-link:hover{color:#fff;background:var(--purple-dark)}
+    .language{max-width:142px;padding:10px 12px;border:2px solid #e9dcff;border-radius:999px;background:#fff;color:var(--ink);font-weight:650;flex-shrink:0}
+    .hero{min-height:min(760px,83vh);display:flex;align-items:flex-end;position:relative;isolation:isolate;background:#5636b8 url('assets/images/Baby4all-wereld.jpg') center center/cover no-repeat}
+    .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(17,14,59,.40),transparent 75%),linear-gradient(0deg,rgba(18,13,55,.53),transparent 56%)}
+    .hero-inner{width:min(1260px,100%);margin:0 auto;padding:48px clamp(18px,5vw,64px)}
+    .hero-card{width:min(535px,100%);padding:27px 30px 30px;border:1px solid rgba(255,255,255,.42);border-radius:28px;background:linear-gradient(135deg,rgba(56,31,125,.94),rgba(38,26,93,.88));color:#fff;box-shadow:0 20px 50px rgba(16,14,53,.35);backdrop-filter:blur(7px)}
+    .eyebrow{display:inline-block;background:#fff;color:#47289d;border-radius:999px;padding:7px 13px;font-weight:850;font-size:.86rem}
+    h1{font-size:clamp(2.25rem,4vw,3.75rem);line-height:1.04;letter-spacing:-.04em;margin:18px 0 15px}
+    .hero-slogan{font-size:1.1rem;font-weight:850;margin:0 0 12px;color:#fff}
+    .hero-description{line-height:1.65;font-size:.99rem;color:#fff;margin:0 0 24px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;padding:14px 19px;border-radius:999px;font-weight:850;min-height:48px;transition:transform .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.16)}
+    .btn-gold{background:var(--gold);color:#3d2375}
+    .btn-outline{border:2px solid #fff;color:#fff;background:rgba(255,255,255,.12)}
+    .btn-purple{background:var(--purple);color:#fff}
+    main section:not(.hero){scroll-margin-top:25px}
+    .section{padding:68px clamp(18px,5vw,60px)}
+    .container{max-width:1200px;margin:0 auto}
+    .section-heading{text-align:center;max-width:780px;margin:0 auto 34px}
+    .section-heading h2{font-size:clamp(1.8rem,3.2vw,2.7rem);margin:0 0 12px;letter-spacing:-.025em}
+    .section-heading p{line-height:1.65;color:#555d7b;margin:0}
+    .world-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .world-card{display:flex;flex-direction:column;min-height:235px;padding:26px;border-radius:25px;border:1px solid var(--line);background:#fff;box-shadow:0 10px 30px rgba(52,41,112,.06);transition:transform .2s,box-shadow .2s}
+    .world-card:hover{transform:translateY(-5px);box-shadow:0 18px 32px rgba(52,41,112,.12)}
+    .world-card .emoji{font-size:2.7rem;line-height:1.2}
+    .world-card h3{font-size:1.28rem;margin:14px 0 9px}
+    .world-card p{margin:0 0 16px;color:#59617b;line-height:1.6;flex:1}
+    .world-card .more{color:var(--purple);font-weight:850}
+    .world-card:nth-child(1){background:#f3efff}
+    .world-card:nth-child(2){background:#fff1f7}
+    .world-card:nth-child(3){background:#fff8e7}
+    .world-card:nth-child(4){background:#eaf9f5}
+    .world-card:nth-child(5){background:#eaf4ff}
+    .world-card:nth-child(6){background:#f5f0ff}
+    .feature{background:#fff}
+    .feature-layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:35px}
+    .feature-panel{padding:38px;border-radius:30px;background:linear-gradient(135deg,#5637bd,#9255e3);color:#fff;min-height:300px;display:flex;flex-direction:column;justify-content:center}
+    .feature-panel .big-emoji{font-size:4rem}
+    .feature-panel h2{font-size:clamp(1.8rem,3vw,2.7rem);margin:14px 0}
+    .feature-panel p{line-height:1.65;margin:0}
+    .feature-copy h2{font-size:clamp(1.7rem,3vw,2.5rem);margin:0 0 15px}
+    .feature-copy p{line-height:1.75;color:#535c7a}
+    .feature-copy .btn{margin-top:13px}
+    .promise{background:#f0eaff;text-align:center}
+    .promise h2{font-size:clamp(1.7rem,3vw,2.5rem);margin:0 0 12px}
+    .promise p{max-width:740px;margin:0 auto;line-height:1.75;color:#4c5270}
+    .small-note{font-size:.88rem;color:#646b83;margin-top:16px}
+    footer{padding:34px 20px;text-align:center;background:#282052;color:#fff}
+    footer strong{font-size:1.18rem}
+    footer p{margin:10px 0 0;line-height:1.6}
+    @media(max-width:1050px){.topbar{flex-wrap:wrap;justify-content:center}.nav{order:3;flex-basis:100%}.language{margin-left:auto}.world-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:650px){.topbar{gap:8px;padding:10px 12px}.brand img{width:165px}.language{max-width:125px;font-size:.82rem;padding:8px}.nav{gap:1px}.nav a{font-size:.78rem;padding:8px 7px}.hero{min-height:650px;background-position:54% center}.hero-inner{padding:26px 14px}.hero-card{padding:22px 19px;border-radius:22px}.world-grid,.feature-layout{grid-template-columns:1fr}.section{padding:50px 18px}.feature-panel{min-height:245px;padding:26px}.world-card{min-height:205px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.world-card{transition:none}}
   </style>
 </head>
-
 <body>
-
+<a class="skip" href="#main">Ga naar inhoud</a>
 <header class="topbar">
-
-
-<a class="logo" href="#">
-  <img
-    src="assets/images/
-kids4all2learn-logo.png
-"
-    alt="Kids4All2Learn"
-    style="height:65px;max-width:220px;width:auto;object-fit:contain;"
-  >
-</a>
-
-
-  <nav class="nav">
-    <a href="#">🏠 Home</a>
-    <a href="#spelen">🎮 Spelen</a>
-    <a href="#verhalen">📖 Verhalen</a>
-    <a href="#kleuren">🎨 Kleurplaten</a>
-    <a href="#leren">🧠 Leren</a>
-    <a href="#tv">📺 Baby4All TV</a>
-    <a href="parents/">💗 Voor ouders</a>
-    <a class="my-button" href="mijn-baby4all/">⭐ Mijn Baby4All</a>
+  <a class="brand" href="./" aria-label="Kids4All2Learn - Home"><img src="assets/images/kids4all2learn-logo.png" alt="Kids4All2Learn"></a>
+  <nav class="nav" aria-label="Hoofdmenu">
+    <a href="./" data-i18n="home">🏠 Home</a>
+    <a href="#spelen" data-i18n="play">🎮 Spelen</a>
+    <a href="#verhalen" data-i18n="stories">📖 Verhalen</a>
+    <a href="#kleuren" data-i18n="color">🎨 Kleurplaten</a>
+    <a href="#leren" data-i18n="learn">🧠 Leren</a>
+    <a href="#tv" data-i18n="tv">📺 K4A2L TV</a>
+    <a href="parents/" data-i18n="parents">💗 Voor ouders</a>
+    <a class="my-link" href="mijn-baby4all/" data-i18n="mine">⭐ Mijn K4A2L</a>
   </nav>
-
-  <select class="language" aria-label="Kies je taal">
-    <option>Nederlands</option>
-    <option>English</option>
-    <option>Deutsch</option>
-    <option>Français</option>
-    <option>Español</option>
-    <option>Italiano</option>
-    <option>Português</option>
-    <option>Polski</option>
-    <option>Türkçe</option>
-    <option>العربية</option>
-    <option>中文</option>
-    <option>日本語</option>
-    <option>Русский</option>
-    <option>Українська</option>
-    <option>한국어</option>
+  <select class="language" id="language" aria-label="Kies je taal">
+    <option value="nl">Nederlands</option><option value="en">English</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt">Português</option><option value="pl">Polski</option><option value="tr">Türkçe</option><option value="ar">العربية</option><option value="zh-CN">中文</option><option value="ja">日本語</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="ko">한국어</option>
   </select>
-
 </header>
-
-
-<main>
-
-  <!-- BABY4ALL WERELD -->
-
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div class="hero-card">
-
-        <span class="hero-label">✨ Welkom in Baby4All</span>
-
-        <h1>
-          Jouw wereld.<br>
-          Jouw avontuur.
-        </h1>
-
-        <p class="hero-slogan">
-          Ieder kind verdient een wereld vol speelplezier en fantasie!
-        </p>
-
-        <p class="hero-text">
-          Ontdek een enorme wereld vol bijzondere vriendjes, geheime plekken,
-          grappige opdrachten, verhalen, spelletjes en dingen om te leren.
-          Hier beleef jij het avontuur mee.
-        </p>
-
-        <div class="hero-buttons">
-
-          <a class="primary-button"
-             href="games/adventures/hoofdstuk-1/">
-            🚀 Start het avontuur
-          </a>
-
-          <a class="secondary-button"
-             href="#spelen">
-            🌍 Ontdek Baby4All
-          </a>
-
-        </div>
-
-      </div>
-
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner"><div class="hero-card">
+      <span class="eyebrow" data-i18n="welcome">✨ Welkom bij Kids4All2Learn</span>
+      <h1 id="hero-title" data-i18n="headline">Jouw wereld.<br>Jouw avontuur.</h1>
+      <p class="hero-slogan" data-i18n="slogan">Spelen • Leren • Ontdekken • Fantaseren</p>
+      <p class="hero-description" data-i18n="intro">Ontdek een magische wereld vol vrienden, spannende missies, verhalen en creatieve verrassingen. Hier groeit jouw avontuur met je mee.</p>
+      <div class="actions"><a class="btn btn-gold" href="games/adventures/hoofdstuk-1/" data-i18n="start">🚀 Start het avontuur</a><a class="btn btn-outline" href="#werelden" data-i18n="explore">🌍 Verken de wereld</a></div>
+    </div></div>
+  </section>
+  <section class="section" id="werelden"><div class="container">
+    <div class="section-heading"><h2 data-i18n="worldTitle">Ontdek jouw wereld</h2><p data-i18n="worldIntro">Zes bijzondere plekken, elk met hun eigen verrassingen. Kies waar je vandaag naartoe wilt!</p></div>
+    <div class="world-grid">
+      <a class="world-card" id="spelen" href="games/"><span class="emoji" aria-hidden="true">🎮🏝️</span><h3 data-i18n="island">Avontureneiland</h3><p data-i18n="islandText">Ga op missie, speel spelletjes en ontdek nieuwe vrienden.</p><span class="more" data-i18n="discover">Ontdekken →</span></a>
+      <a class="world-card" id="verhalen" href="games/adventures/hoofdstuk-1/"><span class="emoji" aria-hidden="true">📚✨</span><h3 data-i18n="valley">Verhalenvallei</h3><p data-i18n="valleyText">Duik in het eerste avontuur. Binnenkort groeien hier nog meer verhalen en boeken.</p><span class="more" data-i18n="discover">Ontdekken →</span></a>
+      <a class="world-card" id="kleuren" href="#creatief"><span class="emoji" aria-hidden="true">🎨🌈</span><h3 data-i18n="village">Creatief Dorp</h3><p data-i18n="villageText">Een plek voor tekenen, kleuren, knutselen en fantaseren. Meer activiteiten volgen.</p><span class="more" data-i18n="discover">Ontdekken →</span></a>
+      <a class="world-card" id="leren" href="#academie"><span class="emoji" aria-hidden="true">🧠🔭</span><h3 data-i18n="academy">Ontdekkersacademie</h3><p data-i18n="academyText">Leer spelenderwijs over cijfers, taal, natuur, muziek en nog veel meer.</p><span class="more" data-i18n="discover">Ontdekken →</span></a>
+      <a class="world-card" id="tv" href="#studio"><span class="emoji" aria-hidden="true">📺🎵</span><h3 data-i18n="studio">K4A2L Studio</h3><p data-i18n="studioText">Onze toekomstige plek voor filmpjes, muziek en vrolijke avonturen.</p><span class="more" data-i18n="discover">Ontdekken →</span></a>
+      <a class="world-card" href="mijn-baby4all/"><span class="emoji" aria-hidden="true">⭐🏡</span><h3 data-i18n="base">Mijn Thuisbasis</h3><p data-i18n="baseText">Bekijk je avatar, sterren, ei, vriendjes en ontdekkingen.</p><span class="more" data-i18n="discover">Ontdekken →</span></a>
     </div>
-
-  </section>
-
-
-  <!-- WELKOM -->
-
-  <section class="welcome">
-
-    <h2 class="section-title">
-      Er gebeurt altijd iets in Baby4All
-    </h2>
-
-    <p class="section-subtitle">
-      Speel een avontuur, leer iets nieuws, maak kunst, lees een verhaal
-      of ontdek een geheim vriendje. Hoe meer je ontdekt, hoe groter jouw
-      Baby4All-wereld wordt.
-    </p>
-
-  </section>
-
-
-  <!-- ACTIVITEITEN -->
-
-  <section class="activities" id="spelen">
-
-    <div class="activity-grid">
-
-      <a class="activity games" href="games/">
-        <span class="activity-icon">🗺️</span>
-        <h3>Avonturen & spelletjes</h3>
-        <p>
-          Ga op pad, zoek aanwijzingen, los puzzels op en speel samen
-          met de Baby4All-vriendjes.
-        </p>
-      </a>
-
-      <a class="activity stories" id="verhalen" href="#">
-        <span class="activity-icon">📚</span>
-        <h3>Verhalen</h3>
-        <p>
-          Grappige, spannende en persoonlijke verhalen waarin onze
-          vriendengroep steeds nieuwe dingen beleeft.
-        </p>
-      </a>
-
-      <a class="activity coloring" id="kleuren" href="#">
-        <span class="activity-icon">🎨</span>
-        <h3>Kleurplaten & maken</h3>
-        <p>
-          Tekenen, kleuren, knutselen en straks je eigen creaties
-          maken in de wereld van Baby4All.
-        </p>
-      </a>
-
-      <a class="activity learning" id="leren" href="#">
-        <span class="activity-icon">🧠</span>
-        <h3>Leren & ontdekken</h3>
-        <p>
-          Taal, rekenen, wetenschap, muziek, gebarentaal en nog veel meer,
-          verwerkt in leuke opdrachten en spellen.
-        </p>
-      </a>
-
-      <a class="activity tv" id="tv" href="#">
-        <span class="activity-icon">📺</span>
-        <h3>Baby4All TV</h3>
-        <p>
-          Een plek voor toekomstige filmpjes, muziek en tekenfilmavonturen
-          met de bekende Baby4All-vriendjes.
-        </p>
-      </a>
-
-      <a class="activity parents" href="mijn-baby4all/">
-        <span class="activity-icon">⭐</span>
-        <h3>Mijn Baby4All</h3>
-        <p>
-          Bekijk je avatar, sterren, ontdekkingen, avonturen, ei
-          en de vriendjes die je onderweg hebt ontmoet.
-        </p>
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- HOOFDAVONTUUR -->
-
-  <section class="adventure">
-
-    <div class="adventure-box">
-
-      <div>
-
-        <div class="adventure-label">
-          ⭐ Het eerste Baby4All-avontuur
-        </div>
-
-        <h2>Het mysterieuze ei</h2>
-
-        <p>
-          Er gebeurt iets vreemds in Baby4All. Samen met de vriendjes
-          ontdek je aanwijzingen, voer je opdrachten uit en vind je iets
-          wat niemand had verwacht...
-        </p>
-
-        <p>
-          Wat zit er in het mysterieuze ei? Dat ontdek je alleen door
-          zelf mee te spelen.
-        </p>
-
-        <a class="pink-button"
-           href="games/adventures/hoofdstuk-1/">
-          🥚 Speel Hoofdstuk 1 →
-        </a>
-
-      </div>
-
-      <div class="adventure-image"
-           role="img"
-           aria-label="De kleurrijke wereld van Baby4All">
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- HOOFDVRIENDEN -->
-
-  <section class="friends-section">
-
-    <h2 class="section-title">
-      Een vriendengroep die samen groeit
-    </h2>
-
-    <p class="section-subtitle">
-      De hoofdvriendjes komen steeds opnieuw terug. Ze hebben allemaal
-      hun eigen persoonlijkheid, talenten, gekke eigenschappen en verhalen.
-      Soms kan een probleem alleen worden opgelost wanneer iedereen helpt.
-    </p>
-
-    <div class="friends-box">
-
-      <h3>🌟 Onze Baby4All-hoofdgroep</h3>
-
-      <p>
-        Een supergenie in een rolstoel, een vrolijke beer met blonde mohawk,
-        een gestippelde olifant, een tweekoppige schildpad, een bijzondere
-        tweekleurige leeuw, kinderen, uitvinders, fantasiewezens en nog veel
-        meer. Niemand hoeft hetzelfde te zijn.
-      </p>
-
-      <div class="friend-tags">
-        <span class="friend-tag">🤖 Robo</span>
-        <span class="friend-tag">✨ Lila</span>
-        <span class="friend-tag">🔍 Novi</span>
-        <span class="friend-tag">🧩 Eli</span>
-        <span class="friend-tag">🐻 Bikko</span>
-        <span class="friend-tag">🌈 En meer...</span>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- GROEI -->
-
-  <section class="grow">
-
-    <h2 class="section-title">
-      Jouw Baby4All groeit met je mee
-    </h2>
-
-    <p class="section-subtitle">
-      Spelen en leren horen bij hetzelfde avontuur.
-      Wat jij doet kan nieuwe verrassingen in de wereld openen.
-    </p>
-
-    <div class="grow-row">
-
-      <div class="grow-step">
-        <span>🧒</span>
-        Maak jouw avatar
-      </div>
-
-      <div class="grow-step">
-        <span>🎮</span>
-        Speel & leer
-      </div>
-
-      <div class="grow-step">
-        <span>⭐</span>
-        Verdien sterren
-      </div>
-
-      <div class="grow-step">
-        <span>🥚</span>
-        Ontdek geheimen
-      </div>
-
-      <div class="grow-step">
-        <span>🌍</span>
-        Open nieuwe avonturen
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PRINTEN -->
-
-  <section class="print-section">
-
-    <h2 class="section-title">
-      🖨️ Gratis lezen, kleuren & printen
-    </h2>
-
-    <p class="section-subtitle">
-      Verhalen, leerbladen, kleurplaten en activiteiten kunnen later
-      ook buiten het scherm verdergaan.
-    </p>
-
-    <div class="print-box">
-
-      <strong>Kies straks wat bij jullie past:</strong>
-
-      <div class="print-options">
-
-        <div class="print-option">
-          🌈<br><br>
-          Kleurenversie
-        </div>
-
-        <div class="print-option">
-          ✏️<br><br>
-          Zelf inkleuren
-        </div>
-
-        <div class="print-option">
-          🖨️<br><br>
-          Inktbesparend
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
+  </div></section>
+  <section class="section feature" id="avontuur"><div class="container feature-layout">
+    <div class="feature-panel"><span class="big-emoji" aria-hidden="true">🥚✨</span><h2 data-i18n="eggTitle">Het mysterieuze ei</h2><p data-i18n="eggPanel">Een bijzonder ei, een geheime wereld en een nieuw vriendje. Wat zal er gebeuren?</p></div>
+    <div class="feature-copy"><h2 data-i18n="chapterTitle">Jouw eerste avontuur begint hier</h2><p data-i18n="chapterText">Ontmoet de vrienden van Kids4All2Learn, volg aanwijzingen en ontdek wat er in het mysterieuze ei zit. Jouw keuzes maken het avontuur persoonlijk.</p><a class="btn btn-purple" href="games/adventures/hoofdstuk-1/" data-i18n="chapterButton">Speel Hoofdstuk 1 →</a></div>
+  </div></section>
+  <section class="section" id="creatief"><div class="container"><div class="section-heading"><h2 data-i18n="creativeTitle">Maak iets helemaal van jezelf</h2><p data-i18n="creativeText">Kleurplaten, tekenideeën en printbare activiteiten krijgen hier binnenkort hun eigen plek. Ondertussen kun je alvast de wereld verkennen.</p><a class="btn btn-purple" style="margin-top:20px" href="#werelden" data-i18n="backWorld">Terug naar de wereld ↑</a></div></div></section>
+  <section class="section promise" id="academie"><div class="container"><h2 data-i18n="growTitle">Een wereld die met je meegroeit</h2><p data-i18n="growText">Van de eerste vormen en kleuren tot uitdagende puzzels en ontdekkingen: Kids4All2Learn wordt stap voor stap uitgebreid met activiteiten voor verschillende leeftijden en interesses.</p></div></section>
+  <section class="section" id="studio"><div class="container"><div class="section-heading"><h2 data-i18n="studioTitle">Binnenkort: K4A2L Studio</h2><p data-i18n="studioComing">We bouwen aan een plek voor originele filmpjes, muziek en verhalen. Houd deze wereld in de gaten!</p></div></div></section>
 </main>
-
-
-<footer>
-
-<strong>Kids4All2Learn</strong>
-
-  Ieder kind verdient een wereld vol speelplezier en fantasie!
-
-  <br><br>
-
-  <a href="parents/">
-    Voor ouders
-  </a>
-
-</footer>
-
+<footer><strong>Kids4All2Learn</strong><p data-i18n="footer">Ieder kind verdient een wereld vol speelplezier en fantasie!</p><p class="small-note">© <span id="year">2026</span> Kids4All2Learn</p></footer>
+<script>
+(function(){
+  'use strict';
+  const translations={
+    nl:{home:'🏠 Home',play:'🎮 Spelen',stories:'📖 Verhalen',color:'🎨 Kleurplaten',learn:'🧠 Leren',tv:'📺 K4A2L TV',parents:'💗 Voor ouders',mine:'⭐ Mijn K4A2L',welcome:'✨ Welkom bij Kids4All2Learn',headline:'Jouw wereld.<br>Jouw avontuur.',slogan:'Spelen • Leren • Ontdekken • Fantaseren',intro:'Ontdek een magische wereld vol vrienden, spannende missies, verhalen en creatieve verrassingen. Hier groeit jouw avontuur met je mee.',start:'🚀 Start het avontuur',explore:'🌍 Verken de wereld',worldTitle:'Ontdek jouw wereld',worldIntro:'Zes bijzondere plekken, elk met hun eigen verrassingen. Kies waar je vandaag naartoe wilt!',island:'Avontureneiland',islandText:'Ga op missie, speel spelletjes en ontdek nieuwe vrienden.',valley:'Verhalenvallei',valleyText:'Duik in het eerste avontuur. Binnenkort groeien hier nog meer verhalen en boeken.',village:'Creatief Dorp',villageText:'Een plek voor tekenen, kleuren, knutselen en fantaseren. Meer activiteiten volgen.',academy:'Ontdekkersacademie',academyText:'Leer spelenderwijs over cijfers, taal, natuur, muziek en nog veel meer.',studio:'K4A2L Studio',studioText:'Onze toekomstige plek voor filmpjes, muziek en vrolijke avonturen.',base:'Mijn Thuisbasis',baseText:'Bekijk je avatar, sterren, ei, vriendjes en ontdekkingen.',discover:'Ontdekken →',eggTitle:'Het mysterieuze ei',eggPanel:'Een bijzonder ei, een geheime wereld en een nieuw vriendje. Wat zal er gebeuren?',chapterTitle:'Jouw eerste avontuur begint hier',chapterText:'Ontmoet de vrienden van Kids4All2Learn, volg aanwijzingen en ontdek wat er in het mysterieuze ei zit. Jouw keuzes maken het avontuur persoonlijk.',chapterButton:'Speel Hoofdstuk 1 →',creativeTitle:'Maak iets helemaal van jezelf',creativeText:'Kleurplaten, tekenideeën en printbare activiteiten krijgen hier binnenkort hun eigen plek. Ondertussen kun je alvast de wereld verkennen.',backWorld:'Terug naar de wereld ↑',growTitle:'Een wereld die met je meegroeit',growText:'Van de eerste vormen en kleuren tot uitdagende puzzels en ontdekkingen: Kids4All2Learn wordt stap voor stap uitgebreid met activiteiten voor verschillende leeftijden en interesses.',studioTitle:'Binnenkort: K4A2L Studio',studioComing:'We bouwen aan een plek voor originele filmpjes, muziek en verhalen. Houd deze wereld in de gaten!',footer:'Ieder kind verdient een wereld vol speelplezier en fantasie!'},
+    en:{home:'🏠 Home',play:'🎮 Play',stories:'📖 Stories',color:'🎨 Coloring',learn:'🧠 Learn',tv:'📺 K4A2L TV',parents:'💗 For parents',mine:'⭐ My K4A2L',welcome:'✨ Welcome to Kids4All2Learn',headline:'Your world.<br>Your adventure.',slogan:'Play • Learn • Discover • Imagine',intro:'Explore a magical world filled with friends, exciting missions, stories and creative surprises. Your adventure grows with you.',start:'🚀 Start the adventure',explore:'🌍 Explore the world',worldTitle:'Discover your world',worldIntro:'Six special places, each full of surprises. Where will you go today?',island:'Adventure Island',islandText:'Go on missions, play games and meet new friends.',valley:'Story Valley',valleyText:'Dive into the first adventure. More stories and books are on the way.',village:'Creative Village',villageText:'A place for drawing, coloring, making and imagining. More activities are coming.',academy:'Explorer Academy',academyText:'Learn through play about numbers, languages, nature, music and much more.',studio:'K4A2L Studio',studioText:'Our future home for videos, music and cheerful adventures.',base:'My Home Base',baseText:'See your avatar, stars, egg, friends and discoveries.',discover:'Explore →',eggTitle:'The mysterious egg',eggPanel:'A special egg, a secret world and a new friend. What will happen?',chapterTitle:'Your first adventure starts here',chapterText:'Meet the Kids4All2Learn friends, follow clues and discover what is inside the mysterious egg. Your choices make the adventure your own.',chapterButton:'Play Chapter 1 →',creativeTitle:'Make something of your own',creativeText:'Coloring pages, drawing ideas and printable activities will soon have a place here. In the meantime, explore the world.',backWorld:'Back to the world ↑',growTitle:'A world that grows with you',growText:'From first shapes and colors to challenging puzzles and discoveries: Kids4All2Learn is growing step by step with activities for different ages and interests.',studioTitle:'Coming soon: K4A2L Studio',studioComing:'We are creating a place for original videos, music and stories. Stay tuned!',footer:'Every child deserves a world full of play and imagination!'}
+  };
+  const slogans={'de':'Spielen • Lernen • Entdecken • Fantasieren','fr':'Jouer • Apprendre • Découvrir • Imaginer','es':'Jugar • Aprender • Descubrir • Imaginar','it':'Giocare • Imparare • Scoprire • Immaginare','pt':'Brincar • Aprender • Descobrir • Imaginar','pl':'Bawić się • Uczyć się • Odkrywać • Wyobrażać sobie','tr':'Oyna • Öğren • Keşfet • Hayal Et','ar':'العب • تعلّم • اكتشف • تخيّل','zh-CN':'玩耍 • 学习 • 探索 • 想象','ja':'遊ぶ • 学ぶ • 発見する • 想像する','ru':'Играть • Учиться • Открывать • Воображать','uk':'Грати • Навчатися • Відкривати • Уявляти','ko':'놀기 • 배우기 • 발견하기 • 상상하기'};
+  const picker=document.getElementById('language');
+  function applyLanguage(lang){
+    const dict=translations[lang]||translations.en;
+    document.documentElement.lang=lang;
+    document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key=el.dataset.i18n;
+      const value=(key==='slogan'&&slogans[lang])||dict[key]||translations.nl[key];
+      if(key==='headline')el.innerHTML=value;else el.textContent=value;
+    });
+    picker.value=lang;
+    try{localStorage.setItem('k4a2l-language',lang)}catch(e){}
+  }
+  let saved='';try{saved=localStorage.getItem('k4a2l-language')||''}catch(e){}
+  const browser=(navigator.language||'nl').toLowerCase();
+  const initial=saved||(Array.from(picker.options).find(o=>o.value.toLowerCase()===browser)?.value)||(Array.from(picker.options).find(o=>browser.startsWith(o.value.toLowerCase().split('-')[0]))?.value)||'nl';
+  applyLanguage(initial);
+  picker.addEventListener('change',()=>applyLanguage(picker.value));
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
