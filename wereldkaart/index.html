@@ -84,14 +84,13 @@ main {
   cursor: pointer;
 }
 
-.click-layer rect:hover {
-  fill: #ffffff22;
-  stroke: #fff8a0;
-  stroke-width: 3;
-}
-
-.click-layer rect:focus {
+.click-layer rect:hover,
+.click-layer rect:focus,
+.click-layer rect:focus-visible {
+  fill: transparent;
+  stroke: transparent;
   outline: none;
+}
 }
 
 .click-layer rect:focus-visible {
