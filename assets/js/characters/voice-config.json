@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "brand": {
+    "displayName": "Kids4All2Learn",
+    "spokenName": "Kids For All To Learn"
+  },
+  "defaultLanguage": "nl",
+  "characters": {
+    "robo": {
+      "name": "Robo",
+      "personality": "vrolijk en behulpzaam",
+      "voice": {
+        "rate": 0.9,
+        "pitch": 1.05
+      }
+    },
+    "lila": {
+      "name": "Lila",
+      "personality": "nieuwsgierig en speels",
+      "voice": {
+        "rate": 0.95,
+        "pitch": 1.15
+      }
+    }
+  },
+  "video": {
+    "autoplay": false,
+    "captions": true,
+    "allowPause": true,
+    "allowReplay": true
+  }
+}

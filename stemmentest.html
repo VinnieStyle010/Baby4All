@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stemmen testen - Kids4All2Learn</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f1edff;
+  color: #292044;
+  text-align: center;
+  padding: 30px 15px;
+}
+main { max-width: 550px; margin: auto; }
+button {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  margin: 15px 0;
+  border: 0;
+  border-radius: 15px;
+  background: #6443bb;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+button:focus-visible { outline: 4px solid #e49c00; }
+</style>
+</head>
+<body>
+<main>
+<h1>🎤 Stemmen testen</h1>
+<p>Ontdek hoe onze personages klinken!</p>
+<button onclick="K4AVoices.speak('robo','Hallo avonturier! Welkom bij Kids4All2Learn!')">
+🤖 Luister naar Robo
+</button>
+<button onclick="K4AVoices.speak('lila','Hoi! Ik ben Lila! Wat leuk dat je er bent!')">
+🐰 Luister naar Lila
+</button>
+<button onclick="K4AVoices.stop()">
+🔇 Stop met praten
+</button>
+</main>
+<script src="assets/js/characters/voice-engine.js"></script>
+</body>
+</html>
