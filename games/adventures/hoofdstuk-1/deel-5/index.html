@@ -700,9 +700,10 @@ h1{
     🥚 Het Ei Verandert
   </h1>
 
-  <p class="subtitle">
-    Er gebeurt iets vreemds met je nieuwe vriendje...
-  </p>
+<p class="subtitle">
+  Terug bij de verborgen open plek ontdekken
+  de vriendjes een nieuw geheim...
+</p>
 
   <div class="age-badge" id="ageBadge">
     Avontuur laden...
@@ -823,10 +824,12 @@ h1{
 
   <div class="story-text" id="storyText">
 
-    <strong id="playerName">
-      Avonturier
-    </strong>
-    heeft het mysterieuze ei meegenomen.
+<strong id="playerName">
+  Avonturier
+</strong>
+keert samen met Robo, Lila, Novi en Eli
+terug naar de verborgen open plek.
+Het mysterieuze ei ligt nog veilig in zijn nest.
 
     <br><br>
 
@@ -985,480 +988,356 @@ h1{
 
 <script src="../../../../assets/js/baby4all-progress.js"></script>
 
+
 <script>
+/* DEEL 5 — Het Ei Verandert */
 
-/* ===============================
-   AVATAR
-================================ */
+const P = Baby4AllProgress;
+const CHAPTER = "hoofdstuk-1";
+const TASK = "hoofdstuk-1-deel-5-onderzoek";
+const TYPES = ["sound", "movement", "light", "friends"];
 
-function loadAvatar(){
-
-  try{
-
+const avatar = (() => {
+  try {
     return JSON.parse(
-      localStorage.getItem(
-        "baby4all-avatar"
-      )
+      localStorage.getItem("baby4all-avatar")
     ) || {};
-
-  }catch(error){
-
+  } catch {
     return {};
-
   }
+})();
 
-}
+const playerName = String(
+  avatar.name || avatar.naam || "Avonturier"
+);
 
-const avatar = loadAvatar();
+function calculateAge() {
+  const value = avatar.birthday || avatar.geboortedatum;
+  if (!value) return 6;
 
-const name =
-  avatar.name ||
-  avatar.naam ||
-  "Avonturier";
+  const birth = new Date(value);
+  if (Number.isNaN(birth.getTime())) return 6;
 
-document.getElementById(
-  "playerName"
-).textContent = name;
+  const now = new Date();
+  let age = now.getFullYear() - birth.getFullYear();
 
-
-/* ===============================
-   LEEFTIJD
-================================ */
-
-function calculateAge(){
-
-  const birthday =
-    avatar.birthday ||
-    avatar.geboortedatum;
-
-  if(!birthday){
-    return 6;
-  }
-
-  const birth =
-    new Date(birthday);
-
-  const today =
-    new Date();
-
-  let age =
-    today.getFullYear() -
-    birth.getFullYear();
-
-  const month =
-    today.getMonth() -
-    birth.getMonth();
-
-  if(
-    month < 0 ||
+  if (
+    now.getMonth() < birth.getMonth() ||
     (
-      month === 0 &&
-      today.getDate() <
-      birth.getDate()
+      now.getMonth() === birth.getMonth() &&
+      now.getDate() < birth.getDate()
     )
-  ){
+  ) {
     age--;
   }
 
-  return Math.max(
-    0,
-    Math.min(12,age)
-  );
-
+  return Math.max(0, Math.min(12, age));
 }
 
 const age = calculateAge();
 
-document.getElementById(
-  "ageBadge"
-).textContent =
-  "🎂 Avontuur voor " +
-  age +
-  " jaar";
+document.getElementById("playerName").textContent =
+  playerName;
 
+document.getElementById("ageBadge").textContent =
+  "🎂 Avontuur voor " + age + " jaar";
 
-/* ===============================
-   VOORTGANG
-================================ */
+P.startAdventure(CHAPTER);
+P.discoverEgg();
 
-Baby4AllProgress.startAdventure(
-  "hoofdstuk-1"
-);
-
-function updateStars(){
-
-  const progress =
-    Baby4AllProgress.load();
-
-  document.getElementById(
-    "starCount"
-  ).textContent =
-    progress.stars.spendable;
-
+function updateStars() {
+  document.getElementById("starCount").textContent =
+    P.load().stars.spendable;
 }
 
 updateStars();
 
-
-/* ===============================
-   EI AANRAKEN
-================================ */
-
-let eggTouched = false;
-
-function touchEgg(){
-
-  if(eggTouched){
-
-    document.getElementById(
-      "speechBubble"
-    ).textContent =
-      "Daar! Het deed het alweer!";
-
-    return;
-  }
-
-  eggTouched = true;
-
-  document.getElementById(
-    "speechBubble"
-  ).textContent =
-    "Wauw! Het ei voelde dat je dichtbij was!";
-
-  const egg =
-    document.getElementById(
-      "storyEgg"
-    );
-
-  egg.style.animation =
-    "none";
-
-  setTimeout(
-    function(){
-
-      egg.style.animation =
-        "eggWiggle .55s ease-in-out 3";
-
-    },
-    20
-  );
-
-}
-
-
-/* ===============================
-   AANWIJZINGEN
-================================ */
-
-const foundClues =
-  new Set();
+const foundClues = new Set();
 
 const clueMessages = {
-
-  sound:
-    "🎵 Je hoort een zacht ritme uit het ei: tik... tik... tik!",
-
-  movement:
-    "💫 Het ei wiebelt zodra iedereen dichterbij komt.",
-
-  light:
-    "✨ De gloed wordt sterker wanneer het ei iets leuk vindt.",
-
-  friends:
-    "💛 Lila merkt iets op: het ei reageert wanneer de vriendjes samenwerken."
-
+  sound: "🎵 Robo hoort een zacht ritme: tik... tik... tik!",
+  movement: "💫 Novi ziet dat het ei een beetje wiebelt.",
+  light: "✨ Eli ontdekt dat de gloed soms feller wordt.",
+  friends: "💛 Lila merkt dat het licht op samenwerking reageert."
 };
 
-function findClue(type){
-
-  foundClues.add(type);
-
-  const button =
-    document.getElementById(
-      "clue" +
-      type.charAt(0).toUpperCase() +
-      type.slice(1)
-    );
-
-  if(button){
-    button.classList.add(
-      "found"
-    );
-  }
-
-  const result =
-    document.getElementById(
-      "clueResult"
-    );
-
-  result.innerHTML =
-    clueMessages[type] +
-    "<br><br><strong>" +
-    foundClues.size +
-    " van 4 aanwijzingen gevonden.</strong>";
-
-  result.classList.add(
-    "show"
-  );
-
-  reactCharacter(
-    type
-  );
-
-  if(
-    foundClues.size === 4
-  ){
-
-    setTimeout(
-      revealTraitQuestion,
-      700
-    );
-
-  }
-
-}
-
-
-/* ===============================
-   PERSONAGES REAGEREN
-================================ */
-
-function reactCharacter(type){
-
-  const bubble =
-    document.getElementById(
-      "speechBubble"
-    );
-
-  if(type === "sound"){
-
-    bubble.textContent =
-      "Robo: Mijn sensoren horen een ritme!";
-
-  }
-
-  if(type === "movement"){
-
-    bubble.textContent =
-      "Novi: Kijk! Het beweegt!";
-
-  }
-
-  if(type === "light"){
-
-    bubble.textContent =
-      "Eli: Het licht wordt steeds sterker!";
-
-  }
-
-  if(type === "friends"){
-
-    bubble.textContent =
-      "Lila: Misschien wil het gewoon bij ons zijn!";
-
-  }
-
-}
-
-
-/* ===============================
-   ALLE AANWIJZINGEN
-================================ */
-
-function revealTraitQuestion(){
-
-  document.getElementById(
-    "speechBubble"
-  ).textContent =
-    "Robo: We hebben alle aanwijzingen!";
-
-  const result =
-    document.getElementById(
-      "clueResult"
-    );
-
-  result.innerHTML =
-    "🌟 <strong>Alle aanwijzingen gevonden!</strong>" +
-    "<br><br>" +
-    "Het lijkt erop dat het ei een eigen karakter begint te krijgen.";
-
-  document.getElementById(
-    "traitArea"
-  ).classList.add(
-    "show"
-  );
-
-  document.getElementById(
-    "traitArea"
-  ).scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
-
-}
-
-
-/* ===============================
-   LEEFTIJDSOPDRACHT
-================================ */
-
-function rewardForAge(){
-
-  if(age <= 2){
-    return 4;
-  }
-
-  if(age <= 4){
-    return 5;
-  }
-
-  if(age <= 6){
-    return 6;
-  }
-
-  if(age <= 8){
-    return 7;
-  }
-
-  if(age <= 10){
-    return 8;
-  }
-
-  return 10;
-
-}
-
-
-/* ===============================
-   EIGENSCHAP KIEZEN
-================================ */
+const traitNames = {
+  music: "🎵 Muziek en geluid",
+  movement: "💨 Bewegen en avontuur",
+  light: "✨ Licht en magie",
+  friends: "💛 Vriendjes helpen"
+};
 
 let traitChosen = false;
 
-function chooseTrait(trait){
+function readChoices() {
+  const adventure = P.load().adventures[CHAPTER];
 
-  if(traitChosen){
+  return adventure &&
+    adventure.choices &&
+    typeof adventure.choices === "object"
+      ? adventure.choices
+      : {};
+}
+
+function saveChoice(trait) {
+  const progress = P.load();
+  const adventure = progress.adventures[CHAPTER];
+
+  if (
+    !adventure.choices ||
+    typeof adventure.choices !== "object"
+  ) {
+    adventure.choices = {};
+  }
+
+  adventure.choices.eggResearchInterest = trait;
+  P.save(progress);
+}
+
+function touchEgg() {
+  document.getElementById("speechBubble").textContent =
+    "Robo: Kijk! Het ei reageert op onze aanwezigheid!";
+
+  const egg = document.getElementById("storyEgg");
+
+  egg.style.animation = "none";
+
+  requestAnimationFrame(() => {
+    egg.style.animation =
+      "eggWiggle .55s ease-in-out 3";
+  });
+}
+
+function findClue(type) {
+  if (!TYPES.includes(type)) return;
+
+  foundClues.add(type);
+
+  const buttonId =
+    "clue" +
+    type.charAt(0).toUpperCase() +
+    type.slice(1);
+
+  document.getElementById(buttonId)
+    .classList.add("found");
+
+  const result = document.getElementById("clueResult");
+
+  result.textContent =
+    clueMessages[type] +
+    " (" + foundClues.size +
+    " van 4 aanwijzingen gevonden)";
+
+  result.classList.add("show");
+
+  document.getElementById("speechBubble").textContent =
+    clueMessages[type];
+
+  if (foundClues.size === TYPES.length) {
+    revealTraitQuestion();
+  }
+}
+
+function revealTraitQuestion() {
+  document.getElementById("speechBubble").textContent =
+    "Robo: We hebben alle aanwijzingen gevonden!";
+
+  const result = document.getElementById("clueResult");
+
+  result.textContent =
+    "🌟 Alle vier de aanwijzingen gevonden! " +
+    "Welke valt jou het meeste op?";
+
+  result.classList.add("show");
+
+  document.getElementById("traitArea")
+    .classList.add("show");
+
+  P.saveScene(
+    CHAPTER,
+    5,
+    "aanwijzingen-gevonden"
+  );
+}
+
+function rewardForAge() {
+  if (age <= 2) return 4;
+  if (age <= 4) return 5;
+  if (age <= 6) return 6;
+  if (age <= 8) return 7;
+  if (age <= 10) return 8;
+  return 10;
+}
+
+function renderChoice(trait, rewardText) {
+  traitChosen = true;
+
+  const area = document.getElementById("traitArea");
+
+  area.classList.add("show");
+  area.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = "✨ Een bijzondere ontdekking!";
+
+  const choice = document.createElement("p");
+  const strong = document.createElement("strong");
+
+  strong.textContent = traitNames[trait];
+
+  choice.append(
+    "Jij vond dit het opvallendst: ",
+    strong,
+    "."
+  );
+
+  const explanation = document.createElement("p");
+
+  explanation.textContent =
+    "Robo bewaart jouw keuze als onderzoeksaanwijzing. " +
+    "Het ei blijft veilig in zijn nest en is nog niet van jou.";
+
+  const reward = document.createElement("p");
+  reward.textContent = rewardText;
+
+  area.append(
+    heading,
+    choice,
+    explanation,
+    reward
+  );
+
+  document.getElementById("speechBubble").textContent =
+    "Lila: We ontdekken steeds meer over dit mysterieuze ei!";
+
+  document.getElementById("storyEgg").textContent =
+    "🥚✨";
+
+  document.getElementById("continueButton")
+    .classList.add("show");
+}
+
+function chooseTrait(trait) {
+  if (
+    traitChosen ||
+    !Object.prototype.hasOwnProperty.call(traitNames, trait) ||
+    foundClues.size !== TYPES.length
+  ) {
     return;
   }
 
-  traitChosen = true;
+  const reward = rewardForAge();
 
-  const names = {
-
-    music:
-      "🎵 Muziek en geluid",
-
-    movement:
-      "💨 Bewegen en avontuur",
-
-    light:
-      "✨ Licht en magie",
-
-    friends:
-      "💛 Vriendjes helpen"
-
-  };
-
-  /*
-    Deze keuze bepaalt NIET letterlijk
-    welk dier uit het ei komt.
-
-    Het wordt één van meerdere invloeden
-    op het uiteindelijke vriendje.
-  */
-
-  Baby4AllProgress.setEggTrait(
-    "firstInstinct",
-    trait
+  const result = P.completeTask(
+    TASK,
+    {
+      stars: reward,
+      subject: "logic",
+      once: true
+    }
   );
 
-  Baby4AllProgress.addEggMoment(
-    "eerste-instinct"
+  saveChoice(trait);
+
+  P.discoverClue(
+    CHAPTER,
+    "ei-onderzoek-deel-5"
   );
 
-  const reward =
-    rewardForAge();
-
-  const task =
-    Baby4AllProgress.completeTask(
-      "hoofdstuk-1-deel-5-onderzoek",
-      {
-        stars:reward,
-        subject:"logic"
-      }
-    );
+  P.saveScene(
+    CHAPTER,
+    5,
+    "onderzoek-afgerond"
+  );
 
   updateStars();
 
-  let rewardText = "";
+  renderChoice(
+    trait,
+    result.rewarded
+      ? "⭐ Je hebt " + reward + " sterren verdiend!"
+      : "🌱 Deze opdracht was al beloond. " +
+        "Je voortgang is bewaard."
+  );
+}
 
-  if(task && task.success){
+function finishPart() {
+  if (!traitChosen) return;
 
-    rewardText =
-      "<br><br>⭐ Je verdient " +
-      reward +
-      " sterren!";
+  P.completeAdventurePart(CHAPTER, 5);
 
-  }else{
+  window.location.href = "../deel-6/";
+}
 
-    rewardText =
-      "<br><br>🌱 Deze ontdekking had je al gedaan. Je voortgang blijft natuurlijk bewaard.";
+/* VOORTGANG HERSTELLEN NA VERNIEUWEN */
 
-  }
+(function restore() {
+  const choices = readChoices();
+  const saved = choices.eggResearchInterest;
+  const scene = P.getScene(CHAPTER, 5);
 
-  document.getElementById(
-    "traitArea"
-  ).innerHTML =
-    "<h2>✨ Het ei reageert!</h2>" +
-    "<p>Je koos <strong>" +
-    names[trait] +
-    "</strong>.</p>" +
-    "<p>Het ei begint zacht te trillen en er verschijnen heel even vreemde glinsteringen op de schaal.</p>" +
-    "<p>Misschien vertelt dit iets over het vriendje dat erin groeit...</p>" +
-    rewardText;
-
-  document.getElementById(
-    "speechBubble"
-  ).textContent =
-    "Lila: Zag je dat?! De schaal veranderde!";
-
-  const egg =
-    document.getElementById(
-      "storyEgg"
+  const hasSavedChoice =
+    saved &&
+    Object.prototype.hasOwnProperty.call(
+      traitNames,
+      saved
     );
 
-  egg.textContent =
-    "🥚✨";
+  const completedBefore =
+    P.load().tasks[TASK]?.timesCompleted > 0;
 
-  egg.style.animation =
-    "eggWiggle .5s ease-in-out 4";
+  if (
+    hasSavedChoice &&
+    (
+      scene === "onderzoek-afgerond" ||
+      completedBefore
+    )
+  ) {
+    TYPES.forEach(type => {
+      foundClues.add(type);
 
-  document.getElementById(
-    "continueButton"
-  ).classList.add(
-    "show"
-  );
+      const id =
+        "clue" +
+        type.charAt(0).toUpperCase() +
+        type.slice(1);
 
-}
+      document.getElementById(id)
+        .classList.add("found");
+    });
 
+    const result = document.getElementById("clueResult");
 
-/* ===============================
-   DEEL AFRONDEN
-================================ */
+    result.textContent =
+      "🌟 Je hebt alle aanwijzingen al onderzocht.";
 
-function finishPart(){
+    result.classList.add("show");
 
-  Baby4AllProgress.completeAdventurePart(
-    "hoofdstuk-1",
-    5
-  );
+    renderChoice(
+      saved,
+      "🌟 Je ontdekking en je verdiende sterren " +
+      "zijn opgeslagen."
+    );
 
-  window.location.href =
-    "../deel-6/";
+  } else if (scene === "aanwijzingen-gevonden") {
 
-}
+    TYPES.forEach(type => {
+      foundClues.add(type);
 
+      const id =
+        "clue" +
+        type.charAt(0).toUpperCase() +
+        type.slice(1);
+
+      document.getElementById(id)
+        .classList.add("found");
+    });
+
+    revealTraitQuestion();
+  }
+})();
 </script>
+
 
 </body>
 </html>
