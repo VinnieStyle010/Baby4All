@@ -1257,141 +1257,139 @@ function discoverTheEgg(){
 
 function takeEggHome(){
 
-  Baby4AllProgress.obtainEgg();
+  // Het ei is ontdekt, maar nog niet verdiend.
+  // We roepen obtainEgg() hier bewust NIET aan.
 
+  Baby4AllProgress.discoverEgg();
 
   Baby4AllProgress.completeAdventurePart(
     "hoofdstuk-1",
     3
   );
 
-
   const box =
-    document.getElementById(
-      "afterMission"
-    );
-
+    document.getElementById("afterMission");
 
   box.innerHTML = `
 
     <div class="discovery">
 
-      <h2>🥚 Het ei gaat met je mee</h2>
+      <h2>🥚 Het geheim van het mysterieuze ei</h2>
 
       <div class="egg">
         🥚✨
       </div>
 
       <p>
-        ${playerName} tilt het ei
-        voorzichtig op.
+        Het ei begint zachtjes te gloeien.
       </p>
 
       <p>
-        Heel even wordt de schaal warm.
-      </p>
-
-      <p style="font-size:2rem;">
-        ✨ ... ✨
+        ${playerName} kijkt vol verwondering
+        naar de gekleurde lichtjes.
       </p>
 
       <p>
-        Daarna wordt het weer stil.
+        Maar het ei hoort voorlopig
+        nog op deze bijzondere plek.
       </p>
 
     </div>
-
 
     <div class="character robo">
 
       <div class="face">🤖</div>
 
       <div>
+        <strong>Robo:</strong>
 
-        <strong>Robo:</strong><br><br>
-
-        “Volgens mij reageerde het
-        op jou...”
-
+        <p>
+          "Ik denk dat dit ei heel bijzonder is.
+          We moeten eerst ontdekken waar
+          het vandaan komt."
+        </p>
       </div>
 
     </div>
-
 
     <div class="character lila">
 
       <div class="face">🐰</div>
 
       <div>
+        <strong>Lila:</strong>
 
-        <strong>Lila:</strong><br><br>
-
-        “We moeten er goed voor zorgen!”
-
+        <p>
+          "Dan zorgen we ervoor dat
+          het hier veilig blijft!"
+        </p>
       </div>
 
     </div>
-
 
     <div class="character novi">
 
       <div class="face">🦊</div>
 
       <div>
+        <strong>Novi:</strong>
 
-        <strong>Novi:</strong><br><br>
-
-        “En uitzoeken waar het
-        vandaan komt.”
-
+        <p>
+          "Ik houd deze plek goed in de gaten."
+        </p>
       </div>
 
     </div>
-
 
     <div class="character eli">
 
       <div class="face">🐘</div>
 
       <div>
+        <strong>Eli:</strong>
 
-        <strong>Eli:</strong><br><br>
-
-        “En natuurlijk ontdekken
-        wat erin zit!”
-
+        <p>
+          "En wij gaan samen nog veel
+          nieuwe dingen ontdekken!"
+        </p>
       </div>
 
     </div>
 
-
     <div class="small-note">
 
-      🥚 <strong>Nieuw in Mijn Baby4All</strong>
+      🔎 <strong>Bijzondere ontdekking!</strong>
 
-      <br><br>
+      <p>
+        Je hebt het mysterieuze ei ontdekt!
+      </p>
 
-      Het mysterieuze ei hoort nu
-      bij jouw avontuur.
+      <p>
+        Het ei blijft voorlopig veilig
+        op de verborgen open plek.
+      </p>
 
-      <br><br>
+      <p>
+        Door later nieuwe avonturen te beleven,
+        te leren en bijzondere opdrachten
+        te voltooien, kun je misschien
+        zijn vertrouwen winnen.
+      </p>
 
-      Door nieuwe avonturen,
-      ontdekkingen en keuzes zal
-      het langzaam op jou reageren.
+      <strong>
+        🥚 Het grote avontuur is pas begonnen!
+      </strong>
 
     </div>
-
 
     <button
       class="main-button"
       onclick="goHome()"
     >
-    🥚 Ontdek wat er met het ei gebeurt
+      🌈 Ga verder met het avontuur
     </button>
 
   `;
-
 
   box.scrollIntoView({
     behavior:"smooth"
