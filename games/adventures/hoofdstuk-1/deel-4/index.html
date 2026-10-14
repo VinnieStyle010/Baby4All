@@ -435,11 +435,11 @@ const playerName =
   "avonturier";
 
 
-document.getElementById(
-  "intro"
-).textContent =
+document.getElementById("intro").textContent =
   playerName +
-  " heeft het mysterieuze ei voorzichtig meegenomen naar een veilige plek in Baby4All.";
+  " keert samen met Robo, Lila, Novi en Eli terug " +
+  "naar de verborgen open plek. Het mysterieuze ei " +
+  "ligt nog veilig in zijn nest.";
 
 
 /* =========================================
@@ -817,11 +817,11 @@ function checkAnswer(index){
 
       {
 
-        stars:
-          mission.reward,
-
-        subject:
-          mission.subject
+{
+  stars: mission.reward,
+  subject: mission.subject,
+  once: true
+}
 
       }
 
@@ -884,7 +884,7 @@ function showReaction(){
       </p>
 
       <p>
-        Het ei wordt een klein beetje warm.
+        De lichtjes op de schaal worden even feller.
       </p>
 
       <p style="font-size:2.5rem;">
@@ -971,8 +971,8 @@ function showColors(){
       </p>
 
       <p>
-        Het lijkt bijna alsof het ei
-        wacht tot ${playerName} dichterbij komt.
+Robo vraagt ${playerName}
+welke kleur het meest opvalt.
       </p>
 
       <p>
@@ -1044,6 +1044,162 @@ function chooseGlow(
   color,
   colorName
 ){
+
+function chooseGlow(color, colorName) {
+
+  const allowedColors = [
+    "purple",
+    "blue",
+    "green",
+    "gold"
+  ];
+
+  if (!allowedColors.includes(color)) {
+    return;
+  }
+
+  // Bewaar de favoriete gloed als ontdekking.
+  // Dit is nog GEEN definitieve ei-eigenschap.
+  // Het ei is immers nog niet verdiend.
+
+  const progress = Baby4AllProgress.load();
+
+  if (!progress.adventures["hoofdstuk-1"]) {
+    Baby4AllProgress.startAdventure("hoofdstuk-1");
+  }
+
+  const updated = Baby4AllProgress.load();
+
+  if (!updated.adventures["hoofdstuk-1"].choices) {
+    updated.adventures["hoofdstuk-1"].choices = {};
+  }
+
+  updated.adventures["hoofdstuk-1"].choices.favoriteGlow =
+    color;
+
+  Baby4AllProgress.save(updated);
+
+  Baby4AllProgress.discoverClue(
+    "hoofdstuk-1",
+    "eerste-gloed"
+  );
+
+  Baby4AllProgress.saveScene(
+    "hoofdstuk-1",
+    4,
+    "gloed-gekozen"
+  );
+
+  const box =
+    document.getElementById("afterMission");
+
+  box.innerHTML = `
+
+    <div class="discovery">
+
+      <h2>✨ Een bijzondere reactie!</h2>
+
+      <div class="egg">
+        🥚✨
+      </div>
+
+      <p>
+        ${playerName} kijkt aandachtig
+        naar het mysterieuze ei.
+      </p>
+
+      <p>
+        De <strong>${colorName}</strong>
+        blijft iets langer zichtbaar
+        dan de andere kleuren.
+      </p>
+
+      <p>
+        Heel even verschijnt er
+        een zacht lichtpuntje.
+      </p>
+
+      <p style="font-size:2.5rem;">
+        ✨ ... ✨
+      </p>
+
+      <p>
+        Daarna wordt het weer stil.
+      </p>
+
+    </div>
+
+    <div class="character novi">
+      <div class="face">🦊</div>
+      <div>
+        <strong>Novi:</strong>
+        <p>
+          "Dat was bijzonder!
+          Het leek alsof het ei
+          ons iets wilde vertellen."
+        </p>
+      </div>
+    </div>
+
+    <div class="character eli">
+      <div class="face">🐘</div>
+      <div>
+        <strong>Eli:</strong>
+        <p>
+          "Misschien ontdekken we
+          later wat die lichtjes betekenen!"
+        </p>
+      </div>
+    </div>
+
+    <div class="character robo">
+      <div class="face">🤖</div>
+      <div>
+        <strong>Robo:</strong>
+        <p>
+          "Ik heb jouw favoriete gloed
+          opgeslagen als aanwijzing.
+          We gaan verder onderzoeken
+          waar het ei vandaan komt."
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+
+      🔎 <strong>Nieuwe aanwijzing!</strong>
+
+      <p>
+        Je koos de ${colorName}.
+      </p>
+
+      <p>
+        Het mysterieuze ei blijft
+        veilig op de verborgen open plek.
+      </p>
+
+      <p>
+        Je hebt het ei ontdekt,
+        maar nog niet verdiend.
+      </p>
+
+    </div>
+
+    <button
+      class="main-button"
+      onclick="finishPart()"
+    >
+      🌈 Ga verder met het avontuur
+    </button>
+
+  `;
+
+  box.scrollIntoView({
+    behavior: "smooth"
+  });
+
+}
+  
 
   Baby4AllProgress.setEggTrait(
     "primaryColor",
