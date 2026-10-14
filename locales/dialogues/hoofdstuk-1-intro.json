@@ -7,7 +7,7 @@
       "character": "robo",
       "text": "Hallo avonturier! Welkom bij Kids4All2Learn! Ik ben Robo!",
       "emotion": "happy",
-      "audio": ""
+      "audio": "assets/audio/voices/robo/gesprek-01.wav"
     },
     {
       "character": "lila",
