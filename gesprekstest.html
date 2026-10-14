@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robo en Lila - Kids4All2Learn</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f2edff;color:#282044;text-align:center;padding:25px 15px}
+main{max-width:650px;margin:auto}
+.scene{background:white;border-radius:22px;padding:25px;box-shadow:0 5px 20px #0002}
+.characters{display:flex;justify-content:space-around;font-size:65px;margin:25px 0}
+.character{opacity:.45;transition:opacity .2s,transform .2s}
+.character.active{opacity:1;transform:scale(1.15)}
+#subtitle{font-size:22px;min-height:110px;line-height:1.5}
+button{background:#6746bb;color:white;border:0;border-radius:12px;padding:15px 22px;font-size:18px;margin:6px;cursor:pointer}
+button:focus-visible{outline:4px solid orange}
+</style>
+</head>
+<body>
+<main>
+<h1>✨ Het mysterieuze licht</h1>
+<div class="scene">
+<div class="characters">
+<div id="robo" class="character">🤖</div>
+<div id="lila" class="character">🐰</div>
+</div>
+<p id="subtitle" aria-live="polite">Druk op Start om het gesprek te horen!</p>
+<button id="start">▶ Start</button>
+<button id="pause">⏸ Pauze</button>
+<button id="stop">⏹ Stop</button>
+</div>
+</main>
+<script src="assets/js/characters/voice-engine.js"></script>
+<script>
+let lines=[],index=0,playing=false,paused=false,run=0;
+const subtitle=document.getElementById("subtitle");
+const robo=document.getElementById("robo");
+const lila=document.getElementById("lila");
+const audio=new Audio();
+
+fetch("locales/dialogues/hoofdstuk-1-intro.json")
+.then(r=>{if(!r.ok)throw Error("Gesprek niet gevonden");return r.json()})
+.then(data=>{lines=data.lines})
+.catch(()=>{subtitle.textContent="Het gesprek kon niet worden geladen."});
+
+function show(line){
+  robo.classList.toggle("active",line.character==="robo");
+  lila.classList.toggle("active",line.character==="lila");
+  subtitle.textContent=(line.character==="robo"?"Robo: ":"Lila: ")+line.text;
+}
+function next(token){
+  if(!playing||paused||token!==run)return;
+  if(index>=lines.length){stop();subtitle.textContent="🎉 Einde van het gesprek!";return}
+  const line=lines[index++];
+  show(line);
+  const path=line.audio;
+  if(path){
+    audio.src=path;
+    audio.onended=()=>next(token);
+    audio.onerror=()=>{playing=false;subtitle.textContent="Audiobestand ontbreekt."};
+    audio.play().catch(()=>{playing=false;subtitle.textContent="Druk opnieuw op Start om geluid toe te staan."});
+  }else{
+    if(!("speechSynthesis" in window)){subtitle.textContent="Geen spraak beschikbaar.";playing=false;return}
+    const u=new SpeechSynthesisUtterance(
+      line.text.replace(/Kids4All2Learn/g,"Kids For All To Learn")
+    );
+    u.lang="nl-NL";
+    u.rate=line.character==="robo"?0.9:1.0;
+    u.onend=()=>next(token);
+    u.onerror=()=>{playing=false};
+    speechSynthesis.speak(u);
+  }
+}
+function stop(){
+  run++;playing=false;paused=false;index=0;
+  audio.pause();audio.currentTime=0;
+  speechSynthesis.cancel();
+  robo.classList.remove("active");
+  lila.classList.remove("active");
+}
+document.getElementById("start").onclick=()=>{
+  if(!lines.length){subtitle.textContent="Het gesprek is nog niet geladen.";return}
+  if(paused){paused=false;playing=true;audio.play().catch(()=>{});speechSynthesis.resume();return}
+  stop();playing=true;next(run);
+};
+document.getElementById("pause").onclick=()=>{
+  if(!playing)return;
+  paused=true;audio.pause();speechSynthesis.pause();
+};
+document.getElementById("stop").onclick=()=>{
+  stop();subtitle.textContent="Gesprek gestopt. Druk op Start.";
+};
+</script>
+</body>
+</html>

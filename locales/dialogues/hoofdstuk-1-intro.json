@@ -1,0 +1,31 @@
+{
+  "id": "hoofdstuk-1-intro",
+  "language": "nl",
+  "title": "Het mysterieuze licht",
+  "lines": [
+    {
+      "character": "robo",
+      "text": "Hallo avonturier! Welkom bij Kids4All2Learn! Ik ben Robo!",
+      "emotion": "happy",
+      "audio": ""
+    },
+    {
+      "character": "lila",
+      "text": "Hoi! Ik ben Lila! Wat leuk dat je er bent!",
+      "emotion": "excited",
+      "audio": ""
+    },
+    {
+      "character": "robo",
+      "text": "Lila! Heb jij die vreemde lichtjes ook gezien?",
+      "emotion": "curious",
+      "audio": ""
+    },
+    {
+      "character": "lila",
+      "text": "Jaaa! Ik wil weten waar ze vandaan komen!",
+      "emotion": "excited",
+      "audio": ""
+    }
+  ]
+}
