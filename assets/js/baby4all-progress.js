@@ -1,1630 +1,186 @@
-/* =========================================================
-   BABY4ALL PROGRESS SYSTEM
-   Centrale opslag voor voortgang, sterren, leren,
-   avonturen, ontdekkingen, ei en vriendjes.
-========================================================= */
 
+/* Kids4All2Learn / Baby4All - centrale voortgang, versie 2.
+   Behoudt de bestaande publieke API en oude opslagsleutels. */
 (function () {
-
-  "use strict";
-
-
-  /* =====================================================
-     INSTELLINGEN
-  ===================================================== */
-
-  const STORAGE_KEY = "baby4all-progress";
-
-  const TASK_COOLDOWN =
-    60 * 60 * 1000; // 1 uur
-
-
-  /* =====================================================
-     STANDAARD PROFIEL
-  ===================================================== */
-
-  function defaultProgress() {
-
+  'use strict';
+  const KEY = 'baby4all-progress';
+  const LEGACY_STARS = 'baby4all-stars';
+  const LEGACY_TOTAL = 'baby4all-total-stars';
+  const SUBJECTS = ['language','reading','spelling','math','logic','nature','biology','geography','history','science','technology','creativity','music','movement'];
+  const TRAITS = ['baseType','primaryColor','secondaryColor','ears','wings','tail','pattern','bodyCovering','eyes','nose','feet','horns','antennae','mane','teeth'];
+  const MAX_NUMBER = Number.MAX_SAFE_INTEGER;
+  const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Math.max(0, Math.min(MAX_NUMBER, Number(value))) : fallback;
+  const integer = (value, fallback = 0) => Math.floor(finite(value, fallback));
+  const safeId = value => typeof value === 'string' && value.trim().length > 0 && value.length <= 150;
+  const unique = value => Array.isArray(value) ? [...new Set(value)] : [];
+  const object = value => value && typeof value === 'object' && !Array.isArray(value);
+  function defaults() {
+    const learning = {};
+    SUBJECTS.forEach(s => learning[s] = {stars:0, completed:0});
+    const traits = {};
+    TRAITS.forEach(t => traits[t] = null);
     return {
-
-      version: 1,
-
-      /* ---------------------------------
-         STERREN
-      --------------------------------- */
-
-      stars: {
-
-        /*
-          Sterren die uitgegeven kunnen worden.
-        */
-
-        spendable: 0,
-
-
-        /*
-          Alle sterren die ooit verdiend zijn.
-
-          Deze waarde daalt NOOIT wanneer
-          een kind iets koopt.
-        */
-
-        totalEarned: 0
-
-      },
-
-
-      /* ---------------------------------
-         LEREN
-      --------------------------------- */
-
-      learning: {
-
-        language: {
-          stars: 0,
-          completed: 0
-        },
-
-        reading: {
-          stars: 0,
-          completed: 0
-        },
-
-        spelling: {
-          stars: 0,
-          completed: 0
-        },
-
-        math: {
-          stars: 0,
-          completed: 0
-        },
-
-        logic: {
-          stars: 0,
-          completed: 0
-        },
-
-        nature: {
-          stars: 0,
-          completed: 0
-        },
-
-        biology: {
-          stars: 0,
-          completed: 0
-        },
-
-        geography: {
-          stars: 0,
-          completed: 0
-        },
-
-        history: {
-          stars: 0,
-          completed: 0
-        },
-
-        science: {
-          stars: 0,
-          completed: 0
-        },
-
-        technology: {
-          stars: 0,
-          completed: 0
-        },
-
-        creativity: {
-          stars: 0,
-          completed: 0
-        },
-
-        music: {
-          stars: 0,
-          completed: 0
-        },
-
-        movement: {
-          stars: 0,
-          completed: 0
-        }
-
-      },
-
-
-      /* ---------------------------------
-         AVONTUREN
-      --------------------------------- */
-
-      adventures: {
-
-        "hoofdstuk-1": {
-
-          started: false,
-
-          completed: false,
-
-          currentPart: 1,
-
-          completedParts: [],
-
-          clues: []
-
-        }
-
-      },
-
-
-      /* ---------------------------------
-         MYSTERIEUZE EI
-      --------------------------------- */
-
-      egg: {
-
-        /*
-          Het ei bestaat al in het verhaal,
-          maar het kind heeft het nog
-          niet noodzakelijk gevonden.
-        */
-
-        discovered: false,
-
-        owned: false,
-
-        hatched: false,
-
-
-        /*
-          Ontwikkelingsfase:
-
-          0 = onbekend
-          1 = gevonden
-          2 = reageert
-          3 = begint te veranderen
-          4 = beweegt / gloeit
-          5 = barstjes
-          6 = klaar voor uitbroedavontuur
-          7 = uitgekomen
-        */
-
-        stage: 0,
-
-
-        /*
-          Bijzondere momenten die het kind
-          met het ei heeft meegemaakt.
-        */
-
-        moments: [],
-
-
-        /*
-          Eigenschappen worden later tijdens
-          avonturen opgebouwd.
-        */
-
-        traits: {
-
-          baseType: null,
-
-          primaryColor: null,
-
-          secondaryColor: null,
-
-          ears: null,
-
-          wings: null,
-
-          tail: null,
-
-          pattern: null,
-
-          bodyCovering: null,
-
-          eyes: null,
-
-          nose: null,
-
-          feet: null,
-
-          horns: null,
-
-          antennae: null,
-
-          mane: null,
-
-          teeth: null
-
-        }
-
-      },
-
-
-      /* ---------------------------------
-         VRIENDJES
-      --------------------------------- */
-
-      companions: [],
-
-
-      /* ---------------------------------
-         ONTDEKKINGEN
-      --------------------------------- */
-
-      discoveries: {
-
-        eggs: [],
-
-        characters: [],
-
-        vehicles: [],
-
-        clothing: [],
-
-        places: [],
-
-        objects: []
-
-      },
-
-
-      /* ---------------------------------
-         INVENTARIS
-      --------------------------------- */
-
-      inventory: {
-
-        clothing: [],
-
-        vehicles: [],
-
-        objects: [],
-
-        roomItems: []
-
-      },
-
-
-      /* ---------------------------------
-         TALENTEN AVATAR
-      --------------------------------- */
-
-      talents: {
-
-        language: 0,
-
-        math: 0,
-
-        logic: 0,
-
-        creativity: 0,
-
-        nature: 0,
-
-        technology: 0,
-
-        music: 0,
-
-        movement: 0,
-
-        caring: 0
-
-      },
-
-
-      /* ---------------------------------
-         OPDRACHTGESCHIEDENIS
-      --------------------------------- */
-
-      tasks: {}
-
+      version:2,
+      stars:{spendable:0,totalEarned:0},
+      learning,
+      adventures:{'hoofdstuk-1':{started:false,completed:false,currentPart:1,completedParts:[],clues:[],scenes:{}}},
+      egg:{discovered:false,owned:false,hatched:false,stage:0,moments:[],traits},
+      companions:[],
+      discoveries:{eggs:[],characters:[],vehicles:[],clothing:[],places:[],objects:[]},
+      inventory:{clothing:[],vehicles:[],objects:[],roomItems:[]},
+      talents:{language:0,math:0,logic:0,creativity:0,nature:0,technology:0,music:0,movement:0,caring:0},
+      tasks:{},
+      migrations:{legacyStarsImported:false}
     };
-
   }
-
-
-  /* =====================================================
-     OBJECTEN SAMENVOEGEN
-
-     Hierdoor blijven nieuwe onderdelen later
-     beschikbaar voor oudere opgeslagen profielen.
-  ===================================================== */
-
-  function mergeDeep(defaults, saved) {
-
-    if (
-      typeof defaults !== "object" ||
-      defaults === null
-    ) {
-      return saved === undefined
-        ? defaults
-        : saved;
-    }
-
-
-    if (Array.isArray(defaults)) {
-
-      return Array.isArray(saved)
-        ? saved
-        : [...defaults];
-
-    }
-
-
-    const result = {
-      ...defaults
-    };
-
-
-    if (
-      typeof saved !== "object" ||
-      saved === null ||
-      Array.isArray(saved)
-    ) {
-      return result;
-    }
-
-
-    Object.keys(saved).forEach(key => {
-
-      if (
-        key in defaults &&
-        typeof defaults[key] === "object" &&
-        defaults[key] !== null &&
-        !Array.isArray(defaults[key])
-      ) {
-
-        result[key] =
-          mergeDeep(
-            defaults[key],
-            saved[key]
-          );
-
-      }
-
-      else {
-
-        result[key] =
-          saved[key];
-
-      }
-
-    });
-
-
+  function merge(base, saved) {
+    if (Array.isArray(base)) return Array.isArray(saved) ? saved : base;
+    if (!object(base)) return saved === undefined ? base : saved;
+    const result = {...base};
+    if (!object(saved)) return result;
+    Object.keys(saved).forEach(k => result[k] = k in base ? merge(base[k], saved[k]) : saved[k]);
     return result;
-
   }
-
-
-  /* =====================================================
-     LADEN
-  ===================================================== */
-
+  function raw() {
+    try { const data = JSON.parse(localStorage.getItem(KEY)); return object(data) ? data : null; }
+    catch (error) { console.warn('Baby4All: opgeslagen voortgang is niet leesbaar.', error); return null; }
+  }
+  function normalize(p) {
+    p.version = 2;
+    p.stars.spendable = integer(p.stars.spendable);
+    p.stars.totalEarned = Math.max(p.stars.spendable, integer(p.stars.totalEarned));
+    p.egg.stage = Math.min(7, integer(p.egg.stage));
+    p.egg.moments = unique(p.egg.moments);
+    if (p.egg.hatched) { p.egg.owned = true; p.egg.discovered = true; p.egg.stage = 7; }
+    if (p.egg.owned) p.egg.discovered = true;
+    if (p.egg.discovered) p.egg.stage = Math.max(1,p.egg.stage);
+    return p;
+  }
   function load() {
-
-    let saved = null;
-
-
-    try {
-
-      saved =
-        JSON.parse(
-          localStorage.getItem(
-            STORAGE_KEY
-          )
-        );
-
+    const existing = raw();
+    const p = normalize(merge(defaults(), existing));
+    // Importeer oude sterren precies één keer; daarna is het centrale saldo leidend.
+    if (!p.migrations.legacyStarsImported) {
+      const oldSpendable = integer(localStorage.getItem(LEGACY_STARS));
+      const oldTotal = integer(localStorage.getItem(LEGACY_TOTAL));
+      p.stars.spendable = Math.max(p.stars.spendable, oldSpendable);
+      p.stars.totalEarned = Math.max(p.stars.totalEarned, oldTotal, p.stars.spendable);
+      p.migrations.legacyStarsImported = true;
+      persist(p);
     }
-
-    catch (error) {
-
-      console.warn(
-        "Baby4All voortgang kon niet worden geladen.",
-        error
-      );
-
-    }
-
-
-    return mergeDeep(
-      defaultProgress(),
-      saved
-    );
-
+    return p;
   }
-
-
-  /* =====================================================
-     OPSLAAN
-  ===================================================== */
-
-  function save(progress) {
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(progress)
-    );
-
-
-    /*
-      Tijdelijk houden we ook de oude
-      sterrensleutels bijgewerkt.
-
-      Daardoor blijven de pagina's die
-      we al gemaakt hebben gewoon werken.
-    */
-
-    localStorage.setItem(
-      "baby4all-stars",
-      progress.stars.spendable
-    );
-
-
-    localStorage.setItem(
-      "baby4all-total-stars",
-      progress.stars.totalEarned
-    );
-
-
-    return progress;
-
+  function persist(p) {
+    localStorage.setItem(KEY, JSON.stringify(p));
+    localStorage.setItem(LEGACY_STARS, String(p.stars.spendable));
+    localStorage.setItem(LEGACY_TOTAL, String(p.stars.totalEarned));
+    return p;
   }
-
-
-  /* =====================================================
-     OUDE STERREN IMPORTEREN
-
-     We hebben in de eerste pagina's al
-     sterren opgeslagen voordat deze
-     centrale motor bestond.
-
-     Die raken we dus NIET kwijt.
-  ===================================================== */
-
-  function migrateOldStars() {
-
-    const progress = load();
-
-
-    const oldSpendable =
-      Number(
-        localStorage.getItem(
-          "baby4all-stars"
-        )
-      ) || 0;
-
-
-    const oldTotal =
-      Number(
-        localStorage.getItem(
-          "baby4all-total-stars"
-        )
-      ) || 0;
-
-
-    if (
-      oldSpendable >
-      progress.stars.spendable
-    ) {
-
-      progress.stars.spendable =
-        oldSpendable;
-
-    }
-
-
-    if (
-      oldTotal >
-      progress.stars.totalEarned
-    ) {
-
-      progress.stars.totalEarned =
-        oldTotal;
-
-    }
-
-
-    save(progress);
-
+  function save(p) { if (!object(p)) throw new TypeError('Voortgang moet een object zijn.'); return persist(normalize(merge(defaults(),p))); }
+  function earnStars(amount,subject=null) {
+    amount=integer(amount);
+    if (!amount) return load();
+    const p=load();
+    p.stars.spendable=Math.min(MAX_NUMBER,p.stars.spendable+amount);
+    p.stars.totalEarned=Math.min(MAX_NUMBER,p.stars.totalEarned+amount);
+    if (subject && p.learning[subject]) {p.learning[subject].stars+=amount;p.learning[subject].completed+=1;}
+    return save(p);
   }
-
-
-  /* =====================================================
-     STERREN VERDIENEN
-  ===================================================== */
-
-  function earnStars(
-    amount,
-    subject = null
-  ) {
-
-    amount = Number(amount);
-
-
-    if (
-      !Number.isFinite(amount) ||
-      amount <= 0
-    ) {
-
-      return load();
-
-    }
-
-
-    const progress = load();
-
-
-    progress.stars.spendable +=
-      amount;
-
-
-    progress.stars.totalEarned +=
-      amount;
-
-
-    /*
-      Als de opdracht bij een leergebied hoort,
-      houden we dat apart bij.
-    */
-
-    if (
-      subject &&
-      progress.learning[subject]
-    ) {
-
-      progress.learning[subject].stars +=
-        amount;
-
-
-      progress.learning[subject].completed +=
-        1;
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
-  }
-
-
-  /* =====================================================
-     STERREN UITGEVEN
-  ===================================================== */
-
   function spendStars(amount) {
-
-    amount = Number(amount);
-
-
-    if (
-      !Number.isFinite(amount) ||
-      amount <= 0
-    ) {
-
-      return {
-        success: false,
-        reason: "invalid"
-      };
-
-    }
-
-
-    const progress = load();
-
-
-    if (
-      progress.stars.spendable <
-      amount
-    ) {
-
-      return {
-
-        success: false,
-
-        reason:
-          "not-enough-stars",
-
-        balance:
-          progress.stars.spendable
-
-      };
-
-    }
-
-
-    progress.stars.spendable -=
-      amount;
-
-
-    /*
-      totalEarned wordt hier bewust
-      NIET verlaagd.
-    */
-
-
-    save(progress);
-
-
-    return {
-
-      success: true,
-
-      balance:
-        progress.stars.spendable,
-
-      totalEarned:
-        progress.stars.totalEarned
-
-    };
-
+    amount=Number(amount);
+    if (!Number.isSafeInteger(amount) || amount<=0) return {success:false,reason:'invalid'};
+    const p=load();
+    if (p.stars.spendable<amount) return {success:false,reason:'not-enough-stars',balance:p.stars.spendable};
+    p.stars.spendable-=amount;save(p);
+    return {success:true,balance:p.stars.spendable,totalEarned:p.stars.totalEarned};
   }
-
-
-  /* =====================================================
-     KAN IETS WORDEN ONTGRENDELD?
-  ===================================================== */
-
-  function hasTotalStars(amount) {
-
-    const progress = load();
-
-    return (
-      progress.stars.totalEarned >=
-      Number(amount)
-    );
-
+  function hasTotalStars(amount) {return load().stars.totalEarned>=integer(amount);}
+  function hasLearningProgress(subject,minimumStars=0,minimumCompleted=0) {
+    const d=load().learning[subject];return !!d && d.stars>=integer(minimumStars) && d.completed>=integer(minimumCompleted);
   }
-
-
-  /* =====================================================
-     LEERGEBIED CONTROLEREN
-  ===================================================== */
-
-  function hasLearningProgress(
-    subject,
-    minimumStars = 0,
-    minimumCompleted = 0
-  ) {
-
-    const progress = load();
-
-    const data =
-      progress.learning[subject];
-
-
-    if (!data) {
-      return false;
-    }
-
-
-    return (
-
-      data.stars >= minimumStars &&
-
-      data.completed >=
-      minimumCompleted
-
-    );
-
+  function checkRequirements(req={}) {
+    const p=load(),missing=[];
+    if (p.stars.totalEarned<integer(req.totalStars)) missing.push({type:'stars',current:p.stars.totalEarned,required:integer(req.totalStars)});
+    if (object(req.subjects)) Object.entries(req.subjects).forEach(([subject,r])=>{
+      const d=p.learning[subject],stars=integer(r&&r.stars),completed=integer(r&&r.completed);
+      if (!d || d.stars<stars || d.completed<completed) missing.push({type:'subject',subject,stars:d?d.stars:0,requiredStars:stars,completed:d?d.completed:0,requiredCompleted:completed});
+    });
+    return {unlocked:missing.length===0,missing};
   }
-
-
-  /* =====================================================
-     GROTE ONTGRENDELVOORWAARDE
-
-     Hiermee kunnen we straks bijvoorbeeld
-     zeggen:
-
-     1000 totaalsterren
-     + taal
-     + rekenen
-     + natuur
-     + logica
-  ===================================================== */
-
-  function checkRequirements(
-    requirements
-  ) {
-
-    const progress = load();
-
-    const missing = [];
-
-
-    if (
-      requirements.totalStars &&
-      progress.stars.totalEarned <
-      requirements.totalStars
-    ) {
-
-      missing.push({
-
-        type: "stars",
-
-        current:
-          progress.stars.totalEarned,
-
-        required:
-          requirements.totalStars
-
-      });
-
-    }
-
-
-    if (requirements.subjects) {
-
-      Object.entries(
-        requirements.subjects
-      )
-      .forEach(
-        ([subject, requirement]) => {
-
-          const data =
-            progress.learning[subject];
-
-
-          if (!data) {
-
-            missing.push({
-              type: "subject",
-              subject: subject
-            });
-
-            return;
-
-          }
-
-
-          const neededStars =
-            requirement.stars || 0;
-
-
-          const neededCompleted =
-            requirement.completed || 0;
-
-
-          if (
-            data.stars < neededStars ||
-            data.completed <
-            neededCompleted
-          ) {
-
-            missing.push({
-
-              type: "subject",
-
-              subject: subject,
-
-              stars:
-                data.stars,
-
-              requiredStars:
-                neededStars,
-
-              completed:
-                data.completed,
-
-              requiredCompleted:
-                neededCompleted
-
-            });
-
-          }
-
-        }
-      );
-
-    }
-
-
-    return {
-
-      unlocked:
-        missing.length === 0,
-
-      missing:
-        missing
-
-    };
-
+  function adventure(p,id) {
+    if (!object(p.adventures[id])) p.adventures[id]={started:false,completed:false,currentPart:1,completedParts:[],clues:[],scenes:{}};
+    const a=p.adventures[id];
+    if (!object(a.scenes)) a.scenes={};
+    if (!Array.isArray(a.completedParts)) a.completedParts=[];
+    if (!Array.isArray(a.clues)) a.clues=[];
+    return a;
   }
-
-
-  /* =====================================================
-     AVONTUUR STARTEN
-  ===================================================== */
-
-  function startAdventure(
-    adventureId
-  ) {
-
-    const progress = load();
-
-
-    if (
-      !progress.adventures[
-        adventureId
-      ]
-    ) {
-
-      progress.adventures[
-        adventureId
-      ] = {
-
-        started: true,
-
-        completed: false,
-
-        currentPart: 1,
-
-        completedParts: [],
-
-        clues: []
-
-      };
-
-    }
-
-    else {
-
-      progress.adventures[
-        adventureId
-      ].started = true;
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
+  function startAdventure(id) {if (!safeId(id)) return load();const p=load();adventure(p,id).started=true;return save(p);}
+  function completeAdventurePart(id,part) {
+    if (!safeId(id) || !Number.isSafeInteger(Number(part)) || Number(part)<1) return load();
+    const p=load(),a=adventure(p,id),n=Number(part);
+    a.started=true;if (!a.completedParts.includes(n)) a.completedParts.push(n);
+    a.currentPart=Math.max(integer(a.currentPart,1),n+1);return save(p);
   }
-
-
-  /* =====================================================
-     DEEL VOLTOOIEN
-  ===================================================== */
-
-  function completeAdventurePart(
-    adventureId,
-    part
-  ) {
-
-    const progress = load();
-
-
-    if (
-      !progress.adventures[
-        adventureId
-      ]
-    ) {
-
-      startAdventure(
-        adventureId
-      );
-
-      return completeAdventurePart(
-        adventureId,
-        part
-      );
-
-    }
-
-
-    const adventure =
-      progress.adventures[
-        adventureId
-      ];
-
-
-    if (
-      !adventure.completedParts
-      .includes(part)
-    ) {
-
-      adventure.completedParts
-      .push(part);
-
-    }
-
-
-    adventure.currentPart =
-      Math.max(
-        adventure.currentPart,
-        Number(part) + 1
-      );
-
-
-    save(progress);
-
-    return progress;
-
+  function saveScene(id,part,scene) {
+    if (!safeId(id) || !Number.isSafeInteger(Number(part)) || Number(part)<1 || !safeId(String(scene))) return load();
+    const p=load(),a=adventure(p,id);a.started=true;
+    a.scenes[String(part)]=String(scene);return save(p);
   }
-
-
-  /* =====================================================
-     AANWIJZING ONTDEKKEN
-  ===================================================== */
-
-  function discoverClue(
-    adventureId,
-    clueId
-  ) {
-
-    const progress = load();
-
-
-    if (
-      !progress.adventures[
-        adventureId
-      ]
-    ) {
-
-      progress.adventures[
-        adventureId
-      ] = {
-
-        started: true,
-
-        completed: false,
-
-        currentPart: 1,
-
-        completedParts: [],
-
-        clues: []
-
-      };
-
-    }
-
-
-    const clues =
-      progress.adventures[
-        adventureId
-      ].clues;
-
-
-    if (
-      !clues.includes(clueId)
-    ) {
-
-      clues.push(clueId);
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
+  function getScene(id,part) {const a=load().adventures[id];return a&&a.scenes ? a.scenes[String(part)]||null : null;}
+  function discoverClue(id,clue) {if (!safeId(id)||!safeId(clue)) return load();const p=load(),a=adventure(p,id);if(!a.clues.includes(clue))a.clues.push(clue);return save(p);}
+  function addUnique(section,category,id) {if(!safeId(id))return load();const p=load(),list=p[section]&&p[section][category];if(!Array.isArray(list))return p;if(!list.includes(id))list.push(id);return save(p);}
+  function discoverCharacter(id) {return addUnique('discoveries','characters',id);}
+  function discoverItem(category,id) {return addUnique('discoveries',category,id);}
+  function discoverEgg() {const p=load();p.egg.discovered=true;p.egg.stage=Math.max(1,p.egg.stage);return save(p);}
+  // Verhaalregel: het ei kan pas worden verkregen wanneer een toekomstige,
+  // expliciet toegekende ontgrendeling is geregistreerd.
+  const EGG_UNLOCK='mysterieuze-ei-verdiend';
+  function eggEligible(p) {return p.adventures['hoofdstuk-1']?.clues?.includes(EGG_UNLOCK)===true;}
+  function obtainEgg() {const p=load();if(!eggEligible(p))return {success:false,reason:'egg-locked',progress:p};p.egg.discovered=true;p.egg.owned=true;p.egg.stage=Math.max(1,p.egg.stage);save(p);return {success:true,progress:p};}
+  function addEggMoment(id) {
+    if(!safeId(id))return load();const p=load();if(!p.egg.owned)return p;
+    if(!p.egg.moments.includes(id))p.egg.moments.push(id);
+    const n=p.egg.moments.length;
+    p.egg.stage=Math.max(p.egg.stage,n>=5?6:n>=4?5:n>=3?4:n>=2?3:n>=1?2:1);
+    return save(p);
   }
-
-
-  /* =====================================================
-     PERSONAGE ONTDEKKEN
-  ===================================================== */
-
-  function discoverCharacter(
-    characterId
-  ) {
-
-    const progress = load();
-
-    const list =
-      progress.discoveries
-      .characters;
-
-
-    if (
-      !list.includes(characterId)
-    ) {
-
-      list.push(characterId);
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
+  function setEggTrait(trait,value) {const p=load();if(!p.egg.owned || !Object.prototype.hasOwnProperty.call(p.egg.traits,trait))return p;p.egg.traits[trait]=value;return save(p);}
+  function hatchEgg(companion) {
+    const p=load();
+    if(!p.egg.owned)return {success:false,reason:'egg-not-owned'};
+    if(p.egg.stage<6)return {success:false,reason:'egg-not-ready'};
+    // De uiteindelijke uitbroedmissie moet dit bewijs later toekennen.
+    if(!p.egg.moments.includes('uitbroedavontuur-voltooid'))return {success:false,reason:'hatching-adventure-required'};
+    if(p.egg.hatched)return {success:false,reason:'already-hatched'};
+    p.egg.hatched=true;p.egg.stage=7;
+    if(companion && !p.companions.some(c=>JSON.stringify(c)===JSON.stringify(companion)))p.companions.push(companion);
+    save(p);return {success:true,progress:p};
   }
-
-
-  /* =====================================================
-     VOORWERP ONTDEKKEN
-  ===================================================== */
-
-  function discoverItem(
-    category,
-    itemId
-  ) {
-
-    const progress = load();
-
-
-    if (
-      !progress.discoveries[
-        category
-      ]
-    ) {
-
-      return progress;
-
-    }
-
-
-    const list =
-      progress.discoveries[
-        category
-      ];
-
-
-    if (
-      !list.includes(itemId)
-    ) {
-
-      list.push(itemId);
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
+  function taskStatus(id) {
+    const task=load().tasks[id];
+    if(!task)return {available:true,remaining:0};
+    if(task.once===true)return {available:false,remaining:0,reason:'already-completed',lastReward:task.lastReward,timesCompleted:task.timesCompleted||0};
+    const cooldown=Number.isFinite(task.cooldownMs)?Math.max(0,task.cooldownMs):3600000;
+    const remaining=Math.max(0,cooldown-(Date.now()-integer(task.lastReward)));
+    return {available:remaining===0,remaining,lastReward:task.lastReward,timesCompleted:task.timesCompleted||0,reason:remaining?'cooldown':null};
   }
-
-
-  /* =====================================================
-     EI ONTDEKKEN
-  ===================================================== */
-
-  function discoverEgg() {
-
-    const progress = load();
-
-
-    progress.egg.discovered =
-      true;
-
-
-    if (
-      progress.egg.stage < 1
-    ) {
-
-      progress.egg.stage = 1;
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
+  function completeTask(id,options={}) {
+    if(!safeId(id))return {success:false,rewarded:false,reason:'invalid-task'};
+    const p=load(),existing=p.tasks[id],once=options.once===true || (existing&&existing.once===true);
+    if(once&&existing&&existing.timesCompleted>0)return {success:false,rewarded:false,reason:'already-completed'};
+    const status=taskStatus(id);
+    if(!status.available)return {success:false,rewarded:false,reason:status.reason||'cooldown',remaining:status.remaining};
+    const reward=integer(options.stars),subject=options.subject||null;
+    p.stars.spendable=Math.min(MAX_NUMBER,p.stars.spendable+reward);
+    p.stars.totalEarned=Math.min(MAX_NUMBER,p.stars.totalEarned+reward);
+    if(reward>0&&subject&&p.learning[subject]){p.learning[subject].stars+=reward;p.learning[subject].completed+=1;}
+    p.tasks[id]={timesCompleted:(existing?.timesCompleted||0)+1,lastReward:Date.now(),once:!!once,cooldownMs:once?0:integer(options.cooldownMs,3600000)};
+    save(p);return {success:true,rewarded:true,stars:reward,subject,balance:p.stars.spendable,totalEarned:p.stars.totalEarned};
   }
-
-
-  /* =====================================================
-     EI WORDT VAN HET KIND
-  ===================================================== */
-
-  function obtainEgg() {
-
-    const progress = load();
-
-
-    progress.egg.discovered =
-      true;
-
-    progress.egg.owned =
-      true;
-
-
-    if (
-      progress.egg.stage < 1
-    ) {
-
-      progress.egg.stage = 1;
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
-  }
-
-
-  /* =====================================================
-     BIJZONDER EI-MOMENT
-  ===================================================== */
-
-  function addEggMoment(
-    momentId
-  ) {
-
-    const progress = load();
-
-
-    if (
-      !progress.egg.moments
-      .includes(momentId)
-    ) {
-
-      progress.egg.moments
-      .push(momentId);
-
-    }
-
-
-    /*
-      Voor het eerste ei gebruiken we
-      maximaal zes belangrijke momenten
-      voordat het uitbroedavontuur
-      beschikbaar komt.
-    */
-
-    const moments =
-      progress.egg.moments.length;
-
-
-    if (
-      progress.egg.discovered
-    ) {
-
-      if (moments >= 1)
-        progress.egg.stage =
-          Math.max(
-            progress.egg.stage,
-            2
-          );
-
-
-      if (moments >= 2)
-        progress.egg.stage =
-          Math.max(
-            progress.egg.stage,
-            3
-          );
-
-
-      if (moments >= 3)
-        progress.egg.stage =
-          Math.max(
-            progress.egg.stage,
-            4
-          );
-
-
-      if (moments >= 4)
-        progress.egg.stage =
-          Math.max(
-            progress.egg.stage,
-            5
-          );
-
-
-      if (moments >= 5)
-        progress.egg.stage =
-          Math.max(
-            progress.egg.stage,
-            6
-          );
-
-    }
-
-
-    save(progress);
-
-    return progress;
-
-  }
-
-
-  /* =====================================================
-     EI-EIGENSCHAP TOEVOEGEN
-
-     Bijvoorbeeld:
-
-     setEggTrait(
-       "wings",
-       "small"
-     );
-  ===================================================== */
-
-  function setEggTrait(
-    trait,
-    value
-  ) {
-
-    const progress = load();
-
-
-    if (
-      !(trait in progress.egg.traits)
-    ) {
-
-      return progress;
-
-    }
-
-
-    progress.egg.traits[
-      trait
-    ] = value;
-
-
-    save(progress);
-
-    return progress;
-
-  }
-
-
-  /* =====================================================
-     EI UIT LATEN KOMEN
-  ===================================================== */
-
-  function hatchEgg(
-    companion
-  ) {
-
-    const progress = load();
-
-
-    if (
-      progress.egg.stage < 6
-    ) {
-
-      return {
-
-        success: false,
-
-        reason:
-          "egg-not-ready"
-
-      };
-
-    }
-
-
-    progress.egg.hatched =
-      true;
-
-    progress.egg.stage =
-      7;
-
-
-    if (companion) {
-
-      progress.companions
-      .push(companion);
-
-    }
-
-
-    save(progress);
-
-
-    return {
-
-      success: true,
-
-      progress: progress
-
-    };
-
-  }
-
-
-  /* =====================================================
-     OPDRACHT COOLDOWN
-
-     Een afgeronde opdracht kan na ongeveer
-     één uur opnieuw sterren opleveren.
-  ===================================================== */
-
-  function taskStatus(
-    taskId
-  ) {
-
-    const progress = load();
-
-    const task =
-      progress.tasks[
-        taskId
-      ];
-
-
-    if (!task) {
-
-      return {
-
-        available: true,
-
-        remaining: 0
-
-      };
-
-    }
-
-
-    const elapsed =
-      Date.now() -
-      task.lastReward;
-
-
-    const remaining =
-      Math.max(
-        0,
-        TASK_COOLDOWN -
-        elapsed
-      );
-
-
-    return {
-
-      available:
-        remaining === 0,
-
-      remaining:
-        remaining,
-
-      lastReward:
-        task.lastReward,
-
-      timesCompleted:
-        task.timesCompleted || 0
-
-    };
-
-  }
-
-
-  /* =====================================================
-     OPDRACHT AFRONDEN + BELONING
-
-     Dit wordt straks de belangrijkste
-     functie voor leeropdrachten.
-  ===================================================== */
-
-  function completeTask(
-    taskId,
-    options = {}
-  ) {
-
-    const status =
-      taskStatus(taskId);
-
-
-    if (!status.available) {
-
-      return {
-
-        success: false,
-
-        rewarded: false,
-
-        reason:
-          "cooldown",
-
-        remaining:
-          status.remaining
-
-      };
-
-    }
-
-
-    const reward =
-      Number(
-        options.stars || 0
-      );
-
-
-    const subject =
-      options.subject || null;
-
-
-    let progress =
-      earnStars(
-        reward,
-        subject
-      );
-
-
-    if (
-      !progress.tasks[
-        taskId
-      ]
-    ) {
-
-      progress.tasks[
-        taskId
-      ] = {
-
-        timesCompleted: 0,
-
-        lastReward: 0
-
-      };
-
-    }
-
-
-    progress.tasks[
-      taskId
-    ].timesCompleted += 1;
-
-
-    progress.tasks[
-      taskId
-    ].lastReward =
-      Date.now();
-
-
-    save(progress);
-
-
-    return {
-
-      success: true,
-
-      rewarded: true,
-
-      stars: reward,
-
-      subject: subject,
-
-      balance:
-        progress.stars.spendable,
-
-      totalEarned:
-        progress.stars.totalEarned
-
-    };
-
-  }
-
-
-  /* =====================================================
-     COOLDOWN LEESBAAR MAKEN
-  ===================================================== */
-
-  function formatCooldown(
-    milliseconds
-  ) {
-
-    const minutes =
-      Math.ceil(
-        milliseconds /
-        60000
-      );
-
-
-    if (minutes <= 0) {
-      return "nu";
-    }
-
-
-    if (minutes === 1) {
-      return "ongeveer 1 minuut";
-    }
-
-
-    if (minutes < 60) {
-
-      return (
-        "ongeveer " +
-        minutes +
-        " minuten"
-      );
-
-    }
-
-
-    return "ongeveer 1 uur";
-
-  }
-
-
-  /* =====================================================
-     RESET
-
-     Alleen voor ontwikkeling/testen.
-     Nog GEEN knop voor kinderen maken.
-  ===================================================== */
-
-  function resetAllProgress() {
-
-    localStorage.removeItem(
-      STORAGE_KEY
-    );
-
-    localStorage.removeItem(
-      "baby4all-stars"
-    );
-
-    localStorage.removeItem(
-      "baby4all-total-stars"
-    );
-
-    return load();
-
-  }
-
-
-  /* =====================================================
-     EERSTE MIGRATIE
-  ===================================================== */
-
-  migrateOldStars();
-
-
-  /* =====================================================
-     PUBLIEKE BABY4ALL API
-
-     Andere pagina's kunnen straks simpel:
-
-     Baby4AllProgress.earnStars(...)
-     Baby4AllProgress.completeTask(...)
-     Baby4AllProgress.discoverEgg(...)
-     enz.
-  ===================================================== */
-
-  window.Baby4AllProgress = {
-
-    load,
-
-    save,
-
-    earnStars,
-
-    spendStars,
-
-    hasTotalStars,
-
-    hasLearningProgress,
-
-    checkRequirements,
-
-    startAdventure,
-
-    completeAdventurePart,
-
-    discoverClue,
-
-    discoverCharacter,
-
-    discoverItem,
-
-    discoverEgg,
-
-    obtainEgg,
-
-    addEggMoment,
-
-    setEggTrait,
-
-    hatchEgg,
-
-    taskStatus,
-
-    completeTask,
-
-    formatCooldown,
-
-    resetAllProgress
-
-  };
-
-
+  function formatCooldown(ms) {const n=Math.ceil(finite(ms)/60000);return n<=0?'nu':n===1?'ongeveer 1 minuut':n<60?'ongeveer '+n+' minuten':'ongeveer '+Math.ceil(n/60)+' uur';}
+  function resetAllProgress() {localStorage.removeItem(KEY);localStorage.removeItem(LEGACY_STARS);localStorage.removeItem(LEGACY_TOTAL);return load();}
+  // Import bij eerste gebruik, maar nooit opnieuw op basis van een hoger oud saldo.
+  load();
+  window.Baby4AllProgress={load,save,earnStars,spendStars,hasTotalStars,hasLearningProgress,checkRequirements,startAdventure,completeAdventurePart,saveScene,getScene,discoverClue,discoverCharacter,discoverItem,discoverEgg,obtainEgg,addEggMoment,setEggTrait,hatchEgg,taskStatus,completeTask,formatCooldown,resetAllProgress};
 })();
