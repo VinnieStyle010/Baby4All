@@ -1,5 +1,5 @@
 
-/* Kids4All2Learn / Baby4All - centrale voortgang, versie 2.
+/* Kids4All2Learn - centrale voortgang, versie 2.
    Behoudt de bestaande publieke API en oude opslagsleutels. */
 (function () {
   'use strict';
@@ -43,7 +43,7 @@
   }
   function raw() {
     try { const data = JSON.parse(localStorage.getItem(KEY)); return object(data) ? data : null; }
-    catch (error) { console.warn('Baby4All: opgeslagen voortgang is niet leesbaar.', error); return null; }
+    catch (error) { console.warn('Kids4All2Learn: opgeslagen voortgang is niet leesbaar.', error); return null; }
   }
   function normalize(p) {
     p.version = 2;

@@ -1,4 +1,4 @@
-# Baby4All — versie 0.1
+# Kids4All2Learn — versie 0.1
 
 ## Mappenstructuur
 - `index.html`: homepage
@@ -13,10 +13,10 @@
 - `manifest.webmanifest`: basis voor een installeerbare webapp
 
 ## Publiceren met GitHub Pages
-1. Maak een repository `baby4all` aan.
-2. Upload de **inhoud** van de map `Baby4All` naar de hoofdmap van de repository (dus `index.html` op het hoogste niveau).
+1. Maak een repository `kids4all2learn` aan.
+2. Upload de **inhoud** van de map `Kids4All2Learn` naar de hoofdmap van de repository (dus `index.html` op het hoogste niveau).
 3. Ga naar Settings > Pages en kies `Deploy from a branch`, branch `main`, folder `/ (root)`.
-4. De site verschijnt na publicatie op `https://GEBRUIKERSNAAM.github.io/baby4all/`.
+4. De site verschijnt na publicatie op `https://GEBRUIKERSNAAM.github.io/Kids4All2Learn/`.
 
 ## Vertalingen
 Nederlands en Engels zijn uitgewerkt. De andere 13 talen staan als losse voorbereidende JSON-bestanden klaar; nog niet vertaald. Bij ontbrekende vertalingen verschijnt de Nederlandse tekst. Voeg vertalingen per sleutel toe aan het overeenkomstige JSON-bestand. Arabisch schakelt de schrijfrichting automatisch om.
