@@ -1,7 +1,5 @@
-/*
- * Kids4All2Learn - Character Voice Engine v1
- * Centrale spraakmodule voor personages en avonturen.
- */
+
+/* Kids4All2Learn - Character Voice Engine v2 */
 (function () {
   "use strict";
 
@@ -10,40 +8,57 @@
     lila: { rate: 0.95, pitch: 1.15 }
   };
 
-  const brand = /\bKids4All2Learn\b/gi;
+  let activeAudio = null;
+  let activeUtterance = null;
+  let playbackId = 0;
 
   function prepareText(text) {
     return String(text || "").replace(
-      brand,
+      /\bKids4All2Learn\b/gi,
       "Kids For All To Learn"
     );
   }
 
+  function stop() {
+    playbackId++;
+
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+      activeAudio = null;
+    }
+
+    if ("speechSynthesis" in window) {
+      speechSynthesis.cancel();
+    }
+    activeUtterance = null;
+  }
+
   function getVoice(language, character) {
     const voices = speechSynthesis.getVoices();
-    const matching = voices.filter(v =>
+    const matches = voices.filter(v =>
       v.lang.toLowerCase().startsWith(
         language.split("-")[0].toLowerCase()
       )
     );
 
-    if (!matching.length) return null;
-
-    const index = character === "lila" ? 1 : 0;
-    return matching[index] || matching[0];
+    return matches[character === "lila" ? 1 : 0]
+      || matches[0]
+      || null;
   }
 
   function speak(character, text, language = "nl-NL") {
-    if (!("speechSynthesis" in window)) return false;
+    stop();
 
-    speechSynthesis.cancel();
+    if (!("speechSynthesis" in window)) {
+      return false;
+    }
 
     const utterance = new SpeechSynthesisUtterance(
       prepareText(text)
     );
 
     const profile = characters[character] || characters.robo;
-
     utterance.lang = language;
     utterance.rate = profile.rate;
     utterance.pitch = profile.pitch;
@@ -51,22 +66,55 @@
     const voice = getVoice(language, character);
     if (voice) utterance.voice = voice;
 
+    activeUtterance = utterance;
     speechSynthesis.speak(utterance);
     return true;
   }
 
-  function stop() {
-    if ("speechSynthesis" in window) {
-      speechSynthesis.cancel();
+  async function speakLine(line, language = "nl-NL") {
+    if (!line) return false;
+
+    stop();
+    const currentId = playbackId;
+    const lang = language.toLowerCase();
+
+    if (line.audio && lang.startsWith("nl")) {
+      const audio = new Audio(
+        new URL(line.audio, document.baseURI).href
+      );
+
+      activeAudio = audio;
+
+      try {
+        await audio.play();
+        if (currentId !== playbackId) {
+          audio.pause();
+          return false;
+        }
+        return true;
+      } catch (error) {
+        if (currentId !== playbackId) return false;
+        activeAudio = null;
+        console.warn("Audio niet beschikbaar:", error);
+      }
     }
+
+    if (currentId !== playbackId) return false;
+
+    return speak(
+      line.character || "robo",
+      line.text || "",
+      language
+    );
   }
 
   window.K4AVoices = {
     speak,
+    speakLine,
     stop,
     prepareText,
     characters
   };
 
-  console.log("Kids4All2Learn Voice Engine geladen");
+  console.log("Kids4All2Learn Voice Engine v2 geladen");
 })();
