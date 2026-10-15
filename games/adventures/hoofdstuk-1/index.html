@@ -1486,5 +1486,46 @@ window.location.href =
 </script>
 
   <script src="../../../assets/js/characters/voice-engine.js"></script>
+
+  
+<script>
+(function () {
+  const originalNext = window.nextPart;
+  const originalMeet = window.meetFriend;
+
+  function talk(character, text) {
+    window.K4ADialogueVoice?.play({
+      character: character,
+      text: text
+    });
+  }
+
+  window.nextPart = function () {
+    originalNext();
+    talk("robo",
+      "Kijk! Die lichtjes vormen een spoor. Misschien kunnen we ontdekken waar het naartoe gaat!"
+    );
+  };
+
+  window.meetFriend = function () {
+    originalMeet();
+    talk("lila",
+      "O! Jullie zagen de lichtjes dus ook!"
+    );
+  };
+
+  const speech = document.querySelector(".character .speech");
+
+  if (speech) {
+    speech.style.cursor = "pointer";
+    speech.title = "Klik om Robo te horen";
+
+    speech.addEventListener("click", function () {
+      talk("robo", speech.innerText.replace(/^Robo:/i, ""));
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
